@@ -5,8 +5,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background-color: var(--dark-color);
-    min-height: 80svh;
+    min-height: 100svh;
 }
 
 .sectionContainer header {
