@@ -42,7 +42,6 @@ export default function Home2() {
     const [activeStarId, setActiveStarId] = useState<number | null>(null);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-    // Sincroniza el clic de la estrella superior con el scroll automático del texto
     const handleStarClick = (id: number) => {
         setActiveStarId(id);
         const container = scrollContainerRef.current;
@@ -51,27 +50,33 @@ export default function Home2() {
             if (targetElement) {
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
-                    block: 'nearest',
+                    block: 'center',
                     inline: 'center',
                 });
             }
         }
     };
 
-    // Escucha el scroll del contenedor para actualizar qué estrella brilla arriba en tiempo real
     const handleScroll = () => {
         const container = scrollContainerRef.current;
         if (!container) return;
 
         const children = Array.from(container.children) as HTMLElement[];
-        const containerCenter = container.getBoundingClientRect().left + container.offsetWidth / 2;
+
+        const isDesktop = window.innerWidth >= 1200;
 
         let currentActiveId = activeStarId;
         let closestDistance = Infinity;
 
+        const containerCenter = isDesktop
+            ? container.getBoundingClientRect().top + container.offsetHeight / 2
+            : container.getBoundingClientRect().left + container.offsetWidth / 2;
+
         children.forEach((child) => {
             const rect = child.getBoundingClientRect();
-            const childCenter = rect.left + rect.width / 2;
+
+            const childCenter = isDesktop ? rect.top + rect.height / 2 : rect.left + rect.width / 2;
+
             const distance = Math.abs(containerCenter - childCenter);
 
             if (distance < closestDistance) {
@@ -97,7 +102,6 @@ export default function Home2() {
                     </svg>
                 )}
 
-                {/* Fila de estrellas mutables */}
                 <div className={styles.starsRow}>
                     {MOBILE_STARS.map((star) => {
                         const isSelected = activeStarId === star.id;
@@ -109,13 +113,12 @@ export default function Home2() {
                                 onClick={() => handleStarClick(star.id)}
                             >
                                 <div className={styles.starPoint} />
-                                <span className={styles.starLabel}>{star.label}</span>
+                                <h3>{star.label}</h3>
                             </div>
                         );
                     })}
                 </div>
 
-                {/* Contenedor dinámico deslizante (Móvil: Horizontal, Desktop: Adaptable) */}
                 {activeStarId && (
                     <div className={styles.infoScrollWrapper} ref={scrollContainerRef} onScroll={handleScroll}>
                         {MOBILE_STARS.map((star) => (

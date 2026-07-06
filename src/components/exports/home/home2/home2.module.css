@@ -6,7 +6,7 @@
     justify-content: center;
     overflow: hidden;
     min-height: 100vh;
-    padding: 2rem;
+    padding: 20px;
 }
 
 .constellationContainer {
@@ -14,17 +14,8 @@
     z-index: 10;
     width: 100%;
     max-width: 400px;
-    height: 70vh;
+    height: 80vh;
     transition: all 0.5s ease-in-out;
-}
-
-/* --- MODO DETALLE: CAMBIO GENERAL DEL CONTENEDOR --- */
-.constellationContainer[data-view='detail'] {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 2rem;
 }
 
 .starsRow {
@@ -34,13 +25,13 @@
 }
 
 .svgCanvas {
+    pointer-events: none;
     position: absolute;
     z-index: 5;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
+    left: 0;
+    bottom: 17px;
 }
 
 .svgCanvas line {
@@ -71,18 +62,28 @@
     transition: all 0.3s ease;
 }
 
-.starLabel {
-    font-family: var(--font-neon);
+.starNode h3 {
+    font-family: var(--font-body);
     color: rgba(255, 255, 255, 0.6);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-top: 0.5rem;
     white-space: nowrap;
+    text-transform: uppercase;
     transition: opacity 0.3s ease;
+    letter-spacing: 2px;
+    margin-top: 8px;
+    font-size: 16px;
 }
 
 /* --- REGLAS DE REORDENAMIENTO CUANDO ESTÁ EN MODO DETALLE --- */
+
+.constellationContainer[data-view='detail'] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: auto;
+    min-height: 60vh;
+    padding-top: 60px;
+}
 
 .constellationContainer[data-view='detail'] .starsRow {
     display: flex;
@@ -90,8 +91,7 @@
     justify-content: center;
     align-items: center;
     height: auto;
-    margin-bottom: 2rem;
-    padding-top: 1rem;
+    gap: 30px;
 }
 
 .constellationContainer[data-view='detail'] .starNode {
@@ -99,10 +99,9 @@
     transform: none;
     animation: none;
     display: inline-flex;
-    margin: 0 1rem;
 }
 
-.constellationContainer[data-view='detail'] .starLabel {
+.constellationContainer[data-view='detail'] .starNode h3 {
     display: none;
 }
 
@@ -113,57 +112,47 @@
         0 0 25px #ffffff;
 }
 
-.constellationContainer[data-view='detail'] {
-    height: auto;
-    min-height: 60vh;
-}
-
-/* --- NUEVO WRAPPER DE SCROLL NATIVO PREMIUM --- */
+/* --- WRAPPER DE SCROLL NATIVO --- */
 .infoScrollWrapper {
     display: flex;
     flex-direction: row;
-    width: 100vw;
-    max-width: 100%;
-    overflow-x: auto; /* Permite el swipe horizontal nativo con el dedo */
+    overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
-
-    /* Habilita el anclaje magnético por CSS */
     scroll-snap-type: x mandatory;
-    scrollbar-width: none; /* Oculta la barra de scroll en Firefox */
-    margin-top: 2rem;
-    padding: 1rem 0;
+    scrollbar-width: none;
+    width: 100vw;
+    max-width: 100%;
+    padding: 50px 0;
 }
 
 .infoScrollWrapper::-webkit-scrollbar {
-    display: none; /* Oculta la barra de scroll en Chrome/Safari */
+    display: none;
 }
 
-/* Cada tarjeta de texto individual dentro del carrusel */
 .infoContentCard {
-    flex: 0 0 100%; /* Cada tarjeta ocupa exactamente el ancho total disponible */
-    width: 100%;
-    scroll-snap-align: center; /* Se ancla magnéticamente al centro */
-    padding: 0 2rem;
+    scroll-snap-align: center;
     text-align: center;
     box-sizing: border-box;
+    flex: 0 0 100%;
+    width: 100%;
 }
 
 .infoContentCard h3 {
-    font-family: var(--font-neon);
+    font-family: var(--font-body);
     color: var(--white-color);
-    font-size: 1.5rem;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    font-size: 20px;
 }
 
 .infoContentCard p {
     color: rgba(240, 240, 245, 0.8);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    max-width: 500px;
     margin: 0 auto;
+    line-height: 1.6;
+    font-size: 16px;
+    max-width: 500px;
 }
 
 @keyframes fadeIn {
@@ -200,4 +189,47 @@
 }
 .starNode:nth-child(4) {
     animation-delay: 4.5s;
+}
+
+@media (min-width: 1200px) {
+    .constellationContainer {
+        max-width: 500px;
+    }
+
+    .constellationContainer[data-view='detail'] {
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 0;
+        margin-left: 100px;
+    }
+
+    .constellationContainer[data-view='detail'] .starsRow {
+        flex-direction: column;
+        width: auto;
+        gap: 40px;
+    }
+
+    .infoScrollWrapper {
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        height: 400px;
+        width: 100%;
+        padding: 0;
+    }
+
+    .infoContentCard {
+        flex: 0 0 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        padding: 0 60px;
+    }
+
+    .infoContentCard p {
+        margin: 0;
+    }
 }
