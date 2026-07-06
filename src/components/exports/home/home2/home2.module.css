@@ -1,0 +1,159 @@
+.sectionContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--dark-color);
+    padding-top: 35vh;
+    padding-bottom: 60px;
+}
+
+.brickBackground {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(5, 5, 8, 1), rgba(5, 5, 8, 0.7));
+}
+
+.signsContainer {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 335px;
+    height: 500px;
+}
+
+.neonSign {
+    position: absolute;
+    background: rgba(5, 5, 8, 0.1);
+    backdrop-filter: blur(1px);
+    border-radius: 1rem;
+    border: 3px solid #1a1a24;
+    color: #252530;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    padding: 1.5rem 2.5rem;
+}
+
+.neonSign h2 {
+    font-family: var(--font-neon);
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    font-size: 1rem;
+}
+
+.sign1 h2:nth-child(2),
+.sign3 h2:nth-child(2) {
+    font-size: 1.6rem;
+    margin-top: 0.2rem;
+}
+
+/* --- NUEVA ANIMACIÓN DE PARPADEO REAL --- */
+@keyframes neonGlow {
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
+        text-shadow:
+            0 0 100px #fff,
+            0 0 10px currentColor,
+            0 0 20px currentColor;
+        box-shadow:
+            0 0 150px rgba(255, 255, 255, 0.01),
+            0 0 20px currentColor,
+            inset 0 0 20px currentColor;
+        opacity: 1;
+    }
+    20%,
+    24%,
+    55% {
+        text-shadow: none;
+        box-shadow: none;
+        opacity: 0.5;
+    }
+}
+
+/* --- COLORES ACTIVOS --- */
+
+.activeCyan {
+    color: var(--white-color);
+    border-color: var(--neon-cyan);
+    text-shadow:
+        0 0 5px var(--white-color),
+        0 0 10px var(--neon-cyan),
+        0 0 5px var(--neon-cyan);
+    box-shadow:
+        0 0 15px rgba(0, 243, 255, 0.4),
+        inset 0 0 10px rgba(0, 243, 255, 0.2);
+    animation: neonGlow 5s infinite alternate;
+}
+
+.activePink {
+    color: var(--white-color);
+    border-color: var(--neon-pink);
+    text-shadow:
+        0 0 5px var(--white-color),
+        0 0 10px var(--neon-pink),
+        0 0 20px var(--neon-pink);
+    box-shadow:
+        0 0 15px rgba(255, 0, 85, 0.4),
+        inset 0 0 10px rgba(255, 0, 85, 0.2);
+    animation: neonGlow 5.5s infinite alternate;
+}
+
+.activeYellow {
+    color: var(--white-color);
+    border-color: var(--neon-yellow);
+    text-shadow:
+        0 0 5px var(--white-color),
+        0 0 10px var(--neon-yellow),
+        0 0 5px var(--neon-yellow);
+    box-shadow:
+        0 0 15px rgba(255, 221, 0, 0.4),
+        inset 0 0 10px rgba(255, 221, 0, 0.2);
+    animation: neonGlow 6.5s infinite alternate;
+}
+
+.activeGreen {
+    color: var(--white-color);
+    border-color: var(--neon-green);
+    text-shadow:
+        0 0 5px var(--white-color),
+        0 0 10px var(--neon-green),
+        0 0 20px var(--neon-green);
+    box-shadow:
+        0 0 15px rgba(0, 255, 102, 0.4),
+        inset 0 0 10px rgba(0, 255, 102, 0.2);
+    animation: neonGlow 6s infinite alternate;
+}
+
+@media (min-width: 576px) {
+    .signsContainer {
+        width: 450px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .desktopOff {
+        color: #222230;
+        border-color: #1a1a24;
+        text-shadow: none;
+        box-shadow: none;
+    }
+
+    .signsContainer {
+        width: 750px;
+    }
+}

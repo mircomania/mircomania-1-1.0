@@ -1,0 +1,105 @@
+.starsContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.starLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.layer1 {
+  width: 1px;
+  height: 1px;
+  box-shadow:
+    15vw 12vh var(--white-color),
+    25vw 45vh rgba(240, 240, 245, 0.4),
+    55vw 20vh var(--white-color),
+    75vw 80vh rgba(240, 240, 245, 0.3),
+    85vw 35vh var(--white-color),
+    40vw 70vh rgba(240, 240, 245, 0.6),
+    90vw 10vh var(--white-color),
+    10vw 85vh rgba(240, 240, 245, 0.5);
+  animation: floatAndTwinkle1 7s infinite ease-in-out;
+}
+
+.layer2 {
+  width: 2px;
+  height: 2px;
+  box-shadow:
+    5vw 50vh var(--white-color),
+    30vw 15vh rgba(240, 240, 245, 0.3),
+    65vw 60vh var(--white-color),
+    95vw 85vh rgba(240, 240, 245, 0.5),
+    45vw 30vh var(--white-color),
+    80vw 55vh rgba(240, 240, 245, 0.2);
+  animation: floatAndTwinkle2 11s infinite ease-in-out;
+  animation-delay: 2.5s;
+}
+
+.layer3 {
+  width: 2.5px;
+  height: 2.5px;
+  box-shadow:
+    20vw 75vh rgba(240, 240, 245, 0.8),
+    50vw 85vh var(--white-color),
+    70vw 15vh var(--white-color),
+    88vw 65vh rgba(240, 240, 245, 0.4),
+    12vw 25vh var(--white-color);
+  animation: floatAndTwinkle3 13s infinite ease-in-out;
+  animation-delay: 1s;
+}
+
+@keyframes floatAndTwinkle1 {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translate(0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(4px, -6px);
+  }
+}
+
+@keyframes floatAndTwinkle2 {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  45% {
+    opacity: 0.2;
+    transform: translate(-5px, -3px);
+  }
+  80% {
+    opacity: 0.8;
+    transform: translate(-2px, 2px);
+  }
+}
+
+@keyframes floatAndTwinkle3 {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: translate(0, 0);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(3px, 5px);
+  }
+  70% {
+    opacity: 0.1;
+    transform: translate(-3px, 1px);
+  }
+}
