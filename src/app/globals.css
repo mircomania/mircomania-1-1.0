@@ -66,7 +66,7 @@ input:-webkit-autofill:active {
     background: #777;
 }
 
-/* .space-main {
+.space-main {
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -96,4 +96,4 @@ input:-webkit-autofill:active {
         radial-gradient(circle at 18% 30%, rgba(255, 255, 255, 0.045), transparent 18%),
         radial-gradient(circle at 78% 68%, rgba(110, 130, 220, 0.06), transparent 24%);
     pointer-events: none;
-} */
+}
