@@ -15,6 +15,7 @@ export default function Home2() {
 
     const sliderRef = useRef<HTMLDivElement>(null);
     const ignoreScrollRef = useRef(false);
+    const initialStarRef = useRef<number | null>(null);
 
     const isDesktop = () => window.innerWidth >= 1200;
 
@@ -48,22 +49,24 @@ export default function Home2() {
         if (phase !== 'map') return;
 
         setActiveStarId(id);
+        initialStarRef.current = id;
         setPhase('hideLabels');
 
         await wait(450);
 
         setPhase('aligning');
 
-        await wait(1900);
+        await wait(1500);
 
         setPhase('content');
     };
 
     useEffect(() => {
-        if (phase !== 'content' || activeStarId === null) return;
+        if (phase !== 'content') return;
+        if (initialStarRef.current === null) return;
 
         const slider = sliderRef.current;
-        const index = STARS.findIndex((star) => star.id === activeStarId);
+        const index = STARS.findIndex((star) => star.id === initialStarRef.current);
 
         if (!slider || index === -1) return;
 
@@ -80,7 +83,7 @@ export default function Home2() {
                 ignoreScrollRef.current = false;
             }, 100);
         });
-    }, [phase, activeStarId]);
+    }, [phase]);
 
     const handleScroll = () => {
         if (ignoreScrollRef.current) return;
