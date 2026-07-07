@@ -116,7 +116,7 @@
         transform 350ms ease,
         box-shadow 350ms ease,
         filter 350ms ease;
-    animation: starPulse 4.8s ease-in-out infinite;
+    /* animation: starPulse 4.8s ease-in-out infinite; */
 }
 
 /* .estrella::before {
