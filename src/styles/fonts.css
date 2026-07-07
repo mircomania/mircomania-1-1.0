@@ -6,6 +6,10 @@
     font-family: var(--font-body);
 }
 
+.font-space {
+    font-family: var(--font-space);
+}
+
 body {
     font-family: var(--font-body);
 }

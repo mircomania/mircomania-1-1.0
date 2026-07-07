@@ -1,9 +1,26 @@
 :root {
-    --white-color: #f0f0f5;
-    --black-color: #000000;
-    --dark-color: #050508;
-    --neon-cyan: #00f3ff;
-    --neon-pink: #ff0055;
-    --neon-yellow: #ffdd00;
-    --neon-green: #00ff66;
+    /* base */
+    --color-white: #f0f0f5;
+    --color-black: #000000;
+    --color-dark: #050508;
+    --color-space-dark: #010208;
+    --color-space-blue: #03040a;
+
+    /* text */
+    --text-primary: rgba(255, 255, 255, 0.92);
+    --text-secondary: rgba(230, 235, 255, 0.68);
+    --text-muted: rgba(235, 240, 255, 0.72);
+
+    /* stars / light */
+    --star-core: rgba(255, 255, 255, 0.96);
+    --star-glow-soft: rgba(180, 200, 255, 0.35);
+    --star-glow-strong: rgba(255, 255, 255, 0.85);
+
+    /* lines */
+    --constellation-line: rgba(220, 230, 255, 0.24);
+    --constellation-glow: rgba(180, 200, 255, 0.18);
+
+    /* shadows */
+    --text-glow-soft: 0 0 24px rgba(255, 255, 255, 0.2);
+    --space-glow-blue: rgba(120, 150, 255, 0.12);
 }

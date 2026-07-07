@@ -4,7 +4,7 @@
 html {
     scroll-behavior: smooth;
     scrollbar-width: thin;
-    scrollbar-color: #555 var(--dark-color);
+    scrollbar-color: var(--text-primary) var(--color-dark);
     height: 100%;
 }
 
@@ -16,13 +16,19 @@ body {
 
 body {
     min-height: 100%;
-    background-color: var(--dark-color);
+    background-color: var(--color-white);
 }
 
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(180deg, #03040a 0%, #010208 100%);
 }
 
 a {
@@ -35,10 +41,10 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0px 1000px var(--dark-color) inset !important;
-    box-shadow: 0 0 0px 1000px var(--dark-color) inset !important;
-    -webkit-text-fill-color: var(--white-color) !important;
-    caret-color: var(--white-color) !important;
+    -webkit-box-shadow: 0 0 0px 1000px var(--color-dark) inset !important;
+    box-shadow: 0 0 0px 1000px var(--color-dark) inset !important;
+    -webkit-text-fill-color: var(--color-white) !important;
+    caret-color: var(--color-white) !important;
     transition: background-color 9999s ease-in-out 0s !important;
 }
 
@@ -48,7 +54,7 @@ input:-webkit-autofill:active {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--dark-color);
+    background: var(--color-dark);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -58,4 +64,36 @@ input:-webkit-autofill:active {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #777;
+}
+
+.space-main {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 20% 12%, rgba(255, 255, 255, 0.07), transparent 20%),
+        radial-gradient(circle at 80% 45%, rgba(120, 150, 255, 0.07), transparent 30%),
+        radial-gradient(circle at 30% 75%, rgba(255, 255, 255, 0.045), transparent 26%), linear-gradient(180deg, #03040a 0%, #010208 100%);
+}
+
+.space-main::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: radial-gradient(ellipse at 50% 35%, rgba(120, 130, 180, 0.11), transparent 55%);
+    filter: blur(50px);
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.space-main::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 18% 30%, rgba(255, 255, 255, 0.045), transparent 18%),
+        radial-gradient(circle at 78% 68%, rgba(110, 130, 220, 0.06), transparent 24%);
+    pointer-events: none;
 }

@@ -10,20 +10,38 @@
 
 .sectionContainer header {
     position: relative;
-    color: var(--white-color);
+}
+
+.sectionContainer header h1 {
+    color: var(--text-primary);
+    text-shadow: var(--text-glow-soft);
+    letter-spacing: 3px;
+    font-size: 32px;
 }
 
 .sectionContainer header h2 {
     position: absolute;
-    font-family: var(--font-body);
-}
-
-.sectionContainer header h2:nth-child(1) {
-    top: -20;
+    bottom: -15;
     right: 0;
+    color: var(--text-secondary);
+    text-shadow: var(--text-glow-soft);
+    font-family: var(--font-space);
+    letter-spacing: 2px;
+    font-size: 16px;
 }
 
-.sectionContainer header h2:nth-child(3) {
-    bottom: -20;
-    left: 0;
+@media (min-width: 1200px) {
+    .sectionContainer header h1 {
+        font-size: 52px;
+    }
+}
+
+@media (min-width: 1700px) {
+    .sectionContainer header h1 {
+        font-size: 62px;
+    }
+
+    .sectionContainer header h2 {
+        font-size: 18px;
+    }
 }

@@ -6,7 +6,7 @@ import StarryBackground from '@/components/utils/starryBackground/StarryBackgrou
 export default function Home() {
     return (
         <div>
-            <main>
+            <main className="space-main">
                 <StarryBackground />
 
                 <Home1 />
