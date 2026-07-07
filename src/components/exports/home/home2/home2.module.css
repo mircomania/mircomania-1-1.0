@@ -81,8 +81,6 @@
     align-items: center;
     justify-content: flex-start;
     height: auto;
-    min-height: 60vh;
-    padding-top: 60px;
 }
 
 .constellationContainer[data-view='detail'] .starsRow {
@@ -200,7 +198,6 @@
         flex-direction: row;
         justify-content: space-between;
         padding-top: 0;
-        margin-left: 100px;
     }
 
     .constellationContainer[data-view='detail'] .starsRow {

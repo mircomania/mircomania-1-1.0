@@ -44,17 +44,20 @@ export default function Home2() {
 
     const handleStarClick = (id: number) => {
         setActiveStarId(id);
-        const container = scrollContainerRef.current;
-        if (container) {
-            const targetElement = container.querySelector(`[data-card-id="${id}"]`);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center',
-                    inline: 'center',
-                });
+
+        setTimeout(() => {
+            const container = scrollContainerRef.current;
+            if (container) {
+                const targetElement = container.querySelector(`[data-card-id="${id}"]`);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center',
+                        inline: 'center',
+                    });
+                }
             }
-        }
+        }, 50);
     };
 
     const handleScroll = () => {
