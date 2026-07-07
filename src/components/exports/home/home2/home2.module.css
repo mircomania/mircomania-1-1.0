@@ -5,228 +5,274 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    min-height: 100vh;
+    min-height: 100svh;
     padding: 20px;
 }
 
-.constellationContainer {
+.constelacionContainer {
     position: relative;
-    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid white 1px;
     width: 100%;
     max-width: 400px;
-    height: 80vh;
-    transition: all 0.5s ease-in-out;
+    height: 80svh;
 }
 
-.starsRow {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.svgCanvas {
-    pointer-events: none;
+.constelacionLineas {
     position: absolute;
-    z-index: 5;
     width: 100%;
     height: 100%;
-    left: 0;
-    bottom: 17px;
+    pointer-events: none;
+    opacity: 1;
+    transition:
+        opacity 600ms ease,
+        filter 600ms ease;
+
+    margin-bottom: 30px;
 }
 
-.svgCanvas line {
-    stroke: rgba(240, 240, 245, 0.2);
-    stroke-width: 1;
-    stroke-dasharray: 2;
+.constelacionLineas line {
+    stroke: rgba(255, 255, 255, 0.22);
+    stroke-width: 0.3;
+    stroke-dasharray: 0.5;
 }
 
-/* --- ESTRELLAS --- */
-.starNode {
+.estrellaContainer {
     position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
-    cursor: pointer;
+    justify-content: center;
     transform: translate(-50%, -50%);
-    animation: spaceFloat 6s infinite ease-in-out;
+    transition:
+        top 1100ms cubic-bezier(0.22, 1, 0.36, 1),
+        left 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+    gap: 10px;
 }
 
-.starPoint {
-    width: 12px;
-    height: 12px;
+.estrellaContainer1 {
+    transition-delay: 200ms;
+    top: 20%;
+    left: 25%;
+}
+.estrellaContainer2 {
+    transition-delay: 400ms;
+    top: 40%;
+    left: 65%;
+}
+
+.estrellaContainer3 {
+    transition-delay: 600ms;
+    top: 60%;
+    left: 35%;
+}
+
+.estrellaContainer4 {
+    transition-delay: 800ms;
+    top: 80%;
+    left: 70%;
+}
+
+.constelacionContainer[data-phase='content'] .activeStar .estrella {
+    transform: scale(1.45);
+    box-shadow:
+        0 0 12px rgba(255, 255, 255, 1),
+        0 0 32px rgba(255, 255, 255, 0.75);
+}
+
+.estrella {
     background-color: var(--white-color);
     border-radius: 50%;
-    box-shadow:
-        0 0 10px var(--white-color),
-        0 0 20px rgba(240, 240, 245, 0.6);
-    transition: all 0.3s ease;
+    width: 14px;
+    height: 14px;
+    transition:
+        transform 350ms ease,
+        box-shadow 350ms ease;
 }
 
-.starNode h3 {
+.estrellaContainer h3 {
     font-family: var(--font-body);
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--white-color);
     white-space: nowrap;
-    text-transform: uppercase;
-    transition: opacity 0.3s ease;
-    letter-spacing: 2px;
-    margin-top: 8px;
-    font-size: 16px;
+    transition:
+        opacity 600ms ease,
+        transform 600ms ease;
 }
 
-/* --- REGLAS DE REORDENAMIENTO CUANDO ESTÁ EN MODO DETALLE --- */
+.constelacionContainer[data-phase='hideLabels'] .estrellaContainer h3,
+.constelacionContainer[data-phase='aligning'] .estrellaContainer h3,
+.constelacionContainer[data-phase='content'] .estrellaContainer h3 {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
 
-.constellationContainer[data-view='detail'] {
+.constelacionContainer[data-phase='hideLabels'] .constelacionLineas,
+.constelacionContainer[data-phase='aligning'] .constelacionLineas,
+.constelacionContainer[data-phase='content'] .constelacionLineas {
+    opacity: 0;
+    filter: blur(3px);
+}
+
+.constelacionContainer[data-phase='aligning'] .estrellaContainer1,
+.constelacionContainer[data-phase='content'] .estrellaContainer1 {
+    top: 10%;
+    left: 20%;
+}
+
+.constelacionContainer[data-phase='aligning'] .estrellaContainer2,
+.constelacionContainer[data-phase='content'] .estrellaContainer2 {
+    top: 10%;
+    left: 40%;
+}
+
+.constelacionContainer[data-phase='aligning'] .estrellaContainer3,
+.constelacionContainer[data-phase='content'] .estrellaContainer3 {
+    top: 10%;
+    left: 60%;
+}
+
+.constelacionContainer[data-phase='aligning'] .estrellaContainer4,
+.constelacionContainer[data-phase='content'] .estrellaContainer4 {
+    top: 10%;
+    left: 80%;
+}
+
+.sliderMobile {
+    position: absolute;
+    top: 22%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    max-width: 400px;
+
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    height: auto;
-}
-
-.constellationContainer[data-view='detail'] .starsRow {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    gap: 30px;
-}
-
-.constellationContainer[data-view='detail'] .starNode {
-    position: static;
-    transform: none;
-    animation: none;
-    display: inline-flex;
-}
-
-.constellationContainer[data-view='detail'] .starNode h3 {
-    display: none;
-}
-
-.constellationContainer[data-view='detail'] .selectedNode .starPoint {
-    transform: scale(1.5);
-    box-shadow:
-        0 0 15px #ffffff,
-        0 0 25px #ffffff;
-}
-
-/* --- WRAPPER DE SCROLL NATIVO --- */
-.infoScrollWrapper {
-    display: flex;
-    flex-direction: row;
     overflow-x: auto;
     overflow-y: hidden;
-    scroll-behavior: smooth;
+
     scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
     scrollbar-width: none;
-    width: 100vw;
-    max-width: 100%;
-    padding: 50px 0;
+
+    opacity: 0;
+    animation: contentFadeIn 700ms ease forwards;
 }
 
-.infoScrollWrapper::-webkit-scrollbar {
+.sliderMobile::-webkit-scrollbar {
     display: none;
 }
 
-.infoContentCard {
+.slideCard {
+    flex: 0 0 100%;
     scroll-snap-align: center;
     text-align: center;
-    box-sizing: border-box;
-    flex: 0 0 100%;
-    width: 100%;
+    padding: 20px 26px;
 }
 
-.infoContentCard h3 {
+.slideCard h3 {
     font-family: var(--font-body);
     color: var(--white-color);
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 20px;
     font-size: 20px;
+    margin-bottom: 20px;
 }
 
-.infoContentCard p {
-    color: rgba(240, 240, 245, 0.8);
-    margin: 0 auto;
-    line-height: 1.6;
+.slideCard p {
+    color: rgba(255, 255, 255, 0.72);
     font-size: 16px;
-    max-width: 500px;
+    line-height: 1.6;
+    max-width: 340px;
+    margin: 0 auto;
 }
 
-@keyframes fadeIn {
+@keyframes contentFadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateX(-50%) translateY(14px);
+        filter: blur(6px);
     }
+
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(-50%) translateY(0);
+        filter: blur(0);
     }
-}
-
-@keyframes spaceFloat {
-    0% {
-        transform: translate(-50%, -50%) translateY(0px) translateX(0px);
-    }
-    50% {
-        transform: translate(-50%, -50%) translateY(-8px) translateX(4px);
-    }
-    100% {
-        transform: translate(-50%, -50%) translateY(0px) translateX(0px);
-    }
-}
-
-.starNode:nth-child(1) {
-    animation-delay: 0s;
-}
-.starNode:nth-child(2) {
-    animation-delay: 1.5s;
-}
-.starNode:nth-child(3) {
-    animation-delay: 3s;
-}
-.starNode:nth-child(4) {
-    animation-delay: 4.5s;
 }
 
 @media (min-width: 1200px) {
-    .constellationContainer {
-        max-width: 500px;
+    .constelacionContainer {
+        max-width: 800px;
+        height: 400px;
     }
 
-    .constellationContainer[data-view='detail'] {
-        flex-direction: row;
-        justify-content: space-between;
-        padding-top: 0;
+    .constelacionContainer[data-phase='aligning'] .estrellaContainer1,
+    .constelacionContainer[data-phase='content'] .estrellaContainer1 {
+        top: 30%;
+        left: 20%;
     }
 
-    .constellationContainer[data-view='detail'] .starsRow {
-        flex-direction: column;
-        width: auto;
-        gap: 40px;
+    .constelacionContainer[data-phase='aligning'] .estrellaContainer2,
+    .constelacionContainer[data-phase='content'] .estrellaContainer2 {
+        top: 40%;
+        left: 20%;
     }
 
-    .infoScrollWrapper {
+    .constelacionContainer[data-phase='aligning'] .estrellaContainer3,
+    .constelacionContainer[data-phase='content'] .estrellaContainer3 {
+        top: 50%;
+        left: 20%;
+    }
+
+    .constelacionContainer[data-phase='aligning'] .estrellaContainer4,
+    .constelacionContainer[data-phase='content'] .estrellaContainer4 {
+        top: 60%;
+        left: 20%;
+    }
+
+    .sliderMobile {
+        top: 40%;
+        left: 25%;
+        transform: translateY(-50%);
+        width: 520px;
+        max-width: none;
+        height: 400px;
         flex-direction: column;
         overflow-x: hidden;
         overflow-y: auto;
         scroll-snap-type: y mandatory;
-        height: 400px;
-        width: 100%;
-        padding: 0;
+        animation: contentFadeInDesktop 700ms ease forwards;
     }
 
-    .infoContentCard {
+    .slideCard {
         flex: 0 0 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         text-align: left;
-        padding: 0 60px;
+        padding: 0 40px;
     }
 
-    .infoContentCard p {
+    .slideCard p {
         margin: 0;
+        max-width: 460px;
+    }
+}
+
+@keyframes contentFadeInDesktop {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) translateX(14px);
+        filter: blur(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+        filter: blur(0);
     }
 }

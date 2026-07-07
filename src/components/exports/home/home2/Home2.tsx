@@ -1,134 +1,133 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './home2.module.css';
 
-const MOBILE_STARS = [
-    {
-        id: 1,
-        label: 'Sitios Web',
-        position: { top: '10%', left: '50%' },
-        x: '50%',
-        y: '10%',
-        desc: 'Desarrollo de aplicaciones web modernas, rápidas y optimizadas para SEO utilizando el stack más eficiente del mercado.',
-    },
-    {
-        id: 2,
-        label: 'Automatizaciones',
-        position: { top: '35%', left: '30%' },
-        x: '30%',
-        y: '35%',
-        desc: 'Optimización de tiempos mediante flujos de trabajo automatizados con n8n, conectando tus herramientas diarias.',
-    },
-    {
-        id: 3,
-        label: 'Marketing Digital',
-        position: { top: '55%', left: '70%' },
-        x: '70%',
-        y: '55%',
-        desc: 'Estrategias de conversión de alto impacto mediante campañas en Google Ads y Meta Ads orientadas a resultados reales.',
-    },
-    {
-        id: 4,
-        label: 'Analítica',
-        position: { top: '90%', left: '40%' },
-        x: '40%',
-        y: '90%',
-        desc: 'Medición avanzada con Google Analytics para entender el comportamiento de tus usuarios y tomar decisiones basadas en datos.',
-    },
-];
+import { STARS } from './stars';
+
+type Phase = 'map' | 'hideLabels' | 'aligning' | 'content';
+
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default function Home2() {
+    const [phase, setPhase] = useState<Phase>('map');
     const [activeStarId, setActiveStarId] = useState<number | null>(null);
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-    const handleStarClick = (id: number) => {
-        setActiveStarId(id);
+    const sliderRef = useRef<HTMLDivElement>(null);
+    const ignoreScrollRef = useRef(false);
 
-        setTimeout(() => {
-            const container = scrollContainerRef.current;
-            if (container) {
-                const targetElement = container.querySelector(`[data-card-id="${id}"]`);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center',
-                        inline: 'center',
-                    });
-                }
-            }
-        }, 50);
-    };
+    const isDesktop = () => window.innerWidth >= 1200;
 
-    const handleScroll = () => {
-        const container = scrollContainerRef.current;
-        if (!container) return;
+    const goToSlide = (id: number) => {
+        const slider = sliderRef.current;
+        const index = STARS.findIndex((star) => star.id === id);
 
-        const children = Array.from(container.children) as HTMLElement[];
+        if (!slider || index === -1) return;
 
-        const isDesktop = window.innerWidth >= 1200;
+        ignoreScrollRef.current = true;
 
-        let currentActiveId = activeStarId;
-        let closestDistance = Infinity;
-
-        const containerCenter = isDesktop
-            ? container.getBoundingClientRect().top + container.offsetHeight / 2
-            : container.getBoundingClientRect().left + container.offsetWidth / 2;
-
-        children.forEach((child) => {
-            const rect = child.getBoundingClientRect();
-
-            const childCenter = isDesktop ? rect.top + rect.height / 2 : rect.left + rect.width / 2;
-
-            const distance = Math.abs(containerCenter - childCenter);
-
-            if (distance < closestDistance) {
-                closestDistance = distance;
-                const idAttr = child.getAttribute('data-card-id');
-                if (idAttr) currentActiveId = parseInt(idAttr, 10);
-            }
+        slider.scrollTo({
+            left: isDesktop() ? 0 : slider.clientWidth * index,
+            top: isDesktop() ? slider.clientHeight * index : 0,
+            behavior: 'smooth',
         });
 
-        if (currentActiveId !== activeStarId && currentActiveId !== null) {
-            setActiveStarId(currentActiveId);
+        setActiveStarId(id);
+
+        window.setTimeout(() => {
+            ignoreScrollRef.current = false;
+        }, 500);
+    };
+
+    const handleClick = async (id: number) => {
+        if (phase === 'content') {
+            goToSlide(id);
+            return;
+        }
+
+        if (phase !== 'map') return;
+
+        setActiveStarId(id);
+        setPhase('hideLabels');
+
+        await wait(450);
+
+        setPhase('aligning');
+
+        await wait(1900);
+
+        setPhase('content');
+    };
+
+    useEffect(() => {
+        if (phase !== 'content' || activeStarId === null) return;
+
+        const slider = sliderRef.current;
+        const index = STARS.findIndex((star) => star.id === activeStarId);
+
+        if (!slider || index === -1) return;
+
+        ignoreScrollRef.current = true;
+
+        requestAnimationFrame(() => {
+            if (isDesktop()) {
+                slider.scrollTop = slider.clientHeight * index;
+            } else {
+                slider.scrollLeft = slider.clientWidth * index;
+            }
+
+            window.setTimeout(() => {
+                ignoreScrollRef.current = false;
+            }, 100);
+        });
+    }, [phase, activeStarId]);
+
+    const handleScroll = () => {
+        if (ignoreScrollRef.current) return;
+
+        const slider = sliderRef.current;
+        if (!slider) return;
+
+        const currentIndex = isDesktop() ? Math.round(slider.scrollTop / slider.clientHeight) : Math.round(slider.scrollLeft / slider.clientWidth);
+
+        const currentStar = STARS[currentIndex];
+
+        if (currentStar) {
+            setActiveStarId(currentStar.id);
         }
     };
 
     return (
         <section className={styles.sectionContainer}>
-            <div className={styles.constellationContainer} data-view={activeStarId ? 'detail' : 'map'}>
-                {!activeStarId && (
-                    <svg className={styles.svgCanvas}>
-                        <line x1={MOBILE_STARS[0].x} y1={MOBILE_STARS[0].y} x2={MOBILE_STARS[1].x} y2={MOBILE_STARS[1].y} />
-                        <line x1={MOBILE_STARS[1].x} y1={MOBILE_STARS[1].y} x2={MOBILE_STARS[2].x} y2={MOBILE_STARS[2].y} />
-                        <line x1={MOBILE_STARS[2].x} y1={MOBILE_STARS[2].y} x2={MOBILE_STARS[3].x} y2={MOBILE_STARS[3].y} />
-                    </svg>
-                )}
+            <div className={styles.constelacionContainer} data-phase={phase}>
+                <svg className={styles.constelacionLineas} viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <line x1="25" y1="20" x2="65" y2="40" />
+                    <line x1="65" y1="40" x2="35" y2="60" />
+                    <line x1="35" y1="60" x2="70" y2="80" />
+                </svg>
 
-                <div className={styles.starsRow}>
-                    {MOBILE_STARS.map((star) => {
-                        const isSelected = activeStarId === star.id;
-                        return (
-                            <div
-                                key={star.id}
-                                className={`${styles.starNode} ${isSelected ? styles.selectedNode : ''}`}
-                                style={!activeStarId ? star.position : undefined}
-                                onClick={() => handleStarClick(star.id)}
-                            >
-                                <div className={styles.starPoint} />
-                                <h3>{star.label}</h3>
-                            </div>
-                        );
-                    })}
-                </div>
+                {STARS.map((star, index) => {
+                    const isActive = activeStarId === star.id;
 
-                {activeStarId && (
-                    <div className={styles.infoScrollWrapper} ref={scrollContainerRef} onScroll={handleScroll}>
-                        {MOBILE_STARS.map((star) => (
-                            <div key={star.id} className={styles.infoContentCard} data-card-id={star.id}>
-                                <h3>{star.label}</h3>
-                                <p>{star.desc}</p>
-                            </div>
+                    return (
+                        <div
+                            key={star.id}
+                            className={`${styles.estrellaContainer} ${styles[`estrellaContainer${index + 1}`]} ${isActive ? styles.activeStar : ''}`}
+                            onClick={() => handleClick(star.id)}
+                        >
+                            <div className={styles.estrella}></div>
+                            <h3>{star.title}</h3>
+                        </div>
+                    );
+                })}
+
+                {phase === 'content' && (
+                    <div ref={sliderRef} className={styles.sliderMobile} onScroll={handleScroll}>
+                        {STARS.map((star) => (
+                            <article key={star.id} className={styles.slideCard}>
+                                <h3>{star.title}</h3>
+                                <p>{star.text}</p>
+                            </article>
                         ))}
                     </div>
                 )}
