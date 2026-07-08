@@ -48,7 +48,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    pointer-events: none;
     transform: translate(-50%, -50%);
     transition:
         top 1100ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -105,6 +105,8 @@
 
 .estrella {
     position: relative;
+    cursor: pointer;
+    pointer-events: auto;
     background-color: var(--star-core);
     border-radius: 50%;
     width: 13px;
@@ -159,7 +161,8 @@
     white-space: nowrap;
     transition:
         opacity 600ms ease,
-        transform 600ms ease;
+        filter 600ms ease,
+        letter-spacing 600ms ease;
     text-transform: uppercase;
     font-size: 16px;
     font-weight: 500;
@@ -170,6 +173,7 @@
 }
 
 .sliderMobile {
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
     position: absolute;
     transform: translateX(-50%);
     display: flex;
@@ -264,7 +268,8 @@
 .constelacionContainer[data-phase='aligning'] .estrellaContainer h3,
 .constelacionContainer[data-phase='content'] .estrellaContainer h3 {
     opacity: 0;
-    transform: translateY(-10px);
+    filter: blur(6px);
+    letter-spacing: 5px;
     pointer-events: none;
 }
 
@@ -356,6 +361,7 @@
     }
 
     .sliderMobile {
+        mask-image: linear-gradient(to bottom, transparent 0%, black 35%, black 65%, transparent 100%);
         top: 40%;
         left: 25%;
         transform: translateY(-50%);

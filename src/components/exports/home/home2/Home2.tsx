@@ -28,11 +28,10 @@ export default function Home2() {
                         <div
                             key={star.id}
                             className={`${styles.estrellaContainer} ${styles[`estrellaContainer${index + 1}`]} ${isActive ? styles.activeStar : ''}`}
-                            onClick={() => handleClick(star.id)}
                             data-link={star.dataLink}
                         >
                             <div className={styles.estrellaInner}>
-                                <div className={styles.estrella}></div>
+                                <div className={styles.estrella} onClick={() => handleClick(star.id)}></div>
                                 <h3>{star.title}</h3>
                             </div>
                         </div>
