@@ -26,12 +26,12 @@
     height: 100%;
     pointer-events: none;
     opacity: 0.75;
-    /* filter: drop-shadow(0 0 6px var(--constellation-glow)); */
+    filter: drop-shadow(0 0 6px var(--constellation-glow));
     transition:
         opacity 600ms ease,
         filter 600ms ease;
     mix-blend-mode: screen;
-    /* animation: constellationBreath 7s ease-in-out infinite; */
+    animation: constellationBreath 7s ease-in-out infinite;
     margin-bottom: 30px;
 }
 
@@ -116,10 +116,10 @@
         transform 350ms ease,
         box-shadow 350ms ease,
         filter 350ms ease;
-    /* animation: starPulse 4.8s ease-in-out infinite; */
+    animation: starPulse 4.8s ease-in-out infinite;
 }
 
-/* .estrella::before {
+.estrella::before {
     content: '';
     position: absolute;
     inset: -22px;
@@ -135,7 +135,7 @@
     inset: -5px;
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.02);
-} */
+}
 
 .estrellaContainer1 .estrella {
     animation-delay: 0s;
