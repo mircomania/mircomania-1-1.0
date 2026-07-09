@@ -414,6 +414,39 @@
         left: 20%;
     }
 
+    .constelacionContainer[data-phase='map'] .constelacionLineas {
+        transition:
+            opacity 0.3s ease,
+            filter 0.3s ease;
+    }
+
+    .constelacionContainer[data-phase='map']:has(.estrellaContainer:hover) .constelacionLineas {
+        opacity: 0.95;
+        filter: drop-shadow(0 0 10px var(--constellation-glow));
+    }
+
+    .constelacionContainer[data-phase='map'] .estrella {
+        transition:
+            transform 500ms ease,
+            box-shadow 500ms ease,
+            filter 500ms ease;
+    }
+
+    .constelacionContainer[data-phase='map'] .estrella:hover {
+        transform: scale(1.28);
+        filter: brightness(1.3);
+        box-shadow:
+            0 0 12px var(--star-glow-strong),
+            0 0 32px var(--star-glow-soft),
+            0 0 60px rgba(170, 195, 255, 0.28);
+    }
+
+    .constelacionContainer[data-phase='map'] .estrellaContainer:hover h3 {
+        text-shadow:
+            0 0 12px rgba(255, 255, 255, 0.45),
+            0 0 30px rgba(150, 180, 255, 0.25);
+    }
+
     @keyframes contentFadeInDesktop {
         from {
             opacity: 0;
