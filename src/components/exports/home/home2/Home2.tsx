@@ -8,7 +8,7 @@ import { STARS } from './stars';
 import { useConstellation } from './useConstellation';
 
 export default function Home2() {
-    const isMovile = useMediaQuery('(max-width: 1199px)');
+    const isMobile = useMediaQuery('(max-width: 1199px)');
 
     const { phase, activeStarId, sliderRef, handleClick, handleScroll } = useConstellation();
 
@@ -20,9 +20,9 @@ export default function Home2() {
 
             <div className={styles.constelacionContainer} data-phase={phase}>
                 <svg className={styles.constelacionLineas} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-                    <line x1={isMovile ? '25' : '25'} y1={isMovile ? '20' : '10'} x2={isMovile ? '65' : '60'} y2={isMovile ? '40' : '35'} />
-                    <line x1={isMovile ? '65' : '60'} y1={isMovile ? '40' : '35'} x2={isMovile ? '35' : '35'} y2={isMovile ? '60' : '70'} />
-                    <line x1={isMovile ? '35' : '35'} y1={isMovile ? '60' : '70'} x2={isMovile ? '70' : '75'} y2={isMovile ? '80' : '95'} />
+                    <line x1={isMobile ? '25' : '25'} y1={isMobile ? '20' : '10'} x2={isMobile ? '65' : '60'} y2={isMobile ? '40' : '35'} />
+                    <line x1={isMobile ? '65' : '60'} y1={isMobile ? '40' : '35'} x2={isMobile ? '35' : '35'} y2={isMobile ? '60' : '70'} />
+                    <line x1={isMobile ? '35' : '35'} y1={isMobile ? '60' : '70'} x2={isMobile ? '70' : '75'} y2={isMobile ? '80' : '95'} />
                 </svg>
 
                 {STARS.map((star, index) => {
