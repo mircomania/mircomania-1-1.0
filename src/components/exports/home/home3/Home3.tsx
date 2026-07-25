@@ -11,8 +11,8 @@ type Props = {
 export default function Home3({ projects }: Props) {
     return (
         <section className={styles.sectionContainer} aria-labelledby="projects-title">
-            <div className={styles.container}>
-                <header className={styles.header}>
+            <div className={styles.contenido}>
+                <header>
                     <h2 id="projects-title">Proyectos destacados</h2>
 
                     <p>
