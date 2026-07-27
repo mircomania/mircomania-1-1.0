@@ -1,5 +1,20 @@
+// Enums y constantes
+
 export type ProjectMediaVariant = 'desktop' | 'mobile' | 'shared';
 export type ProjectMediaType = 'image' | 'video';
+
+export const projectTypeLabels = {
+    corporate: 'Corporativo',
+    full_stack: 'Full Stack',
+    saas: 'SaaS',
+    automation: 'Automatización',
+    ecommerce: 'E-commerce',
+    mobile_app: 'Aplicación móvil',
+} as const;
+
+export type ProjectType = keyof typeof projectTypeLabels;
+
+// Modelos
 
 export type ProjectMedia = {
     id: string;
@@ -24,6 +39,7 @@ export type FeaturedProject = {
     role: string | null;
     client: string | null;
     project_year: number | null;
+    project_type: ProjectType;
     stack: string[];
     featured: boolean;
     featured_order: number | null;

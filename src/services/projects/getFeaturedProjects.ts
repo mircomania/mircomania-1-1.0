@@ -15,6 +15,7 @@ export async function getFeaturedProjects(): Promise<FeaturedProject[]> {
             role,
             client,
             project_year,
+            project_type,
             stack,
             featured,
             featured_order,
