@@ -42,6 +42,7 @@ Campos
 - status
 - demo_url
 - repository_url
+- project_type
 
 Relaciones
 

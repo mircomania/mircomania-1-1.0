@@ -144,8 +144,8 @@
     font-size: 16px;
 }
 
-.cardActions a span {
-    font-size: 16px;
+.cardActions svg {
+    flex-shrink: 0;
     transition: transform 250ms ease;
 }
 
@@ -252,8 +252,8 @@
         transform-origin: left;
     }
 
-    .cardActions a:hover span,
-    .cardActions a:focus-visible span {
+    .cardActions a:hover svg,
+    .cardActions a:focus-visible svg {
         transform: translate(2px, -2px);
     }
 }

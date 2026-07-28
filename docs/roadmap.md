@@ -6,7 +6,7 @@
 
 - [x] Hero
 - [x] Servicios
-- [ ] Proyectos
+- [x] Proyectos
 - [ ] CV
 - [ ] Contacto
 
@@ -68,7 +68,7 @@
 
 ## Deuda técnica
 
--
+- Cambiar el display none de home3 en las cards movile y desktop por algo mas funcional.
 
 -
 

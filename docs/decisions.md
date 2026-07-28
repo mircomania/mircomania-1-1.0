@@ -23,3 +23,13 @@
 12.- se consiera airtable y supabase como bases de datos, pero nos decidimos por supabase, mas que nada por aprendizaje y por ser una base de datos real. Esta se usara tanto para hacer GET (proyectos destacados y proyectos en general) y los POST (formulario).
 
 13.- se conecta el proyecto de next con supabase. Resultado: Satisfactorio.
+
+14.- se crea el diseño base de la seccion 3 basados en grid. Resultado: Satisfactorio.
+
+15.- para la version movile, se propone hacer un stack de las cards con sticky, primero se intenta con un sticky por card, pero luego de varios intentos fallidos se opta por crear un contenedor y a este darle sticky, lo que nos "obliga" a tener 2 componentes en la seccion 3, pero un con display none para ocultarlo convenientemente.
+
+16.- DEUDA TECNICA: podria hacer un 3 componente que tipo useMediaQuery maneje que elemento de muestra y cuando, pero dado que son solo 4 cards, opto por dejar el display none.
+
+17.- finalmente terminamos el stack para movile, pero debo admitir que no quede 100% satisfecho con el resultado, siento que la seccion 1 y 2 son mucho mejores con respecto a diseño, no me quejo del grid en si, sino en lo respecta quizas a hovers y sombras, ademas el efecto stack tampoco me convence al 100% aunque funciona relativamente bien. Resultado: Suficiente.
+
+18.- empezamos la seccion 4, CV
