@@ -3,6 +3,7 @@ import styles from './home3.module.css';
 import type { FeaturedProject } from '@/types/projects';
 
 import ProjectCard from './ProjectCard';
+import MobileProjectsStack from './MobileProjectsStack';
 
 type Props = {
     projects: FeaturedProject[];
@@ -21,11 +22,13 @@ export default function Home3({ projects }: Props) {
                     </p>
                 </header>
 
-                <div className={styles.projectsGrid}>
+                <div className={styles.desktopProjectsGrid}>
                     {projects.map((project) => (
                         <ProjectCard key={project.id} project={project} />
                     ))}
                 </div>
+
+                <MobileProjectsStack projects={projects} />
             </div>
         </section>
     );
