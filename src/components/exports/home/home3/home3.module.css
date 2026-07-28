@@ -149,7 +149,7 @@
     transition: transform 250ms ease;
 }
 
-@media (max-width: 1199px) and (orientation: portrait) {
+@media (max-width: 767px) and (orientation: portrait) {
     .mobileStack {
         display: block;
         position: relative;
@@ -181,6 +181,7 @@
 
     .mobileStackCardVisible {
         opacity: 1;
+        cursor: pointer;
         pointer-events: auto;
         transform: translateY(0);
     }
@@ -195,18 +196,16 @@
     .mobileStackSteps {
         position: relative;
         margin-top: -100svh;
+        pointer-events: none;
     }
 
     .mobileStackStep {
-        height: 100svh;
+        pointer-events: none;
+        height: 80svh;
     }
 }
 
-@media (min-width: 1200px) and (orientation: landscape) {
-    .mobileStack {
-        display: none;
-    }
-
+@media (min-width: 1200px) {
     .desktopProjectsGrid {
         grid-template-columns: repeat(2, 1fr);
         gap: 40px;

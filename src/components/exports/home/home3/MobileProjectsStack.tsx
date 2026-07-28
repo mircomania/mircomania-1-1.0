@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, MouseEvent } from 'react';
 
 import styles from './home3.module.css';
 
@@ -47,6 +47,25 @@ export default function MobileProjectsStack({ projects }: Props) {
         return () => observer.disconnect();
     }, []);
 
+    const goToProject = (index: number) => {
+        const step = stepRefs.current[index];
+
+        if (!step) return;
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        step.scrollIntoView({
+            behavior: prefersReducedMotion ? 'auto' : 'smooth',
+            block: 'center',
+        });
+    };
+
+    const handleCardClick = (event: MouseEvent<HTMLDivElement>, index: number) => {
+        if ((event.target as HTMLElement).closest('a')) return;
+
+        goToProject(index);
+    };
+
     return (
         <div className={styles.mobileStack}>
             <div className={styles.mobileStackStage}>
@@ -63,6 +82,8 @@ export default function MobileProjectsStack({ projects }: Props) {
                             className={`${styles.mobileStackCard} ${isVisible ? styles.mobileStackCardVisible : ''}`}
                             style={cardStyle}
                             aria-hidden={!isVisible}
+                            inert={!isVisible ? true : undefined}
+                            onClick={(event) => handleCardClick(event, index)}
                         >
                             <ProjectCard project={project} />
                         </div>

@@ -47,13 +47,13 @@ export default function ProjectCard({ project }: Props) {
                     <div className={styles.cardActions}>
                         {project.demo_url && (
                             <a href={project.demo_url} target="_blank" rel="noopener noreferrer" draggable={false}>
-                                Ver proyecto
+                                Ver proyecto <span aria-hidden="true">↗</span>
                             </a>
                         )}
 
                         {project.repository_url && (
                             <a href={project.repository_url} target="_blank" rel="noopener noreferrer" draggable={false}>
-                                Repositorio
+                                Repositorio <span aria-hidden="true">↗</span>
                             </a>
                         )}
                     </div>
