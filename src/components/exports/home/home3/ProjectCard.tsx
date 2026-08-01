@@ -8,14 +8,16 @@ import type { FeaturedProject } from '@/types/projects';
 import { getProjectCover } from '@/services/projects/getProjectCover';
 import { getPublicMediaUrl } from '@/lib/supabase/getPublicMediaUrl';
 
+import ButtonLink from '@/components/utils/ButtonLink';
+
 type Props = {
     project: FeaturedProject;
 };
 
-export default function ProjectCard({ project }: Props) {
+export default function ProjectCard({ project }: Readonly<Props>) {
     const desktopCover = getProjectCover(project, 'desktop');
 
-    if (!desktopCover || desktopCover.width === null || desktopCover.height === null) {
+    if (!desktopCover?.width || !desktopCover?.height) {
         return null;
     }
 
@@ -46,35 +48,15 @@ export default function ProjectCard({ project }: Props) {
                 {(project.demo_url || project.repository_url) && (
                     <div className={styles.cardActions}>
                         {project.demo_url && (
-                            <a href={project.demo_url} target="_blank" rel="noopener noreferrer" draggable={false}>
-                                Ver proyecto{' '}
-                                <svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14">
-                                    <path
-                                        d="M5 11L11 5M6 5h5v5"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="1.8"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            </a>
+                            <ButtonLink href={project.demo_url} variant="secondary">
+                                Ver proyecto
+                            </ButtonLink>
                         )}
 
                         {project.repository_url && (
-                            <a href={project.repository_url} target="_blank" rel="noopener noreferrer" draggable={false}>
-                                Repositorio{' '}
-                                <svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14">
-                                    <path
-                                        d="M5 11L11 5M6 5h5v5"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="1.8"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            </a>
+                            <ButtonLink href={project.repository_url} variant="secondary">
+                                Repositorio
+                            </ButtonLink>
                         )}
                     </div>
                 )}

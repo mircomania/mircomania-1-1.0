@@ -9,7 +9,7 @@ type Props = {
     projects: FeaturedProject[];
 };
 
-export default function Home3({ projects }: Props) {
+export default function Home3({ projects }: Readonly<Props>) {
     return (
         <section className={styles.sectionContainer} aria-labelledby="projects-title">
             <div className={styles.contenido}>

@@ -1,0 +1,95 @@
+@media (prefers-reduced-motion: reduce) {
+    .star {
+        animation: none;
+    }
+
+    .button-link,
+    .button-link-icon,
+    .button-link--secondary::after {
+        transition: none;
+    }
+}
+
+.button-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    position: relative;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 16px;
+    transition:
+        color 250ms ease,
+        background-color 250ms ease,
+        border-color 250ms ease,
+        box-shadow 250ms ease,
+        transform 250ms ease;
+}
+
+.button-link-icon {
+    flex-shrink: 0;
+    transition: transform 250ms ease;
+}
+
+.button-link--primary {
+    min-height: 50px;
+    padding: 0 28px;
+    border: 1px solid var(--constellation-glow);
+    border-radius: 999px;
+    background-color: rgb(255 255 255 / 0.02);
+    color: var(--text-primary);
+}
+
+.button-link--secondary {
+    padding: 4px 0;
+}
+
+@media (min-width: 1200px) and (hover: hover) and (pointer: fine) {
+    .button-link:hover .button-link-icon,
+    .button-link:focus-visible .button-link-icon {
+        transform: translate(2px, -2px);
+    }
+
+    .button-link:focus-visible {
+        outline: none;
+    }
+
+    .button-link:active {
+        transform: translateY(0);
+    }
+
+    .button-link--primary:hover,
+    .button-link--primary:focus-visible {
+        border-color: rgb(255 255 255 / 0.45);
+        background-color: rgb(255 255 255 / 0.06);
+        transform: translateY(-2px);
+        box-shadow: 0 0 16px rgb(255 255 255 / 0.08);
+    }
+
+    .button-link--primary:focus-visible {
+        border-color: var(--color-white);
+        box-shadow:
+            0 0 8px var(--star-glow-strong),
+            0 0 22px var(--star-glow-soft);
+    }
+
+    .button-link--secondary::after {
+        position: absolute;
+        right: 0;
+        bottom: -4px;
+        left: 0;
+        height: 2px;
+        background-color: currentColor;
+        content: '';
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 250ms ease;
+    }
+
+    .button-link--secondary:hover::after,
+    .button-link--secondary:focus-visible::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+}
