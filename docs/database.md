@@ -84,6 +84,19 @@ Descripción
 
 Mensajes enviados desde el formulario de contacto.
 
+Campos
+
+- id
+- name
+- email
+- subjet
+- message
+- status
+- source
+- privacy_accepted_at
+- created_at
+- updated_at
+
 ---
 
 ### services

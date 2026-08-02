@@ -95,6 +95,44 @@ Obtener la imagen principal (desktop o mobile) de un proyecto.
 
 ---
 
+# Utils
+
+## ButtonLink.tsx
+
+Estado:
+
+- ✅
+
+Responsabilidad:
+
+Componente reutilizable para links que navegen fuera del sitio web.
+
+---
+
+## ButtonNav.tsx
+
+Estado:
+
+- ✅
+
+Responsabilidad:
+
+Componente reutilizable para botones que navegen dentro del sitio web.
+
+---
+
+## SmartLink.tsx
+
+Estado:
+
+- ✅
+
+Responsabilidad:
+
+Componente reutilizable para links que navegen dentro del sitio web, ya sean rutas o anclas.
+
+---
+
 # Home
 
 ## Home1
@@ -121,11 +159,31 @@ Constelación interactiva de servicios.
 
 Estado:
 
-- 🚧
+- ✅
 
 Proyectos destacados.
 
 ---
+
+## Home4
+
+Estado:
+
+- ✅
+
+CV.
+
+---
+
+---
+
+## Home5
+
+Estado:
+
+- 🚧
+
+Form.
 
 # Componentes futuros
 

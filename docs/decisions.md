@@ -32,4 +32,16 @@
 
 17.- finalmente terminamos el stack para movile, pero debo admitir que no quede 100% satisfecho con el resultado, siento que la seccion 1 y 2 son mucho mejores con respecto a diseño, no me quejo del grid en si, sino en lo respecta quizas a hovers y sombras, ademas el efecto stack tampoco me convence al 100% aunque funciona relativamente bien. Resultado: Suficiente.
 
-18.- empezamos la seccion 4, CV
+18.- empezamos la seccion 4, CV.
+
+19.- se opta por un compoente ultra basico que abra el pdf del cv en otra pestaña. En base a esto surge la idea de crear el componente ButtonLink para utilizar de manera modular los links fuera del sitio web al igual que lo hacemos con ButtonNav, por lo que se modifico la seccion home3 para remplazar los antiguos "a" por el nuevo componente. Resultado: Satisfactorio.
+
+20.- Queda pendiente para el futuro hacer que el sitio detecte si el idioma es ingles o español ademas de ofrecer la vista del cv en ingles o español independiente del idioma.
+
+21.- se empieza la seccion 5, Form.
+
+22.- modificamos la tabla de supabase contact_messages remplazando subject por contact_type, ademas de ajustar los RLS mas bien liberarlos.
+
+23.- creamos 5 componentes nuevos para manejar la conexion de supabase con next, hacemos los test correspondientes en powershell Invoke-restMethod y todo pasa las pruebas (Prueba válida, contactType inválido, Probar el honeypot).
+
+24.- por ahora dejamos solo el honeypot como medida de seguridad, pero mas adelante implementaremos protecciones medias/altas contra bots, a modo de prolijidad tecnica, mas que porque crea que mircomania es un objetivo de bots.
