@@ -71,6 +71,9 @@ export async function POST(request: Request): Promise<Response> {
         message: rawPayload.message,
         privacyAccepted: rawPayload.privacyAccepted,
         website: rawPayload.website,
+        utmSource: rawPayload.utmSource,
+        utmMedium: rawPayload.utmMedium,
+        utmCampaign: rawPayload.utmCampaign,
     };
 
     const honeypot = typeof payload.website === 'string' ? payload.website.trim() : '';

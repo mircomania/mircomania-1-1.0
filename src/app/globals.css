@@ -1,6 +1,7 @@
 @import url('@/styles/colors.css');
 @import url('@/styles/fonts.css');
 @import url('@/styles/buttons.css');
+@import url('@/styles/spinner.css');
 
 html {
     scroll-behavior: smooth;

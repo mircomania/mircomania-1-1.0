@@ -2,6 +2,7 @@ import Home1 from '@/components/exports/home/home1/Home1';
 import Home2 from '@/components/exports/home/home2/Home2';
 import Home3 from '@/components/exports/home/home3/Home3';
 import Home4 from '@/components/exports/home/home4/Home4';
+import Home5 from '@/components/exports/home/home5/Home5';
 
 import { getFeaturedProjects } from '@/services/projects/getFeaturedProjects';
 
@@ -22,6 +23,8 @@ export default async function Home() {
                 <Home3 projects={projects} />
 
                 <Home4 />
+
+                <Home5 />
             </main>
         </div>
     );

@@ -1,17 +1,4 @@
-import {
-    CONTACT_TYPES,
-    type ContactFormPayload,
-    type ContactType,
-    type CreateContactInput,
-} from '@/types/contact';
-
-type ValidationErrors = {
-    name?: string;
-    email?: string;
-    contactType?: string;
-    message?: string;
-    privacyAccepted?: string;
-};
+import { CONTACT_TYPES, type ContactFieldErrors, type ContactFormPayload, type ContactType, type CreateContactInput } from '@/types/contact';
 
 type ValidationSuccess = {
     success: true;
@@ -20,7 +7,7 @@ type ValidationSuccess = {
 
 type ValidationError = {
     success: false;
-    errors: ValidationErrors;
+    errors: ContactFieldErrors;
 };
 
 export type ContactValidationResult = ValidationSuccess | ValidationError;
@@ -31,9 +18,17 @@ function isContactType(value: string): value is ContactType {
     return CONTACT_TYPES.includes(value as ContactType);
 }
 
-export function validateContactPayload(
-    payload: ContactFormPayload,
-): ContactValidationResult {
+function normalizeOptionalString(value: unknown, maxLength: number): string | null {
+    if (typeof value !== 'string') {
+        return null;
+    }
+
+    const normalizedValue = value.trim().slice(0, maxLength);
+
+    return normalizedValue || null;
+}
+
+export function validateContactPayload(payload: ContactFormPayload): ContactValidationResult {
     const name = typeof payload.name === 'string' ? payload.name.trim() : '';
 
     const email = typeof payload.email === 'string' ? payload.email.trim().toLowerCase() : '';
@@ -42,22 +37,22 @@ export function validateContactPayload(
 
     const message = typeof payload.message === 'string' ? payload.message.trim() : '';
 
-    const errors: ValidationErrors = {};
+    const errors: ContactFieldErrors = {};
 
     if (name.length < 2 || name.length > 100) {
-        errors.name = 'El nombre debe tener entre 2 y 100 caracteres.';
+        errors.name = 'Ingresa un nombre válido.';
     }
 
     if (email.length < 5 || email.length > 320 || !EMAIL_PATTERN.test(email)) {
-        errors.email = 'Ingresa un correo electrónico válido.';
+        errors.email = 'Ingresa un correo válido.';
     }
 
     if (!isContactType(contactType)) {
-        errors.contactType = 'Selecciona un motivo de contacto válido.';
+        errors.contactType = 'Selecciona un motivo válido.';
     }
 
-    if (message.length < 20 || message.length > 3000) {
-        errors.message = 'El mensaje debe tener entre 20 y 3000 caracteres.';
+    if (message.length < 10 || message.length > 3000) {
+        errors.message = 'El mensaje debe tener mínimo  10 caracteres.';
     }
 
     if (payload.privacyAccepted !== true) {
@@ -71,14 +66,6 @@ export function validateContactPayload(
         };
     }
 
-    /*
-     * Esta comprobación permite que TypeScript estreche correctamente
-     * contactType a ContactType sin usar una aserción en el resultado.
-     *
-     * En condiciones normales ya fue comprobado arriba. Se repite porque
-     * TypeScript no relaciona automáticamente errors.contactType con el tipo
-     * de la variable.
-     */
     if (!isContactType(contactType)) {
         return {
             success: false,
@@ -95,6 +82,9 @@ export function validateContactPayload(
             email,
             contactType,
             message,
+            utmSource: normalizeOptionalString(payload.utmSource, 150),
+            utmMedium: normalizeOptionalString(payload.utmMedium, 150),
+            utmCampaign: normalizeOptionalString(payload.utmCampaign, 200),
         },
     };
 }

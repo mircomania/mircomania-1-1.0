@@ -1,0 +1,57 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--text-primary);
+    gap: 24px;
+    width: 100%;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    font: inherit;
+}
+
+.field textarea {
+    resize: vertical;
+}
+
+.checkboxField {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.fieldError,
+.submitError {
+    color: #d93025;
+}
+
+.fieldHelp {
+    font-size: 0.875rem;
+}
+
+.successMessage {
+    color: #188038;
+}
+
+.honeypot {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.form button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
