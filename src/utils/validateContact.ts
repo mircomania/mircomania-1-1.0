@@ -52,7 +52,7 @@ export function validateContactPayload(payload: ContactFormPayload): ContactVali
     }
 
     if (message.length < 10 || message.length > 3000) {
-        errors.message = 'El mensaje debe tener mínimo  10 caracteres.';
+        errors.message = 'El mensaje debe tener mínimo 10 caracteres.';
     }
 
     if (payload.privacyAccepted !== true) {

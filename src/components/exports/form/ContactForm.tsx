@@ -21,6 +21,7 @@ export default function ContactForm() {
                     id="contact-name"
                     name="name"
                     type="text"
+                    placeholder="Tu nombre"
                     value={values.name}
                     onChange={handleTextChange}
                     autoComplete="name"
@@ -45,6 +46,7 @@ export default function ContactForm() {
                     id="contact-email"
                     name="email"
                     type="email"
+                    placeholder="tu@email.com"
                     value={values.email}
                     onChange={handleTextChange}
                     autoComplete="email"
@@ -101,6 +103,7 @@ export default function ContactForm() {
                 <textarea
                     id="contact-message"
                     name="message"
+                    placeholder="Cuéntame sobre tu proyecto, oportunidad o consulta..."
                     value={values.message}
                     onChange={handleTextChange}
                     minLength={10}
@@ -112,7 +115,7 @@ export default function ContactForm() {
                 />
 
                 <p id="contact-message-help" className={styles.fieldHelp}>
-                    ¿En qué puedo ayudarte?
+                    Entre 10 y 3000 caracteres.
                 </p>
 
                 {errors.message && (
@@ -137,13 +140,13 @@ export default function ContactForm() {
                 />
 
                 <label htmlFor="contact-privacy">Acepto que mis datos sean utilizados para responder esta consulta.</label>
-            </div>
 
-            {errors.privacyAccepted && (
-                <p id="contact-privacy-error" className={styles.fieldError}>
-                    {errors.privacyAccepted}
-                </p>
-            )}
+                {errors.privacyAccepted && (
+                    <p id="contact-privacy-error" className={styles.fieldError}>
+                        {errors.privacyAccepted}
+                    </p>
+                )}
+            </div>
 
             <div className={styles.honeypot} aria-hidden="true">
                 <label htmlFor="contact-website">Sitio web</label>

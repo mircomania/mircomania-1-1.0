@@ -1,33 +1,137 @@
 .form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    color: var(--text-primary);
     gap: 24px;
     width: 100%;
+    padding: 20px;
+    border: 1px solid rgb(255 255 255 / 8%);
+    border-radius: 18px;
+    background: linear-gradient(145deg, rgb(255 255 255 / 3%), rgb(255 255 255 / 1%));
+    box-shadow:
+        0 24px 70px rgb(0 0 0 / 18%),
+        inset 0 1px 0 rgb(255 255 255 / 3%);
+    color: var(--text-primary);
+    font-size: 16px;
 }
 
 .field {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+.field label {
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .field input,
 .field select,
 .field textarea {
     width: 100%;
+    border: 1px solid rgb(190 200 230 / 15%);
+    border-radius: 10px;
+    outline: none;
+    background-color: rgb(8 11 22 / 72%);
+    box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 2%),
+        0 0 0 0 rgb(150 165 255 / 0%);
+    color: var(--text-primary);
     font: inherit;
+    transition:
+        border-color 180ms ease,
+        background-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.field select {
+    appearance: none;
+    padding-right: 44px;
+    background-image:
+        linear-gradient(45deg, transparent 50%, rgb(210 216 235 / 80%) 50%), linear-gradient(135deg, rgb(210 216 235 / 80%) 50%, transparent 50%);
+    background-position:
+        calc(100% - 19px) 50%,
+        calc(100% - 14px) 50%;
+    background-size:
+        5px 5px,
+        5px 5px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.field select:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.field select option {
+    background-color: #0b0e18;
+    color: var(--text-primary);
+}
+
+.field input,
+.field select {
+    min-height: 48px;
+    padding: 0 14px;
 }
 
 .field textarea {
+    min-height: 160px;
+    padding: 14px;
+    line-height: 1.6;
     resize: vertical;
 }
 
+.field input::placeholder,
+.field textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.75;
+}
+
+.field input[aria-invalid='true'],
+.field select[aria-invalid='true'],
+.field textarea[aria-invalid='true'] {
+    border-color: rgb(224 105 105 / 72%);
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+    border-color: rgb(165 180 255 / 62%);
+    background-color: rgb(10 14 28 / 92%);
+    box-shadow:
+        0 0 0 3px rgb(135 150 255 / 10%),
+        0 0 24px rgb(110 125 225 / 7%);
+}
+
 .checkboxField {
-    display: flex;
-    align-items: flex-start;
+    position: relative;
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+    align-items: start;
     gap: 10px;
+    margin: 20px 0;
+}
+
+.checkboxField input {
+    width: 18px;
+    height: 18px;
+    margin: 1px 0 0;
+    accent-color: rgb(160 174 255);
+    cursor: pointer;
+}
+
+.checkboxField label {
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.fieldError {
+    position: absolute;
+    bottom: -20px;
+    font-size: 14px;
 }
 
 .fieldError,
@@ -36,7 +140,8 @@
 }
 
 .fieldHelp {
-    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-size: 14px;
 }
 
 .successMessage {
@@ -54,4 +159,60 @@
 .form button:disabled {
     cursor: not-allowed;
     opacity: 0.6;
+}
+
+.form button[type='submit'] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 50px;
+    padding: 0 22px;
+    border: 1px solid rgb(176 188 255 / 24%);
+    border-radius: 10px;
+    background: linear-gradient(110deg, rgb(255 255 255 / 7%), rgb(148 163 255 / 8%));
+    box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 6%),
+        0 12px 30px rgb(0 0 0 / 16%);
+    color: var(--text-primary);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        border-color 180ms ease,
+        background-color 180ms ease,
+        box-shadow 180ms ease,
+        transform 180ms ease;
+}
+
+.form button[type='submit']:focus-visible {
+    outline: 2px solid rgb(165 180 255 / 70%);
+    outline-offset: 3px;
+}
+
+.form button[type='submit']:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.form button[type='submit']:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+@media (min-width: 1200px) {
+    .field input:hover,
+    .field select:hover,
+    .field textarea:hover {
+        border-color: rgb(190 200 230 / 28%);
+        background-color: rgb(10 14 28 / 82%);
+    }
+
+    .form button[type='submit']:hover:not(:disabled) {
+        border-color: rgb(176 188 255 / 42%);
+        box-shadow:
+            inset 0 1px 0 rgb(255 255 255 / 8%),
+            0 14px 36px rgb(0 0 0 / 20%),
+            0 0 24px rgb(120 135 235 / 8%);
+        transform: translateY(-1px);
+    }
 }
