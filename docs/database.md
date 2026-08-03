@@ -77,9 +77,6 @@ Campos
 
 ### contacts
 
-Estado:
-🚧 Pendiente
-
 Descripción
 
 Mensajes enviados desde el formulario de contacto.
@@ -89,13 +86,16 @@ Campos
 - id
 - name
 - email
-- subjet
 - message
 - status
 - source
 - privacy_accepted_at
 - created_at
 - updated_at
+- contact_type
+- utm_source
+- utm_medium
+- utm_campaign
 
 ---
 

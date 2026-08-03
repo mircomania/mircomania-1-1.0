@@ -14,23 +14,31 @@ Cada archivo debe tener una única responsabilidad y una estructura predecible p
 src/
 │
 ├── app/
+│   ├──api/
+│   │  └──contact/
 │   ├── layout.tsx
 │   ├── page.tsx
 │   └── globals.css
 │
 ├── assets/
+│   ├──icons/
+│   └──images/
 │
 ├── components/
 │   ├── common/
 │   ├── exports/
+│   │   ├── form/
 │   │   └── home/
 │   └── utils/
 │
 ├── hooks/
 │
 ├── lib/
+│   └──supabase/
 │
 ├── services/
+│   ├──contacts/
+│   └──proyects/
 │
 ├── styles/
 │
@@ -45,7 +53,7 @@ src/
 
 ### app/
 
-Contiene las rutas de Next.js, layouts y páginas.
+Contiene las rutas de Next.js, APIs, layouts y páginas.
 
 ---
 
@@ -65,7 +73,7 @@ Se dividen en:
 
 Toda la lógica reutilizable.
 
-No deben renderizar UI.
+No deben renderizar UI, menos en el caso de useContactForm.
 
 ---
 
@@ -94,6 +102,8 @@ Variables globales.
 
 - colors.css
 - fonts.css
+- buttons.css
+- spinner.css
 
 ---
 

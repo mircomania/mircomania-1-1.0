@@ -45,3 +45,5 @@
 23.- creamos 5 componentes nuevos para manejar la conexion de supabase con next, hacemos los test correspondientes en powershell Invoke-restMethod y todo pasa las pruebas (Prueba válida, contactType inválido, Probar el honeypot).
 
 24.- por ahora dejamos solo el honeypot como medida de seguridad, pero mas adelante implementaremos protecciones medias/altas contra bots, a modo de prolijidad tecnica, mas que porque crea que mircomania es un objetivo de bots.
+
+25.- modularizamos los componentes para dividir responsabilidades, ademas de crear la logica de captura de UTM y en evento send_form para GTM (se agregan los campos correpondientes a supabase para guardar los 3 utm)
