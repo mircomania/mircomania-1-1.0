@@ -64,6 +64,22 @@ Placeholder inputs
 
 - ***
 
+## Contacto
+
+### Hero
+
+Título
+
+-
+
+Texto
+
+-
+
+Placeholder inputs
+
+- ***
+
 ## Footer
 
 Links

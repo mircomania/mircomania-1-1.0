@@ -79,14 +79,13 @@ export default function ContactForm() {
                         updateContactType(contactType);
                     }}
                 >
-                    <option value="">Selecciona una opción</option>
+                    <option value="" disabled hidden>
+                        Selecciona una opción
+                    </option>
 
                     <option value="project">Proyecto o servicio</option>
-
                     <option value="job">Oportunidad laboral</option>
-
                     <option value="collaboration">Colaboración</option>
-
                     <option value="general">Consulta general</option>
                 </select>
 

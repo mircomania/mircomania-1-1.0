@@ -34,7 +34,7 @@
 
 18.- empezamos la seccion 4, CV.
 
-19.- se opta por un compoente ultra basico que abra el pdf del cv en otra pestaña. En base a esto surge la idea de crear el componente ButtonLink para utilizar de manera modular los links fuera del sitio web al igual que lo hacemos con ButtonNav, por lo que se modifico la seccion home3 para remplazar los antiguos "a" por el nuevo componente. Resultado: Satisfactorio.
+19.- se opta por un compoente ultra basico que abra el pdf del cv en otra pestaña. En base a esto surge la idea de crear el componente ButtonLink para utilizar de manera modular los links fuera del sitio web al igual que lo hacemos con ButtonNav, por lo que se modifico la seccion home3 para remplazar los antiguos "a" por el nuevo componente. cc
 
 20.- Queda pendiente para el futuro hacer que el sitio detecte si el idioma es ingles o español ademas de ofrecer la vista del cv en ingles o español independiente del idioma.
 
@@ -46,4 +46,10 @@
 
 24.- por ahora dejamos solo el honeypot como medida de seguridad, pero mas adelante implementaremos protecciones medias/altas contra bots, a modo de prolijidad tecnica, mas que porque crea que mircomania es un objetivo de bots.
 
-25.- modularizamos los componentes para dividir responsabilidades, ademas de crear la logica de captura de UTM y en evento send_form para GTM (se agregan los campos correpondientes a supabase para guardar los 3 utm)
+25.- modularizamos los componentes para dividir responsabilidades, ademas de crear la logica de captura de UTM y en evento send_form para GTM (se agregan los campos correpondientes a supabase para guardar los 3 utm).
+
+26.- se arma el diseño y estructura final de la seccion Home5, la cual sera replicada en diseño para Contacto1, mas no asi su contenido ademas del form.
+
+27.- se testea por ultima vez ya con la seccion terminada y todo bien. Resultado: Satisfactorio.
+
+28.- se empieza la construccion del navbar, ya con la estructura del sitio base completa. En esta primera version del sitio el navbar navegara a travez de anclas por la home, a excepcion de "contacto" que ira a /contacto.

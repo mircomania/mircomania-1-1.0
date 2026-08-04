@@ -2,13 +2,28 @@
 
 ## v1.0
 
+### Common
+
+- [ ] Navbar
+- [ ] Footer
+- [ ] Sitemap
+- [ ] Robots
+
+---
+
 ### Home
 
 - [x] Hero
 - [x] Servicios
 - [x] Proyectos
 - [x] CV
-- [ ] Contacto
+- [x] Contacto
+
+---
+
+### Contacto
+
+- [ ] Hero
 
 ---
 
@@ -31,13 +46,10 @@
 
 ## v1.1
 
+- Analytics.
 - Página de proyectos.
 - Página del CV.
 - FAQ.
-- Navbar.
-- Footer completo.
-- Sitemap.
-- Robots.
 
 ---
 
@@ -45,7 +57,6 @@
 
 - Blog.
 - Panel para administrar proyectos.
-- Analytics.
 - Dark / Light Theme (evaluar).
 
 ---
@@ -72,6 +83,6 @@
 
 - Cambiar el display none de home3 en las cards movile y desktop por algo mas funcional.
 
--
+- Modificar la seccion Proyectos del Home en su version movil, despues de realizar test con usuarios -y yo mismo- se define el diseño de stack vertical como incomodo. Cambiar el estilo de diseño, ideas en mente: 1.- carrucel vertical (no me termina de agradar porque la seccion anterior ya es un carrucel). 2.- Una especie de carpeta (diseño final de todas las card stackeadas) y que al darle click se abra un modal en donde el usuario pueda scrollear los proyectos en un solo lienzo, con una X para salir cuando quiera y volver a la home. 3.- simplemente dejar los proyectos en un solo lienzo (tampoco me convence mucho porque hace que la seccion se sienta muy larga). Me inclino mas por la opcion 2.
 
 -

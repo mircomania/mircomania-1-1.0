@@ -65,6 +65,10 @@
     opacity: 0.55;
 }
 
+.field select:valid {
+    color: var(--text-primary);
+}
+
 .field select option {
     background-color: #0b0e18;
     color: var(--text-primary);
@@ -84,7 +88,8 @@
 }
 
 .field input::placeholder,
-.field textarea::placeholder {
+.field textarea::placeholder,
+.field select:invalid {
     color: var(--text-muted);
     opacity: 0.75;
 }
