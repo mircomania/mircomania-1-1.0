@@ -6,7 +6,7 @@ import { useContactForm } from '@/hooks/useContactForm';
 import type { ContactFormValues } from '@/types/contact';
 
 import ContactFormStatus from './ContactFormStatus';
-import styles from './ContactForm.module.css';
+import styles from './contactForm.module.css';
 
 export default function ContactForm() {
     const { values, errors, isSubmitting, successMessage, submitError, handleTextChange, updateContactType, updatePrivacyAccepted, handleSubmit } =

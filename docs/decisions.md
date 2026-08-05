@@ -53,3 +53,15 @@
 27.- se testea por ultima vez ya con la seccion terminada y todo bien. Resultado: Satisfactorio.
 
 28.- se empieza la construccion del navbar, ya con la estructura del sitio base completa. En esta primera version del sitio el navbar navegara a travez de anclas por la home, a excepcion de "contacto" que ira a /contacto.
+
+29.- se migran unos componentes reutilizables que usaba en react a next, se reduce bastante el codigo por funciones nativas de next, terminando asi con un navbar reutilizable para next. Aunque durante la migracion se debieron corregir varios fallos pequeños.
+
+30.- se crea la maqueta con diseño base del navbar en su version desktop y mobile.
+
+31.- se crea un nuevo menu.svg, este con solo 2 rayas horizontales que al darle click se animan y se transforman en X.
+
+32.- se mejora el diseño en general y se ajusta la distancia de las anclas de manera individual en navbar.css
+
+33.- como ajuste de diseño final se decide que el navbar al ser FIX, al scrollear en la pantalla pasa de transparente a color, al principio solo deja asi, pero no convene al verse muy cuadrado, por lo que finalmente optamos por hacer una especie de modulo flotante que se ve bastante bien y le da un toque muy pro. Resultado: Satisfactorio.
+
+34.- se comienza el desarrollo del footer.

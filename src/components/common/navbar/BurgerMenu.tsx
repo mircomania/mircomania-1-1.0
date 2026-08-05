@@ -1,6 +1,7 @@
 'use client';
 
 import { Menu } from '@/assets/icons/Menu';
+import { Arrow } from '@/assets/icons/Arrow';
 
 import { useBurgerMenu } from '@/hooks/useBurgerMenu';
 
@@ -37,7 +38,8 @@ export function BurgerMenu() {
 
                 <div className={styles.mobileMenuBottom}>
                     <SmartLink href="/contacto" className={styles.mobileContactButton} dataCta="burger-contacto-btn" onClick={closeMenu}>
-                        Contacto
+                        <span>Contacto</span>
+                        <Arrow className={styles.contactArrow} />
                     </SmartLink>
                 </div>
             </div>

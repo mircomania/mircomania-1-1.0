@@ -1,5 +1,19 @@
 # Contenido
 
+## Navbar
+
+Logo
+
+-
+
+Links
+
+-
+
+CTA
+
+- ***
+
 ## Home
 
 ### Hero
@@ -9,10 +23,6 @@ H1
 -
 
 H2
-
--
-
-CTA
 
 - ***
 

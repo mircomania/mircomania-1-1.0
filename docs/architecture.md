@@ -16,35 +16,107 @@ src/
 ├── app/
 │   ├──api/
 │   │  └──contact/
+│   │     └──route.ts
+│   │
+│   ├── globals.css
+│   ├── icon.svg
 │   ├── layout.tsx
-│   ├── page.tsx
-│   └── globals.css
+│   └── page.tsx
 │
 ├── assets/
 │   ├──icons/
+│   │  ├── Arrow.tsx
+│   │  ├── Logo.tsx
+│   │  ├── Menu.tsx
+│   │  ├── Spinner.tsx
+│   │  └── Star.tsx
+│   │
 │   └──images/
 │
 ├── components/
 │   ├── common/
-│   ├── exports/
-│   │   ├── form/
-│   │   └── home/
-│   └── utils/
+│   │   ├── footer/
+│   │   │
+│   │   └── navbar/
+│   │       ├── BurgerMenu.tsx
+│   │       ├── navbar.module.css
+│   │       ├── Navbar.tsx
+│   │       ├── navbarMenu.ts
+│   │       └── NavItems.tsx
+│   │
+│   └── exports/
+│       ├── form/
+│       │   ├── contactForm.module.css.tsx
+│       │   ├── ContactForm.tsx
+│       │   ├── ContactFormStatus.tsx
+│       │   ├── pushContactFormEvent.ts
+│       │   └── validateContact.ts
+│       │
+│       └── home/
+│           ├── home1/
+│           │   ├── home1.module.css
+│           │   └── Home1.tsx
+│           │
+│           ├── home2/
+│           │   ├── home2.module.css
+│           │   ├── Home2.tsx
+│           │   ├── stars.ts
+│           │   └── useConstellation.ts
+│           │
+│           ├── home3/
+│           │   ├── home3.module.css
+│           │   ├── Home3.tsx
+│           │   ├── MobileProjectsStack.tsx
+│           │   └── ProjectCard.tsx
+│           │
+│           ├── home4/
+│           │   ├── home4.module.css
+│           │   └── Home4.tsx
+│           │
+│           └── home5/
+│               ├── DesktopParticlePlanet.tsx
+│               ├── home5.module.css
+│               ├── Home5.tsx
+│               ├── particlePlanet.module.css
+│               └── ParticlePlanet.tsx
 │
 ├── hooks/
+│   ├── useBurgerMenu.ts
+│   ├── useContactForm.ts
+│   ├── useMediaQuery.tsx
+│   └── useNavbarScroll.tsx
 │
 ├── lib/
 │   └──supabase/
+│      ├── admin.ts
+│      ├── getPublicMediaUrl.tsx
+│      └── server.ts
 │
 ├── services/
 │   ├──contacts/
+│   │  ├── createContacts.ts
+│   │  └── submitContact.ts
+│   │
 │   └──proyects/
+│      ├── getFeaturedProjects.ts
+│      └── getProjectCover.ts
 │
 ├── styles/
 │
 ├── types/
+│   ├── contact.ts
+│   ├── global.d.ts
+│   ├── navigation.tsx
+│   └── projects.tsx
 │
-└── utils/
+├── utils/
+│   ├── starryBackground/
+│   │   ├── starryBackground.module.css
+│   │   └── StarryBackground.tsx
+│   │
+│   ├── ButtonLink.tsx
+│   ├── getUtmParams.ts
+│   └── SmartLink.tsx
 ```
 
 ---
@@ -65,7 +137,6 @@ Se dividen en:
 
 - common
 - exports
-- utils
 
 ---
 
@@ -73,7 +144,7 @@ Se dividen en:
 
 Toda la lógica reutilizable.
 
-No deben renderizar UI, menos en el caso de useContactForm.
+No deben renderizar UI en caso de no ser necesario.
 
 ---
 
@@ -104,6 +175,10 @@ Variables globales.
 - fonts.css
 - buttons.css
 - spinner.css
+- background.css
+- common.css
+- navbar.css
+- utils.css
 
 ---
 

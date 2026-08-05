@@ -1,4 +1,4 @@
-import styles from './ContactForm.module.css';
+import styles from './contactForm.module.css';
 
 type ContactFormStatusProps = Readonly<{
     type: 'success' | 'error';

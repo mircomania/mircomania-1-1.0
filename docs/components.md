@@ -14,7 +14,7 @@ Estado:
 
 Responsabilidad:
 
-Contiene los estilos globales del proyecto.
+Contiene los estilos globales del proyecto importados como modulos.
 
 Incluye:
 
@@ -50,6 +50,30 @@ Estado:
 Responsabilidad:
 
 Maneja toda la logica del formulario de contacto, datos inciales, validacion de inputs y envio del formulario.
+
+---
+
+## useBurgerMenu.ts
+
+Estado:
+
+- ✅
+
+Responsabilidad:
+
+Maneja toda la logica del burger menu.
+
+---
+
+## useNavbarScroll.ts
+
+Estado:
+
+- ✅
+
+Responsabilidad:
+
+Maneja la transicion del navbar cuando se hace scroll, se maneja en 3 etapas.
 
 ---
 
@@ -156,18 +180,6 @@ Estado:
 Responsabilidad:
 
 Componente reutilizable para links que navegen fuera del sitio web.
-
----
-
-## ButtonNav.tsx
-
-Estado:
-
-- ✅
-
-Responsabilidad:
-
-Componente reutilizable para botones que navegen dentro del sitio web.
 
 ---
 

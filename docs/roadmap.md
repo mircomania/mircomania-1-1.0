@@ -4,7 +4,7 @@
 
 ### Common
 
-- [ ] Navbar
+- [x] Navbar
 - [ ] Footer
 - [ ] Sitemap
 - [ ] Robots

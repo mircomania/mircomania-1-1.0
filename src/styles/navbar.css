@@ -6,8 +6,36 @@ section[id] {
     scroll-margin-top: calc(var(--navbar-height-mobile) + 16px);
 }
 
+#servicios {
+    scroll-margin-top: calc(var(--navbar-height-mobile) - 50px);
+}
+
+#cv {
+    scroll-margin-top: calc(var(--navbar-height-mobile) - 90px);
+}
+
+@media (min-width: 576px) {
+    #servicios {
+        scroll-margin-top: calc(var(--navbar-height-mobile) - 30px);
+    }
+}
+
 @media (min-width: 1200px) {
     section[id] {
         scroll-margin-top: calc(var(--navbar-height-desktop) + 16px);
+    }
+
+    #servicios {
+        scroll-margin-top: calc(var(--navbar-height-desktop) - 25px);
+    }
+
+    #cv {
+        scroll-margin-top: calc(var(--navbar-height-mobile) - 50px);
+    }
+}
+
+@media (min-width: 1400px) {
+    #servicios {
+        scroll-margin-top: calc(var(--navbar-height-desktop) + 140px);
     }
 }
