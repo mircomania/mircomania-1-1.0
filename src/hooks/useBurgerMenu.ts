@@ -6,6 +6,7 @@ export function useBurgerMenu() {
     const [isOpen, setIsOpen] = useState(false);
 
     const menuRef = useRef<HTMLDivElement>(null);
+    const panelRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLButtonElement>(null);
 
     const toggleMenu = useCallback((): void => {
@@ -24,7 +25,10 @@ export function useBurgerMenu() {
 
             if (!(target instanceof Node)) return;
 
-            if (!menuRef.current?.contains(target)) {
+            const isInsideTrigger = menuRef.current?.contains(target);
+            const isInsidePanel = panelRef.current?.contains(target);
+
+            if (!isInsideTrigger && !isInsidePanel) {
                 closeMenu();
             }
         };
@@ -53,10 +57,12 @@ export function useBurgerMenu() {
 
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
+        document.documentElement.dataset.mobileMenuOpen = 'true';
 
         return () => {
             document.body.style.overflow = previousBodyOverflow;
             document.documentElement.style.overflow = previousHtmlOverflow;
+            delete document.documentElement.dataset.mobileMenuOpen;
         };
     }, [isOpen]);
 
@@ -65,6 +71,7 @@ export function useBurgerMenu() {
         toggleMenu,
         closeMenu,
         menuRef,
+        panelRef,
         triggerRef,
     };
 }
