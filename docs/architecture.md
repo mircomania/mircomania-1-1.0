@@ -46,7 +46,7 @@ src/
 │   │
 │   └── exports/
 │       ├── form/
-│       │   ├── contactForm.module.css.tsx
+│       │   ├── contactForm.module.css
 │       │   ├── ContactForm.tsx
 │       │   ├── ContactFormStatus.tsx
 │       │   ├── pushContactFormEvent.ts
