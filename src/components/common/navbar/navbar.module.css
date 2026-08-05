@@ -228,6 +228,7 @@
 
 .navbar:has(.mobileMenuPanelOpen) {
     margin-top: 0;
+    padding-inline: 30px;
     background: transparent;
     border-color: transparent;
     border-radius: 0;
