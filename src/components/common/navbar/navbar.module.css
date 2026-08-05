@@ -78,7 +78,7 @@
 
 .logoLink {
     position: relative;
-    z-index: 3;
+    z-index: 4;
     display: inline-flex;
     justify-self: start;
 }
@@ -220,6 +220,16 @@
     transition:
         opacity 250ms ease,
         visibility 0s linear;
+}
+
+.navbar:has(.mobileMenuPanelOpen) {
+    margin-top: 0;
+    background: transparent;
+    border-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 .mobileMenuList {
