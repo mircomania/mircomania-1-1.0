@@ -1,6 +1,6 @@
 'use client';
 
-import { SpinnerIcon } from '@/assets/icons/SpinnerIcon';
+import { Spinner } from '@/assets/icons/Spinner';
 import { useContactForm } from '@/hooks/useContactForm';
 
 import type { ContactFormValues } from '@/types/contact';
@@ -168,7 +168,7 @@ export default function ContactForm() {
             <button type="submit" disabled={isSubmitting} aria-busy={isSubmitting}>
                 {isSubmitting ? (
                     <>
-                        <SpinnerIcon aria-hidden="true" />
+                        <Spinner />
                         <span>Enviando...</span>
                     </>
                 ) : (

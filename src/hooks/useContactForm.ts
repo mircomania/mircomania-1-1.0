@@ -6,9 +6,9 @@ import { submitContact } from '@/services/contacts/submitContact';
 
 import type { ContactFieldErrors, ContactFormValues, ContactType } from '@/types/contact';
 
-import { pushContactFormEvent } from '@/utils/pushContactFormEvent';
+import { pushContactFormEvent } from '@/components/exports/form/pushContactFormEvent';
 import { EMPTY_UTM_PARAMS, getUtmParams } from '@/utils/getUtmParams';
-import { validateContactPayload } from '@/utils/validateContact';
+import { validateContactPayload } from '@/components/exports/form/validateContact';
 
 const INITIAL_VALUES: ContactFormValues = {
     name: '',

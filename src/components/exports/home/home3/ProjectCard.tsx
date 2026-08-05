@@ -8,7 +8,7 @@ import type { FeaturedProject } from '@/types/projects';
 import { getProjectCover } from '@/services/projects/getProjectCover';
 import { getPublicMediaUrl } from '@/lib/supabase/getPublicMediaUrl';
 
-import ButtonLink from '@/components/utils/ButtonLink';
+import ButtonLink from '@/utils/ButtonLink';
 
 type Props = {
     project: FeaturedProject;

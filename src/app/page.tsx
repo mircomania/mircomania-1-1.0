@@ -6,7 +6,7 @@ import Home5 from '@/components/exports/home/home5/Home5';
 
 import { getFeaturedProjects } from '@/services/projects/getFeaturedProjects';
 
-import StarryBackground from '@/components/utils/starryBackground/StarryBackground';
+import StarryBackground from '@/utils/starryBackground/StarryBackground';
 
 export default async function Home() {
     const projects = await getFeaturedProjects();
@@ -18,11 +18,17 @@ export default async function Home() {
 
                 <Home1 />
 
-                <Home2 />
+                <section id="servicios">
+                    <Home2 />
+                </section>
 
-                <Home3 projects={projects} />
+                <section id="proyectos">
+                    <Home3 projects={projects} />
+                </section>
 
-                <Home4 />
+                <section id="cv">
+                    <Home4 />
+                </section>
 
                 <Home5 />
             </main>

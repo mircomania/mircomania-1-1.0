@@ -1,0 +1,70 @@
+'use client';
+
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+export function useBurgerMenu() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const menuRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<HTMLButtonElement>(null);
+
+    const toggleMenu = useCallback((): void => {
+        setIsOpen((currentState) => !currentState);
+    }, []);
+
+    const closeMenu = useCallback((): void => {
+        setIsOpen(false);
+    }, []);
+
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const handlePointerDown = (event: PointerEvent): void => {
+            const target = event.target;
+
+            if (!(target instanceof Node)) return;
+
+            if (!menuRef.current?.contains(target)) {
+                closeMenu();
+            }
+        };
+
+        const handleKeyDown = (event: KeyboardEvent): void => {
+            if (event.key !== 'Escape') return;
+
+            closeMenu();
+            triggerRef.current?.focus();
+        };
+
+        document.addEventListener('pointerdown', handlePointerDown);
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.removeEventListener('pointerdown', handlePointerDown);
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [isOpen, closeMenu]);
+
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const previousBodyOverflow = document.body.style.overflow;
+        const previousHtmlOverflow = document.documentElement.style.overflow;
+
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+
+        return () => {
+            document.body.style.overflow = previousBodyOverflow;
+            document.documentElement.style.overflow = previousHtmlOverflow;
+        };
+    }, [isOpen]);
+
+    return {
+        isOpen,
+        toggleMenu,
+        closeMenu,
+        menuRef,
+        triggerRef,
+    };
+}

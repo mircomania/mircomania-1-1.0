@@ -1,0 +1,32 @@
+.space-main {
+    position: relative;
+    z-index: 1;
+    background:
+        radial-gradient(circle at 20% 12%, rgba(255, 255, 255, 0.07), transparent 20%),
+        radial-gradient(circle at 80% 45%, rgba(120, 150, 255, 0.07), transparent 30%),
+        radial-gradient(circle at 30% 75%, rgba(255, 255, 255, 0.045), transparent 26%), linear-gradient(180deg, #03040a 0%, #010208 100%);
+}
+
+@media (min-width: 1200px) {
+    .space-main::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background: radial-gradient(ellipse at 50% 35%, rgba(120, 130, 180, 0.11), transparent 55%);
+        filter: blur(50px);
+        opacity: 0.8;
+        pointer-events: none;
+    }
+
+    .space-main::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+            radial-gradient(circle at 18% 30%, rgba(255, 255, 255, 0.045), transparent 18%),
+            radial-gradient(circle at 78% 68%, rgba(110, 130, 220, 0.06), transparent 24%);
+        pointer-events: none;
+    }
+}

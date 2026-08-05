@@ -1,7 +1,7 @@
 import styles from './home4.module.css';
 import Star from '@/assets/icons/Star';
 
-import ButtonLink from '@/components/utils/ButtonLink';
+import ButtonLink from '@/utils/ButtonLink';
 
 export default function Home4() {
     return (

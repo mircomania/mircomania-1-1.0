@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+
+import { Navbar } from '@/components/common/navbar/Navbar';
+
 import { Montserrat, Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 
@@ -13,10 +16,14 @@ export const metadata: Metadata = {
     description: 'Portafolio y CV Online',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="es" className={`${montserrat.variable} ${inter.variable} ${spaceGrotesk.variable}`}>
-            <body>{children}</body>
+            <body>
+                <Navbar />
+
+                <main>{children}</main>
+            </body>
         </html>
     );
 }

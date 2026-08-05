@@ -7,6 +7,8 @@ type ButtonLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'children' 
     children: ReactNode;
     variant?: ButtonLinkVariant;
     className?: string;
+    dataCta?: string;
+    dataLink?: string;
     showExternalIcon?: boolean;
 };
 
@@ -15,6 +17,8 @@ export default function ButtonLink({
     children,
     variant = 'primary',
     className = '',
+    dataCta,
+    dataLink,
     showExternalIcon = true,
     target = '_blank',
     rel = 'noopener noreferrer',
@@ -24,7 +28,16 @@ export default function ButtonLink({
     const classes = ['button-link', `button-link--${variant}`, className].filter(Boolean).join(' ');
 
     return (
-        <a href={href} className={classes} target={target} rel={rel} draggable={draggable} {...props}>
+        <a
+            href={href}
+            className={classes}
+            target={target}
+            rel={rel}
+            draggable={draggable}
+            {...(dataCta ? { 'data-cta': dataCta } : {})}
+            {...(dataLink ? { 'data-link': dataLink } : {})}
+            {...props}
+        >
             <span>{children}</span>
 
             {showExternalIcon && (

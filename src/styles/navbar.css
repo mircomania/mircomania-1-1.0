@@ -1,0 +1,13 @@
+:root {
+    --navbar-height-mobile: 64px;
+    --navbar-height-desktop: 100px;
+}
+section[id] {
+    scroll-margin-top: calc(var(--navbar-height-mobile) + 16px);
+}
+
+@media (min-width: 1200px) {
+    section[id] {
+        scroll-margin-top: calc(var(--navbar-height-desktop) + 16px);
+    }
+}

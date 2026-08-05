@@ -5,10 +5,12 @@ type SpinnerProps = {
     speed?: number;
 };
 
-export function SpinnerIcon({ size = 24, color = 'currentColor', strokeWidth = 3, speed = 1 }: Readonly<SpinnerProps>) {
+export function Spinner({ size = 24, color = 'currentColor', strokeWidth = 3, speed = 1 }: Readonly<SpinnerProps>) {
     return (
         <svg
             className="spinner"
+            aria-hidden="true"
+            focusable="false"
             width={size}
             height={size}
             viewBox="0 0 50 50"

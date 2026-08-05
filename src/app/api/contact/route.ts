@@ -1,6 +1,6 @@
 import { createContact } from '@/services/contacts/createContact';
 import type { ContactFormPayload } from '@/types/contact';
-import { validateContactPayload } from '@/utils/validateContact';
+import { validateContactPayload } from '@/components/exports/form/validateContact';
 
 const MAX_REQUEST_SIZE = 10_000;
 
