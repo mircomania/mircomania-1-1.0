@@ -222,8 +222,13 @@
         visibility 0s linear;
 }
 
+.header:has(.mobileMenuPanelOpen) {
+    padding-inline: 0;
+}
+
 .header[data-scroll-state] .navbar:has(.mobileMenuPanelOpen) {
     margin-top: 0;
+    padding-inline: 30px;
     background: transparent;
     border-color: transparent;
     border-radius: 0;
