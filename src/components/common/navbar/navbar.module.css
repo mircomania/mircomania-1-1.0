@@ -230,6 +230,7 @@
     box-shadow: none;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+    transition: none;
 }
 
 .header:has(.mobileMenuPanelOpen) .logo {
