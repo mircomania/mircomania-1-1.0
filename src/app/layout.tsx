@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { Navbar } from '@/components/common/navbar/Navbar';
+import { Footer } from '@/components/common/footer/Footer';
 
 import { Montserrat, Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
@@ -23,6 +24,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 <Navbar />
 
                 <main>{children}</main>
+
+                <Footer />
             </body>
         </html>
     );

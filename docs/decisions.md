@@ -64,4 +64,6 @@
 
 33.- como ajuste de diseño final se decide que el navbar al ser FIX, al scrollear en la pantalla pasa de transparente a color, al principio solo deja asi, pero no convene al verse muy cuadrado, por lo que finalmente optamos por hacer una especie de modulo flotante que se ve bastante bien y le da un toque muy pro. Resultado: Satisfactorio.
 
+34.- detectamos un problema en el diseño del menu navbar en mobil, porque lo que decidimos restructurar useBurgerMenu y BurgerMenu para corregir el diseño, se vuelven a hacer los test y pasan sin problema. Resultado: Satisfactorio.
+
 34.- se comienza el desarrollo del footer.
