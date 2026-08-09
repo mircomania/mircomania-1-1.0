@@ -2,6 +2,8 @@
 
 import { createPortal } from 'react-dom';
 
+import { ROUTES } from '@/constants/routes';
+
 import { Menu } from '@/assets/icons/Menu';
 import { Arrow } from '@/assets/icons/Arrow';
 
@@ -34,7 +36,7 @@ export function BurgerMenu() {
             </ul>
 
             <div className={styles.mobileMenuBottom}>
-                <SmartLink href="/contacto" className={styles.mobileContactButton} dataCta="burger-contacto-btn" onClick={closeMenu}>
+                <SmartLink href={ROUTES.contact} className={styles.mobileContactButton} dataCta="burger-contacto-btn" onClick={closeMenu}>
                     <span>Contacto</span>
                     <Arrow className={styles.contactArrow} />
                 </SmartLink>

@@ -1,7 +1,9 @@
+import ButtonLink from '@/utils/ButtonLink';
+
+import { SOCIAL_LINKS } from '@/constants/routes';
+
 import styles from './home4.module.css';
 import Star from '@/assets/icons/Star';
-
-import ButtonLink from '@/utils/ButtonLink';
 
 export default function Home4() {
     return (
@@ -14,7 +16,7 @@ export default function Home4() {
                 <p>Revisa mi experiencia profesional, tecnologías y trayectoria en detalle.</p>
             </div>
 
-            <ButtonLink href="/documents/mirco-rodriguez-cv-es-2026.pdf" variant="primary">
+            <ButtonLink href={SOCIAL_LINKS.cv} variant="primary">
                 Abrir CV
             </ButtonLink>
         </section>

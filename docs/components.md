@@ -231,6 +231,32 @@ Validacion frotend para los inputs del formulario.
 
 ---
 
+## createMetadata.ts
+
+Estado:
+
+- ✅
+
+Responsabilidad:
+
+Helper para modularizar la entrega de metadas a cada pagina.
+
+---
+
+# Constants
+
+## routes.ts
+
+Estado:
+
+- ✅
+
+Responsabilidad:
+
+Almacena todas las url del sitio web.
+
+---
+
 # Home
 
 ## Home1

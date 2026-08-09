@@ -5,9 +5,12 @@
 ### Common
 
 - [x] Navbar
-- [ ] Footer
-- [ ] Sitemap
-- [ ] Robots
+- [x] Footer
+- [x] Sitemap
+- [x] Robots
+- [x] Metadata
+- [x] Error Page
+- [ ] Politicas Page
 
 ---
 
@@ -85,4 +88,6 @@
 
 - Modificar la seccion Proyectos del Home en su version movil, despues de realizar test con usuarios -y yo mismo- se define el diseño de stack vertical como incomodo. Cambiar el estilo de diseño, ideas en mente: 1.- carrucel vertical (no me termina de agradar porque la seccion anterior ya es un carrucel). 2.- Una especie de carpeta (diseño final de todas las card stackeadas) y que al darle click se abra un modal en donde el usuario pueda scrollear los proyectos en un solo lienzo, con una X para salir cuando quiera y volver a la home. 3.- simplemente dejar los proyectos en un solo lienzo (tampoco me convence mucho porque hace que la seccion se sienta muy larga). Me inclino mas por la opcion 2.
 
--
+- Hacer estilos reutilizables para SmartLink, similar a ButtonLink
+
+- ***

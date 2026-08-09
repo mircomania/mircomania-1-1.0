@@ -1,5 +1,7 @@
 import type { ComponentType, SVGProps } from 'react';
 
+import { ROUTES, ANCHORS, SOCIAL_LINKS } from '@/constants/routes';
+
 import github from '@/assets/icons/Github';
 import linkedin from '@/assets/icons/Linkedin';
 
@@ -16,32 +18,32 @@ export type SocialLink = FooterLink & {
 export const navigationLinks: FooterLink[] = [
     {
         label: 'Inicio',
-        href: '/',
+        href: ROUTES.home,
     },
     {
         label: 'Servicios',
-        href: '/#servicios',
+        href: ANCHORS.services,
     },
     {
         label: 'Proyectos',
-        href: '/#proyectos',
+        href: ANCHORS.projects,
     },
     {
         label: 'CV',
-        href: '/#cv',
+        href: ANCHORS.cv,
     },
 ];
 
 export const socialLinks: SocialLink[] = [
     {
         label: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/mircorodriguez',
+        href: SOCIAL_LINKS.linkedin,
         ariaLabel: 'Visitar perfil de Mirco Rodríguez en LinkedIn',
         icon: linkedin,
     },
     {
         label: 'GitHub',
-        href: 'https://github.com/mircomania',
+        href: SOCIAL_LINKS.github,
         ariaLabel: 'Visitar perfil de Mirco Rodríguez en GitHub',
         icon: github,
     },
@@ -50,6 +52,6 @@ export const socialLinks: SocialLink[] = [
 export const legalLinks: FooterLink[] = [
     {
         label: 'Política de privacidad',
-        href: '/politica-privacidad',
+        href: ROUTES.privacy,
     },
 ];

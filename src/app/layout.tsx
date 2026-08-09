@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
+import { Inter, Montserrat, Space_Grotesk } from 'next/font/google';
 
-import { Navbar } from '@/components/common/navbar/Navbar';
+import { SITE_URL } from '@/constants/routes';
+
 import { Footer } from '@/components/common/footer/Footer';
+import { Navbar } from '@/components/common/navbar/Navbar';
 
-import { Montserrat, Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: ['700', '900'], variable: '--font-title' });
@@ -13,17 +15,22 @@ const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '700'], variabl
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], weight: ['500', '700'], variable: '--font-space' });
 
 export const metadata: Metadata = {
-    title: 'Mircomania',
-    description: 'Portafolio y CV Online',
-};
+    metadataBase: new URL(SITE_URL),
 
+    title: {
+        default: 'Mircomania',
+        template: '%s | Mircomania',
+    },
+
+    description: 'Desarrollo web, automatización y productos digitales enfocados en rendimiento, experiencia de usuario y soluciones a medida.',
+};
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="es" className={`${montserrat.variable} ${inter.variable} ${spaceGrotesk.variable}`}>
             <body>
                 <Navbar />
 
-                <main>{children}</main>
+                {children}
 
                 <Footer />
             </body>

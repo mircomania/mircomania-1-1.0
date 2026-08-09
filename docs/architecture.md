@@ -18,14 +18,30 @@ src/
 │   │  └──contact/
 │   │     └──route.ts
 │   │
+│   ├──contacto/
+│   │  └──page.tsx
+│   │
+│   ├──politica-privacidad/
+│   │  └──page.tsx
+│   │
 │   ├── globals.css
 │   ├── icon.svg
 │   ├── layout.tsx
-│   └── page.tsx
+│   ├── not-found.module.css
+│   ├── not-found.tsx
+│   ├── opengraph-image.alt.txt
+│   ├── opengraph-image.png
+│   ├── page.tsx
+│   ├── robots.ts
+│   ├── sitemap.ts
+│   ├── twitter-image.alt.txt
+│   └── twitter-image.png
 │
 ├── assets/
 │   ├──icons/
 │   │  ├── Arrow.tsx
+│   │  ├── Github.tsx
+│   │  ├── Linkedin.tsx
 │   │  ├── Logo.tsx
 │   │  ├── Menu.tsx
 │   │  ├── Spinner.tsx
@@ -36,6 +52,9 @@ src/
 ├── components/
 │   ├── common/
 │   │   ├── footer/
+│   │   │   ├── footer.module.css
+│   │   │   ├── Footer.tsx
+│   │   │   └── footerLinks.ts
 │   │   │
 │   │   └── navbar/
 │   │       ├── BurgerMenu.tsx
@@ -45,6 +64,14 @@ src/
 │   │       └── NavItems.tsx
 │   │
 │   └── exports/
+│       ├── contact/
+│       │   └── contact1/
+│       │       └── Contact1.tsx
+│       │
+│       ├── privacy/
+│       │   └── pribacy1/
+│       │       └── Privacy1.tsx
+│       │
 │       ├── form/
 │       │   ├── contactForm.module.css
 │       │   ├── ContactForm.tsx
@@ -79,6 +106,9 @@ src/
 │               ├── Home5.tsx
 │               ├── particlePlanet.module.css
 │               └── ParticlePlanet.tsx
+│
+├── constants/
+│   └── routes.ts
 │
 ├── hooks/
 │   ├── useBurgerMenu.ts
@@ -115,6 +145,7 @@ src/
 │   │   └── StarryBackground.tsx
 │   │
 │   ├── ButtonLink.tsx
+│   ├── createMetadata.ts
 │   ├── getUtmParams.ts
 │   └── SmartLink.tsx
 ```

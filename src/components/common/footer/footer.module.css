@@ -39,7 +39,7 @@
 .container {
     width: min(100% - 40px, 1200px);
     margin: 0 auto;
-    padding: 72px 15px 32px;
+    padding: 72px 12px 32px;
 }
 
 .mainContent {
@@ -260,7 +260,7 @@
     .mainContent {
         display: flex;
         justify-content: center;
-        gap: 210px;
+        gap: 220px;
     }
 
     .link:hover,

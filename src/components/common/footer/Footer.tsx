@@ -1,5 +1,7 @@
 import { SmartLink } from '@/utils/SmartLink';
 
+import { ROUTES, SOCIAL_LINKS } from '@/constants/routes';
+
 import { legalLinks, navigationLinks, socialLinks } from './footerLinks';
 
 import Logo from '@/assets/icons/Logo';
@@ -15,7 +17,7 @@ export const Footer = () => {
             <div className={styles.container}>
                 <div className={styles.mainContent}>
                     <section className={styles.brand} aria-labelledby="footer-brand-title">
-                        <SmartLink href="/" className={styles.logoLink} aria-label="Ir al inicio de Mircomania">
+                        <SmartLink href={ROUTES.home} className={styles.logoLink} aria-label="Ir al inicio de Mircomania">
                             <Logo className={styles.logo} />
                             <span id="footer-brand-title" className={styles.brandName}>
                                 MIRCOMANIA
@@ -59,7 +61,7 @@ export const Footer = () => {
                         </div>
 
                         <a href="mailto:hola@mircomania.cl" className={styles.emailLink}>
-                            hola@mircomania.cl
+                            {SOCIAL_LINKS.emailContact}
                         </a>
                     </section>
                 </div>

@@ -3,6 +3,8 @@
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useNavbarScroll } from '@/hooks/useNavbarScroll';
 
+import { ROUTES } from '@/constants/routes';
+
 import { SmartLink } from '@/utils/SmartLink';
 
 import Logo from '@/assets/icons/Logo';
@@ -21,7 +23,7 @@ export function Navbar() {
     return (
         <header className={styles.header} data-scroll-state={scrollState}>
             <nav className={styles.navbar} aria-label="Navegación principal">
-                <SmartLink href="/" className={styles.logoLink} aria-label="Ir al inicio" dataLink="navbar-logo-btn">
+                <SmartLink href={ROUTES.home} className={styles.logoLink} aria-label="Ir al inicio" dataLink="navbar-logo-btn">
                     <Logo className={styles.logo} />
                 </SmartLink>
 
@@ -36,7 +38,7 @@ export function Navbar() {
                 )}
 
                 {!isMobile && (
-                    <SmartLink href="/contacto" className={styles.desktopContactButton} dataCta="navbar-contacto-btn">
+                    <SmartLink href={ROUTES.contact} className={styles.desktopContactButton} dataCta="navbar-contacto-btn">
                         <span>Contacto</span>
                         <Arrow className={styles.contactArrow} />
                     </SmartLink>

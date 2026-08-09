@@ -90,6 +90,18 @@ Placeholder inputs
 
 - ***
 
+## Politicas Privacidad
+
+### Hero
+
+Título
+
+-
+
+Texto Politicas
+
+- ***
+
 ## Footer
 
 Links

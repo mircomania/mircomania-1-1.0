@@ -67,3 +67,25 @@
 34.- detectamos un problema en el diseño del menu navbar en mobil, porque lo que decidimos restructurar useBurgerMenu y BurgerMenu para corregir el diseño, se vuelven a hacer los test y pasan sin problema. Resultado: Satisfactorio.
 
 34.- se comienza el desarrollo del footer.
+
+35.- Se define rapidamente la estructura y el contenido, se crea una version base y luego se ajusta el diseño completo. Resultado: Satisfactorio.
+
+35.- antes de empezar con Contacto y Politicas Page, preferi dejar listo de un vez todos los archivos de ruta y metadata listos, ademas de not-found page.
+
+36.- yo pensaba agregar los mismos sitemap y robots que react, pero vi que react resuelve muchas cosas que react no de manera nativa, porque lo que implementamos sitemap.ts, robots.ts y not-found.tsx, ademas de usar Metadatos nativo de next para estos mismos en cada pagina, desechando asi y para siempre, TitleSEO.tsx (componente que usaba para la metadata en react)
+
+37.- Con respecto a la Metadata: se implementa en el layauot una metadata general ademas de aplicar "template: '%s | Mircomania'" para asi en cada ruta solo completar titulos cortos (contacto = contacto | mircomania), excepto en la pagine de Home, que tiene su propio titulo "mircomania | ....." puesto asi con "absolute".
+
+38.- Con respecto a Sitemap y Robots: se implementan versiones de estos mismos en .ts, componentes bastante siemples, la unica observacion considerable, es que en sitemap se dejan solo las url, sacando prioridad, tiempo de cambio y cada cuanto tiempo se cambia.
+
+39.- Con respecto a not-found: se hace una pagina bastante simple, resiclando el fondo de estrellas de la home, que sera utilizado de igual manera en todo el sitio.
+
+40.- DEUDA TECNICA: hacer estilos reutilizables para SmartLink
+
+41.- Agregamos los opengraph y twitter cards al layaout, ademas creamos un helper para manejar la metadata pagina por pagina createMetada.ts
+
+42.- Creamos un archivo constante que almacena todas las rutas del sitio routes.ts, asi manejamos las rutas desde un solo lugar. Sr actualiza todo el sitio
+
+43.- Creamos y conectamos las rutas de contacto y politica-privacidad
+
+44.- Ahora empezamos a crear politicas para luego armas contacto y preparanos para produccion.
