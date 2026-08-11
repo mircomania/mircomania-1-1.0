@@ -33,6 +33,7 @@
     margin: 0 0 38px;
     max-width: 420px;
     color: var(--text-primary);
+    text-shadow: var(--text-glow-soft);
     font-size: clamp(2.6rem, 10vw, 3.4rem);
     font-weight: 900;
     line-height: 0.95;

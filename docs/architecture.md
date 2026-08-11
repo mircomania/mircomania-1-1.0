@@ -50,6 +50,12 @@ src/
 │   └──images/
 │
 ├── components/
+│   ├── visuals/
+│   │   └── particlePlanet/
+│   │       ├── DesktopParticlePlanet.tsx
+│   │       ├── particlePlanet.module.css
+│   │       └── ParticlePlanet.tsx
+│   │
 │   ├── common/
 │   │   ├── footer/
 │   │   │   ├── footer.module.css
@@ -66,11 +72,13 @@ src/
 │   └── exports/
 │       ├── contact/
 │       │   └── contact1/
-│       │       └── Contact1.tsx
+│       │       ├── Contact1.tsx
+│       │       └── contact1.module.css
 │       │
 │       ├── privacy/
 │       │   └── pribacy1/
-│       │       └── Privacy1.tsx
+│       │       ├── Privacy1.tsx
+│       │       └── privacy1.module.css
 │       │
 │       ├── form/
 │       │   ├── contactForm.module.css
@@ -101,11 +109,8 @@ src/
 │           │   └── Home4.tsx
 │           │
 │           └── home5/
-│               ├── DesktopParticlePlanet.tsx
 │               ├── home5.module.css
-│               ├── Home5.tsx
-│               ├── particlePlanet.module.css
-│               └── ParticlePlanet.tsx
+│               └── Home5.tsx
 │
 ├── constants/
 │   └── routes.ts

@@ -317,9 +317,21 @@ Form.
 
 Estado:
 
-- 🚧
+- ✅
 
 Form.
+
+---
+
+# Privacy
+
+## Privacy1
+
+Estado:
+
+- ✅
+
+Polticas de privacidad.
 
 ---
 

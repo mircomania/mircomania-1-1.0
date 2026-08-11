@@ -29,6 +29,7 @@
 }
 
 .textContainer h2 {
+    text-shadow: var(--text-glow-soft);
     margin-bottom: 38px;
     font-size: 24px;
 }

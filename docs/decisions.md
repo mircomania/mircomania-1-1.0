@@ -88,4 +88,18 @@
 
 43.- Creamos y conectamos las rutas de contacto y politica-privacidad
 
-44.- Ahora empezamos a crear politicas para luego armas contacto y preparanos para produccion.
+44.- Ahora empezamos a crear politicas para luego armar contacto y preparanos para produccion.
+
+45.- Primero creamos privacy, una pagina muy simple me incluye las politicas de privacidad, algo que rescato de aqui, me gusto el diseño del h1, por lo que lo replicaremos para las otras paginas como estilo de titulos definido.
+
+46.- Ahora creamos la pagina de contact, que es a grandes razgos una copia de home5 home, solo se cambia el texto que complementa el form. Aprovechamos esta etapa para mover los archivos de particulePlanet a una nueva carpeta de visual, ya que ahora sera un componente reutilizable y no solo parte de la seccion 5 home.
+
+47.- En este momento el sitio ya esta terminado al menos en lo que es estructura en su version 1.0, antes de pasar a produccion con esta primera version, quiero revisar algunos temas: ajuste de diseño para los titulos en general con el nuevo estilo predeterminado; investigar sobre un posible orden para la carpeta app, ya que parece una sopa de archivos y revisar un problema que me aparece en la terminal.
+
+48.- solucionamos los temas de forma bastante sencilla, decubrimos que naxt de manera nativa acepta carpetas entre parentesis y no las colola en la ruta, con esto ordenamos la carpeta app un poco (site)
+
+49.- el problema de la terminal "Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior" se debia que a no declaraba explicitamente "data-scroll-behavior="smooth" en el elemento html del layaout.
+
+50.- finalmente no se ajutan mucho los titulos, se deja el estilo preterminado pensando para los h1 de cada pagina y los demas titulos quedan como estan, mas adelante en una revision completa de diseño dedicaremos mas tiempo a esto.
+
+51.- se comienza a preparar la primera version para produccion

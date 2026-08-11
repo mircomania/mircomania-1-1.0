@@ -10,7 +10,7 @@
 - [x] Robots
 - [x] Metadata
 - [x] Error Page
-- [ ] Politicas Page
+- [x] Politicas Page
 
 ---
 
@@ -26,7 +26,7 @@
 
 ### Contacto
 
-- [ ] Hero
+- [x] Hero
 
 ---
 
@@ -49,14 +49,22 @@
 
 ## v1.1
 
-- Analytics.
-- Página de proyectos.
-- Página del CV.
-- FAQ.
+- [ ] Analytics
+- [ ] Revision general copilot (SEO, estructura, buenas practicas, seguridad, optimizacion)
+- [ ] Google Ads
+- [ ] FAQ
 
 ---
 
 ## v1.2
+
+- [ ] Página de servicios
+- [ ] Página de proyectos
+- [ ] Página del CV
+
+---
+
+## v1.3
 
 - Blog.
 - Panel para administrar proyectos.

@@ -1,6 +1,6 @@
 import { createMetadata } from '@/utils/createMetadata';
 
-import { ROUTES, ANCHORS } from '@/constants/routes';
+import { ROUTES } from '@/constants/routes';
 
 import Home1 from '@/components/exports/home/home1/Home1';
 import Home2 from '@/components/exports/home/home2/Home2';
@@ -32,15 +32,15 @@ export default async function Home() {
 
             <Home1 />
 
-            <section id={ANCHORS.services}>
+            <section id="servicios">
                 <Home2 />
             </section>
 
-            <section id={ANCHORS.projects}>
+            <section id="proyectos">
                 <Home3 projects={projects} />
             </section>
 
-            <section id={ANCHORS.cv}>
+            <section id="cv">
                 <Home4 />
             </section>
 

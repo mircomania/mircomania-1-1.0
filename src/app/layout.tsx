@@ -26,8 +26,8 @@ export const metadata: Metadata = {
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="es" className={`${montserrat.variable} ${inter.variable} ${spaceGrotesk.variable}`}>
-            <body>
+        <html lang="es" data-scroll-behavior="smooth">
+            <body className={`${montserrat.variable} ${inter.variable} ${spaceGrotesk.variable}`}>
                 <Navbar />
 
                 {children}
