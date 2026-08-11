@@ -1,5 +1,5 @@
 import ContactForm from '@/components/exports/form/ContactForm';
-import DesktopParticlePlanet from './DesktopParticlePlanet';
+import DesktopParticlePlanet from '../../../visuals/particlePlanet/DesktopParticlePlanet';
 
 import styles from './home5.module.css';
 
