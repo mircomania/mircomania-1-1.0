@@ -17,8 +17,14 @@ export const Footer = () => {
             <div className={styles.container}>
                 <div className={styles.mainContent}>
                     <section className={styles.brand} aria-labelledby="footer-brand-title">
-                        <SmartLink href={ROUTES.home} className={styles.logoLink} aria-label="Ir al inicio de Mircomania">
+                        <SmartLink
+                            href={ROUTES.home}
+                            className={styles.logoLink}
+                            aria-label="Ir al inicio de Mircomania"
+                            dataLink="footer-incio-icon"
+                        >
                             <Logo className={styles.logo} />
+
                             <span id="footer-brand-title" className={styles.brandName}>
                                 MIRCOMANIA
                             </span>
@@ -33,7 +39,7 @@ export const Footer = () => {
                         <ul className={styles.linkList}>
                             {navigationLinks.map((link) => (
                                 <li key={link.href}>
-                                    <SmartLink href={link.href} className={styles.link}>
+                                    <SmartLink href={link.href} className={styles.link} dataLink={link.dataLink}>
                                         {link.label}
                                     </SmartLink>
                                 </li>
@@ -48,9 +54,16 @@ export const Footer = () => {
                             </p>
 
                             <ul className={styles.linkList}>
-                                {socialLinks.map(({ label, href, ariaLabel, icon: Icon }) => (
+                                {socialLinks.map(({ label, href, ariaLabel, icon: Icon, dataLink }) => (
                                     <li key={href}>
-                                        <a href={href} target="_blank" rel="noopener noreferrer" aria-label={ariaLabel} className={styles.socialLink}>
+                                        <a
+                                            href={href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={ariaLabel}
+                                            className={styles.socialLink}
+                                            data-link={dataLink}
+                                        >
                                             <Icon className={styles.socialIcon} />
 
                                             <span>{label}</span>
@@ -60,7 +73,7 @@ export const Footer = () => {
                             </ul>
                         </div>
 
-                        <a href="mailto:hola@mircomania.cl" className={styles.emailLink}>
+                        <a href="mailto:hola@mircomania.cl" className={styles.emailLink} data-link="footer-email-link">
                             {SOCIAL_LINKS.emailContact}
                         </a>
                     </section>
@@ -73,7 +86,7 @@ export const Footer = () => {
                         <ul className={styles.legalList}>
                             {legalLinks.map((link) => (
                                 <li key={link.href}>
-                                    <SmartLink href={link.href} className={styles.legalLink}>
+                                    <SmartLink href={link.href} className={styles.legalLink} dataLink={link.dataLink}>
                                         {link.label}
                                     </SmartLink>
                                 </li>

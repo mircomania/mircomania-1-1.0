@@ -9,9 +9,9 @@ import type { FeaturedProject } from '@/types/projects';
 
 import ProjectCard from './ProjectCard';
 
-type Props = {
-    projects: FeaturedProject[];
-};
+type Props = Readonly<{
+    projects: readonly FeaturedProject[];
+}>;
 
 type StackCardStyle = CSSProperties & {
     '--stack-index': number;

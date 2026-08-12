@@ -53,6 +53,7 @@ export function BurgerMenu() {
                 aria-expanded={isOpen}
                 aria-controls="mobile-menu"
                 onClick={toggleMenu}
+                data-link={isOpen ? 'burger-menu-close' : 'burger-menu-open'}
             />
 
             {typeof document !== 'undefined' && createPortal(mobilePanel, document.body)}

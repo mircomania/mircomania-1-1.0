@@ -7,19 +7,16 @@ export function getRequestPath(request: Request): string | null {
 
     try {
         const refererUrl = new URL(referer);
-        const requestUrl = new URL(request.url);
 
-        if (refererUrl.origin !== requestUrl.origin) {
+        const requestHost = request.headers.get('x-forwarded-host') ?? request.headers.get('host');
+
+        if (!requestHost || refererUrl.host !== requestHost) {
             return null;
         }
 
         const pathname = refererUrl.pathname;
 
-        if (pathname === '/') {
-            return '/';
-        }
-
-        return pathname.replace(/\/$/, '');
+        return pathname === '/' ? '/' : pathname.replace(/\/$/, '');
     } catch {
         return null;
     }

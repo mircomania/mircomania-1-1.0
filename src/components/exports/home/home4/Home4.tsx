@@ -16,7 +16,7 @@ export default function Home4() {
                 <p>Revisa mi experiencia profesional, tecnologías y trayectoria en detalle.</p>
             </div>
 
-            <ButtonLink href={SOCIAL_LINKS.cv} variant="primary">
+            <ButtonLink href={SOCIAL_LINKS.cv} variant="primary" dataLink="cv-cv-link">
                 Abrir CV
             </ButtonLink>
         </section>

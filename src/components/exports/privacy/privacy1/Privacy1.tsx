@@ -15,7 +15,7 @@ export default function Privacy1() {
 
                     <p className={styles.introduction}>
                         Esta política explica cómo{' '}
-                        <SmartLink href={ROUTES.home} className={styles.link}>
+                        <SmartLink href={ROUTES.home} className={styles.link} dataLink="privacy-inicio-link">
                             Mircomania
                         </SmartLink>{' '}
                         recopila, utiliza y protege la información proporcionada a través de este sitio web.
@@ -138,7 +138,7 @@ export default function Privacy1() {
 
                         <p>
                             Para realizar una solicitud relacionada con tus datos personales puedes utilizar la{' '}
-                            <SmartLink href={ROUTES.contact} className={styles.link}>
+                            <SmartLink href={ROUTES.contact} className={styles.link} dataCta="privacy-contacto-link">
                                 página de contacto
                             </SmartLink>
                             .
