@@ -1,6 +1,10 @@
 import { createContact } from '@/services/contacts/createContact';
+
 import type { ContactFormPayload } from '@/types/contact';
+
 import { validateContactPayload } from '@/components/exports/form/validateContact';
+
+import { getRequestPath } from '@/utils/getRequestPath';
 
 const MAX_REQUEST_SIZE = 10_000;
 
@@ -105,7 +109,12 @@ export async function POST(request: Request): Promise<Response> {
         );
     }
 
-    const result = await createContact(validation.data);
+    const path = getRequestPath(request);
+
+    const result = await createContact({
+        ...validation.data,
+        path,
+    });
 
     if (!result.success) {
         return Response.json(

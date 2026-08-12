@@ -151,6 +151,7 @@ src/
 │   │
 │   ├── ButtonLink.tsx
 │   ├── createMetadata.ts
+│   ├── getRequestPath.ts
 │   ├── getUtmParams.ts
 │   └── SmartLink.tsx
 ```

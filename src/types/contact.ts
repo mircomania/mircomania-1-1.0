@@ -43,6 +43,7 @@ export type CreateContactInput = {
     utmSource: string | null;
     utmMedium: string | null;
     utmCampaign: string | null;
+    path: string | null;
 };
 
 export type ContactFieldErrors = {

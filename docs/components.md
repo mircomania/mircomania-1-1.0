@@ -243,6 +243,18 @@ Helper para modularizar la entrega de metadas a cada pagina.
 
 ---
 
+## getRequestPath.ts
+
+Estado:
+
+- ✅
+
+Responsabilidad:
+
+Almacena los path del sitio web, con el proposito de saber desde que path se envia el form.
+
+---
+
 # Constants
 
 ## routes.ts

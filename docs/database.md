@@ -96,6 +96,7 @@ Campos
 - utm_source
 - utm_medium
 - utm_campaign
+- path
 
 ---
 

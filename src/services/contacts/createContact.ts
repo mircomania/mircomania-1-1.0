@@ -12,6 +12,7 @@ export async function createContact(input: CreateContactInput): Promise<CreateCo
         message: input.message,
         status: 'new',
         source: 'website',
+        path: input.path,
         utm_source: input.utmSource,
         utm_medium: input.utmMedium,
         utm_campaign: input.utmCampaign,

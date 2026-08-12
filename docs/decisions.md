@@ -102,4 +102,6 @@
 
 50.- finalmente no se ajutan mucho los titulos, se deja el estilo preterminado pensando para los h1 de cada pagina y los demas titulos quedan como estan, mas adelante en una revision completa de diseño dedicaremos mas tiempo a esto.
 
-51.- se comienza a preparar la primera version para produccion
+51.- se comienza a preparar la primera version para produccion.
+
+52.- Antes de pasar a la primera version de produccion, decidimos agregar la columna "path" a la tabla de supabase, creamos un helper (getRequestPath) para almancenar los datos del path utilizando funciones nativas de next (PATH), y modificamos los componentes necesarios para configurar el envio del dato extra (types: CreateContactInput, createContact y route). se realizan test con resultado exitoso.
