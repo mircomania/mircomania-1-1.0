@@ -1,8 +1,8 @@
-import { CONTACT_TYPES, type ContactFieldErrors, type ContactFormPayload, type ContactType, type CreateContactInput } from '@/types/contact';
+import { CONTACT_TYPES, type ContactFieldErrors, type ContactFormPayload, type ContactType, type ValidatedContactPayload } from '@/types/contact';
 
 type ValidationSuccess = {
     success: true;
-    data: CreateContactInput;
+    data: ValidatedContactPayload;
 };
 
 type ValidationError = {

@@ -35,7 +35,7 @@ export type ContactFormPayload = {
     utmCampaign?: unknown;
 };
 
-export type CreateContactInput = {
+export type ValidatedContactPayload = {
     name: string;
     email: string;
     contactType: ContactType;
@@ -43,6 +43,9 @@ export type CreateContactInput = {
     utmSource: string | null;
     utmMedium: string | null;
     utmCampaign: string | null;
+};
+
+export type CreateContactInput = ValidatedContactPayload & {
     path: string | null;
 };
 
