@@ -101,7 +101,7 @@ src/
 │           ├── home3/
 │           │   ├── home3.module.css
 │           │   ├── Home3.tsx
-│           │   ├── MobileProjectsStack.tsx
+│           │   ├── MobileProjectsDeck.tsx
 │           │   └── ProjectCard.tsx
 │           │
 │           ├── home4/

@@ -13,7 +13,7 @@
     flex-direction: column;
     gap: 50px;
     width: 100%;
-    max-width: 1100px;
+    max-width: 550px;
 }
 
 .presentationContainer {
@@ -64,6 +64,7 @@
         display: grid;
         grid-template-columns: minmax(0, 0.85fr) minmax(500px, 1.15fr);
         align-items: start;
+        max-width: 1100px;
     }
 
     .presentationContainer {

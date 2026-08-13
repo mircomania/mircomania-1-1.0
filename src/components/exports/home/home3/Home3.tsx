@@ -3,7 +3,7 @@ import styles from './home3.module.css';
 import type { FeaturedProject } from '@/types/projects';
 
 import ProjectCard from './ProjectCard';
-import MobileProjectsStack from './MobileProjectsStack';
+import MobileProjectsDeck from './MobileProjectsDeck';
 
 type Props = {
     projects: FeaturedProject[];
@@ -28,7 +28,7 @@ export default function Home3({ projects }: Readonly<Props>) {
                     ))}
                 </div>
 
-                <MobileProjectsStack projects={projects} />
+                <MobileProjectsDeck projects={projects} />
             </div>
         </section>
     );

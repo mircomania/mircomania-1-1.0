@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     color: var(--text-primary);
-    padding: 0 10vw;
+    padding: 0 7vw;
     padding-bottom: 200px;
 }
 
@@ -12,7 +12,7 @@
     flex-direction: column;
     gap: 48px;
     width: 100%;
-    max-width: 1100px;
+    max-width: 550px;
 }
 
 .presentationContainer {
@@ -52,6 +52,7 @@
 .textContainer li {
     display: flex;
     align-items: center;
+    font-family: var(--font-space);
     gap: 10px;
 }
 
@@ -77,6 +78,7 @@
         display: grid;
         grid-template-columns: minmax(0, 0.85fr) minmax(500px, 1.15fr);
         align-items: start;
+        max-width: 1100px;
     }
 
     .presentationContainer {

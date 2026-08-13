@@ -105,3 +105,17 @@
 51.- se comienza a preparar la primera version para produccion.
 
 52.- Antes de pasar a la primera version de produccion, decidimos agregar la columna "path" a la tabla de supabase, creamos un helper (getRequestPath) para almancenar los datos del path utilizando funciones nativas de next (PATH), y modificamos los componentes necesarios para configurar el envio del dato extra (types: CreateContactInput, createContact y route). se realizan test con resultado exitoso.
+
+53.- hacemos una subida a produccion de prueba con la url staging.mircomania.cl, BLUEHOSTING node.js app y todo funciona perfecto. Por lo que decide que se usara BLUEHOSTING como servidor, NO Vercel (de no se porque se cobran 20usd /mes por vercel, se utilizaria apesar de tener Bluehosting)
+
+54.- descubrimos que el componente creado anteriormente no funciona en produccion "getRequestPath" porque lo volvemos a refactorizar.
+
+55.- Aprovechamos la refactorizacion de componente path y marcamos todos los data-link y data-cta del sitio web, ademas aprovechamos de una vez integrar analitics.
+
+56.- se cambian las imagenes de supabase por todas del mismo tamaño.
+
+57.- empezamos la pasada a produccion 1.0 con url real.
+
+58.- antes de pasar a produccion 1.0 se decide cambiar de una vez el diseño y la estructura de home3 mobile, que era una deuda tecnica pendiente, finalmente se opta en remplazar el stack por un deck, es decir las cards aparecen stackeadas con un boton de "expandir proyectos", el usuario le da click y muestra una vista normal de las card en flex direccion column, con un boton al final para cerrar las cards y volver al estado inicial. SE ELIMINA EL COMPONENTE ANTERIOR "MobileProjectsStack" y se remplaza por "MobileProjectDeck", creando este ultimo desde 0. Resultado: casi satisfactorio, aunque la animacion me gusta creo que puede pulirse.
+
+59.- aprovechamos de hacer ajustes generales de diseño en el sitio (paddings, colores, backgrounds, etc...)
