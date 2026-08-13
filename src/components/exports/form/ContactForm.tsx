@@ -1,7 +1,7 @@
 'use client';
 
 import { Spinner } from '@/assets/icons/Spinner';
-import { useContactForm } from '@/hooks/useContactForm';
+import { useContactForm } from '@/components/exports/form/useContactForm';
 
 import type { ContactFormValues } from '@/types/contact';
 

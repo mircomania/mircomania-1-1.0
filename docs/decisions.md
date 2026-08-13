@@ -119,3 +119,7 @@
 58.- antes de pasar a produccion 1.0 se decide cambiar de una vez el diseño y la estructura de home3 mobile, que era una deuda tecnica pendiente, finalmente se opta en remplazar el stack por un deck, es decir las cards aparecen stackeadas con un boton de "expandir proyectos", el usuario le da click y muestra una vista normal de las card en flex direccion column, con un boton al final para cerrar las cards y volver al estado inicial. SE ELIMINA EL COMPONENTE ANTERIOR "MobileProjectsStack" y se remplaza por "MobileProjectDeck", creando este ultimo desde 0. Resultado: casi satisfactorio, aunque la animacion me gusta creo que puede pulirse.
 
 59.- aprovechamos de hacer ajustes generales de diseño en el sitio (paddings, colores, backgrounds, etc...)
+
+60.- se modulariza y corrige la animacion de "open deck" en "MobileProjectDeck".
+
+61.- se mueven los hooks de un solo uso a las carpetas del componente correspondiente.

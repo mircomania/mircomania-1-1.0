@@ -67,7 +67,9 @@ src/
 │   │       ├── navbar.module.css
 │   │       ├── Navbar.tsx
 │   │       ├── navbarMenu.ts
-│   │       └── NavItems.tsx
+│   │       ├── NavItems.tsx
+│   │       ├── useBurgerMenu.ts
+│   │       └── useNavbarScroll.tsx
 │   │
 │   └── exports/
 │       ├── contact/
@@ -85,6 +87,7 @@ src/
 │       │   ├── ContactForm.tsx
 │       │   ├── ContactFormStatus.tsx
 │       │   ├── pushContactFormEvent.ts
+│       │   ├── useContactForm.ts
 │       │   └── validateContact.ts
 │       │
 │       └── home/
@@ -102,7 +105,8 @@ src/
 │           │   ├── home3.module.css
 │           │   ├── Home3.tsx
 │           │   ├── MobileProjectsDeck.tsx
-│           │   └── ProjectCard.tsx
+│           │   ├── ProjectCard.tsx
+│           │   └── useMobileProjectsDeck.ts
 │           │
 │           ├── home4/
 │           │   ├── home4.module.css
@@ -116,10 +120,7 @@ src/
 │   └── routes.ts
 │
 ├── hooks/
-│   ├── useBurgerMenu.ts
-│   ├── useContactForm.ts
-│   ├── useMediaQuery.tsx
-│   └── useNavbarScroll.tsx
+│   └── useMediaQuery.tsx
 │
 ├── lib/
 │   └──supabase/

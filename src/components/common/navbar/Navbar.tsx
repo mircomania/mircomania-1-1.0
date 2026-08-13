@@ -1,7 +1,7 @@
 'use client';
 
 import { useMediaQuery } from '@/hooks/useMediaQuery';
-import { useNavbarScroll } from '@/hooks/useNavbarScroll';
+import { useNavbarScroll } from '@/components/common/navbar/useNavbarScroll';
 
 import { ROUTES } from '@/constants/routes';
 

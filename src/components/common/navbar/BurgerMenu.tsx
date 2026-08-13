@@ -7,7 +7,7 @@ import { ROUTES } from '@/constants/routes';
 import { Menu } from '@/assets/icons/Menu';
 import { Arrow } from '@/assets/icons/Arrow';
 
-import { useBurgerMenu } from '@/hooks/useBurgerMenu';
+import { useBurgerMenu } from '@/components/common/navbar/useBurgerMenu';
 
 import { navbarMenu } from './navbarMenu';
 import { NavItems } from './NavItems';
