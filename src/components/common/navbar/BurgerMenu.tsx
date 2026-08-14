@@ -21,12 +21,7 @@ export function BurgerMenu() {
     const menuButtonLabel = isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación';
 
     const mobilePanel = (
-        <div
-            ref={panelRef}
-            id="mobile-menu"
-            className={`${styles.mobileMenuPanel} ${isOpen ? styles.mobileMenuPanelOpen : ''}`}
-            aria-hidden={!isOpen}
-        >
+        <div ref={panelRef} id="mobile-menu" className={`${styles.mobileMenuPanel} ${isOpen ? styles.mobileMenuPanelOpen : ''}`} inert={!isOpen}>
             <ul className={styles.mobileMenuList}>
                 {navbarMenu.map((item) => (
                     <li key={item.id}>

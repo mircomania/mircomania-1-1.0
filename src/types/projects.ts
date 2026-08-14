@@ -1,6 +1,4 @@
 // Enums y constantes
-
-export type ProjectMediaVariant = 'desktop' | 'mobile' | 'shared';
 export type ProjectMediaType = 'image' | 'video';
 
 export const projectTypeLabels = {
@@ -27,7 +25,6 @@ export type ProjectMedia = {
     height: number | null;
     sort_order: number;
     is_cover: boolean;
-    variant: ProjectMediaVariant;
 };
 
 export type FeaturedProject = {

@@ -38,6 +38,7 @@ export function useBurgerMenu() {
 
             closeMenu();
             triggerRef.current?.focus();
+            setIsOpen(false);
         };
 
         document.addEventListener('pointerdown', handlePointerDown);

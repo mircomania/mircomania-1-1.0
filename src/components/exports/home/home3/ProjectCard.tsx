@@ -15,19 +15,19 @@ type Props = {
 };
 
 export default function ProjectCard({ project }: Readonly<Props>) {
-    const desktopCover = getProjectCover(project, 'desktop');
+    const cover = getProjectCover(project);
 
-    if (!desktopCover?.width || !desktopCover?.height) {
+    if (!cover?.width || !cover?.height) {
         return null;
     }
 
     return (
         <article className={styles.card}>
             <Image
-                src={getPublicMediaUrl(desktopCover.storage_path)}
-                alt={desktopCover.alt_text}
-                width={desktopCover.width}
-                height={desktopCover.height}
+                src={getPublicMediaUrl(cover.storage_path)}
+                alt={cover.alt_text}
+                width={cover.width}
+                height={cover.height}
                 sizes="(max-width: 1199px) 100vw, 360px"
                 className={styles.cardImage}
             />

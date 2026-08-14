@@ -31,8 +31,7 @@ export async function getFeaturedProjects(): Promise<FeaturedProject[]> {
                 width,
                 height,
                 sort_order,
-                is_cover,
-                variant
+                is_cover
             )
         `,
         )
