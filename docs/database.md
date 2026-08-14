@@ -62,16 +62,17 @@ Campos
 
 - id
 - project_id
+- media_type
 - storage_path
 - poster_path
 - alt_text
 - caption
 - width
 - height
-- media_type
-- variant
 - sort_order
 - is_cover
+- create_at
+- updated_at
 
 ---
 
@@ -139,7 +140,6 @@ proyecto/archivo.webp
 Ejemplo
 
 method-lab/cover-desktop.webp
-method-lab/cover-movile.webp
 
 ---
 

@@ -125,3 +125,11 @@
 61.- se mueven los hooks de un solo uso a las carpetas del componente correspondiente.
 
 62.- Se hace la primera subida a produccion con el sitio real mircomania.cl, todo sale bien de primeras excepto una cosa, las imagenes de la seccion 3 home piden el nombre antiguo del archivo, se soluciona cambiando el nombre en la tabla de supabase, pero para nada es la solucion ideal, por lo vamos a iterar y dejar esa seccion mas pulida y optimizada.
+
+63 .- pusimos un revalidate en la pagina principal cada 1 hora, es decir que cada una hora se refresca internamente esperando a un usuario para actualizar el contenido. resultado testeado y satisfactorio.
+
+64 .- aprovechamos de integrar GTM antes de hacer el build, se configura GTM completo.
+
+64.- aprovechamos que estabamos tocando la logica del GET de supabase y modificamos la tabla projects_media, elimnando las variantes mobile/desktop y dejando solo 1 cover, ademas preparamos la tabla para una futura /proyectos y proyectos/slug.
+
+65 .- corregimos un pequeño error del burgermenu remplazando aria-hidden por inert.

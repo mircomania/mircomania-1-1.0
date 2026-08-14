@@ -36,9 +36,8 @@ export function useBurgerMenu() {
         const handleKeyDown = (event: KeyboardEvent): void => {
             if (event.key !== 'Escape') return;
 
-            closeMenu();
             triggerRef.current?.focus();
-            setIsOpen(false);
+            closeMenu();
         };
 
         document.addEventListener('pointerdown', handlePointerDown);

@@ -11,29 +11,19 @@ export async function getFeaturedProjects(): Promise<FeaturedProject[]> {
             slug,
             title,
             summary,
-            description,
-            role,
-            client,
             project_year,
             project_type,
             stack,
-            featured,
-            featured_order,
             demo_url,
             repository_url,
             project_media (
-                id,
-                media_type,
                 storage_path,
-                poster_path,
                 alt_text,
-                caption,
                 width,
                 height,
-                sort_order,
                 is_cover
             )
-        `,
+`,
         )
         .eq('featured', true)
         .eq('status', 'published')

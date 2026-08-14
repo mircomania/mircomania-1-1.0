@@ -141,7 +141,7 @@ Estado:
 
 Responsabilidad:
 
-Obtener la imagen principal (desktop o mobile) de un proyecto.
+Obtener la imagen principal de un proyecto.
 
 ---
 

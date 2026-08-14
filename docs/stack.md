@@ -21,8 +21,8 @@
 
 ## Hosting
 
-- Vercel
-- Hosting Serverless
+- Vercel (deploy)
+- BlueHosting Serverless (produccion)
 
 ## Imágenes
 
