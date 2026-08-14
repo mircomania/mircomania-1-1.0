@@ -23,6 +23,8 @@ export const metadata = createMetadata({
     absoluteTitle: true,
 });
 
+export const revalidate = 3600;
+
 export default async function Home() {
     const projects = await getFeaturedProjects();
 

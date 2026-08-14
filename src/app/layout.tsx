@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Montserrat, Space_Grotesk } from 'next/font/google';
-import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleTagManager } from '@next/third-parties/google';
 
 import { SITE_URL } from '@/constants/routes';
 
@@ -36,7 +36,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 <Footer />
             </body>
 
-            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
+            <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
         </html>
     );
 }

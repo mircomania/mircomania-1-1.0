@@ -123,3 +123,5 @@
 60.- se modulariza y corrige la animacion de "open deck" en "MobileProjectDeck".
 
 61.- se mueven los hooks de un solo uso a las carpetas del componente correspondiente.
+
+62.- Se hace la primera subida a produccion con el sitio real mircomania.cl, todo sale bien de primeras excepto una cosa, las imagenes de la seccion 3 home piden el nombre antiguo del archivo, se soluciona cambiando el nombre en la tabla de supabase, pero para nada es la solucion ideal, por lo vamos a iterar y dejar esa seccion mas pulida y optimizada.

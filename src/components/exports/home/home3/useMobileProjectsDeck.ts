@@ -3,7 +3,7 @@ import type { RefObject } from 'react';
 
 const SCROLL_OFFSET = 150;
 
-const ANIMATION_DURATION = 1650;
+const ANIMATION_DURATION = 1000;
 const ANIMATION_STAGGER = 90;
 
 type UseMobileProjectsDeckReturn = {
