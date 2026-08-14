@@ -133,3 +133,9 @@
 64.- aprovechamos que estabamos tocando la logica del GET de supabase y modificamos la tabla projects_media, elimnando las variantes mobile/desktop y dejando solo 1 cover, ademas preparamos la tabla para una futura /proyectos y proyectos/slug.
 
 65 .- corregimos un pequeño error del burgermenu remplazando aria-hidden por inert.
+
+66.- simplificamos la llamada GET para featured projects, eliminando todas las columnas que no usamos. En el futuro para una pagina projects/slug, usaremos un componente particular.
+
+67.- se lanza a produccion la VERSION 1.0 definitiva.
+
+68.- se integra google search console.

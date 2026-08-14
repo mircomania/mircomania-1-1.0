@@ -24,7 +24,12 @@ export const metadata: Metadata = {
     },
 
     description: 'Desarrollo web, automatización y productos digitales enfocados en rendimiento, experiencia de usuario y soluciones a medida.',
+
+    verification: {
+        google: '6ObDISrNV_z7N6J3A1CQpjUkO6G3obpqPdAzykt4M2g',
+    },
 };
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="es" data-scroll-behavior="smooth">

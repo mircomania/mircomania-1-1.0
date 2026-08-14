@@ -49,9 +49,10 @@
 
 ## v1.1
 
-- [ ] Analytics
-- [ ] Revision general copilot (SEO, estructura, buenas practicas, seguridad, optimizacion)
+- [x] Analytics
 - [ ] Google Ads
+- [ ] Configuracion para recivir leads por correo o por algun lado. (a definir)
+- [ ] Revision general copilot (SEO, estructura, buenas practicas, seguridad, optimizacion)
 - [ ] FAQ
 
 ---
