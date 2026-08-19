@@ -1,46 +1,27 @@
-# Stack Tecnológico
+# Stack tecnológico
 
-## Frontend
+Versiones resueltas por `package-lock.json`:
 
-- Next.js (App Router)
-- React
-- TypeScript
-- CSS Modules
+| Área | Tecnología | Versión |
+| --- | --- | --- |
+| Framework | Next.js (App Router) | 16.2.10 |
+| UI | React / React DOM | 19.2.4 |
+| Lenguaje | TypeScript | 5.9.3 |
+| Datos y Storage | `@supabase/supabase-js` | 2.110.7 |
+| Analytics | `@next/third-parties` | 16.3.0 |
+| Lint | ESLint / `eslint-config-next` | 9.39.4 / 16.2.10 |
 
-## Backend
+## Implementación
 
-- Next.js Route Handlers (cuando corresponda)
-- Node.js
+- Server Components y Route Handlers de Next.js; Client Components para estado, eventos y APIs del navegador.
+- CSS global y CSS Modules, sin preprocesador ni framework de componentes.
+- Fuentes Montserrat, Inter y Space Grotesk mediante `next/font/google`.
+- Supabase para consultar `projects`/`project_media`, insertar en `contact_messages` y resolver URLs del bucket `project-media`.
+- `next/image` para portadas remotas de proyectos.
+- Canvas 2D, Web Animations API, `IntersectionObserver`, `matchMedia` y `localStorage` para las interacciones visuales y de formulario.
+- Google Tag Manager mediante `GoogleTagManager` y `window.dataLayer`.
+- Metadata API, archivos de metadata, `robots.ts` y `sitemap.ts` para SEO.
 
-## Base de datos
+## Build
 
-- Supabase
-    - PostgreSQL
-    - Storage
-    - Row Level Security
-
-## Hosting
-
-- Vercel (deploy)
-- BlueHosting Serverless (produccion)
-
-## Imágenes
-
-- Next Image
-
-## SEO
-
-- Metadata API
-- Server Components
-- SSR
-
-## Arquitectura
-
-- Mobile First
-- Componentes reutilizables
-- Separación por responsabilidades
-
-## Librerías
-
-- Utilizar librerías solo cuando realmente aporten valor.
-- Preferir las APIs nativas del navegador antes de instalar dependencias.
+Los scripts usan el CLI de Next.js y ESLint. `next.config.ts` configura `output: 'standalone'`; el repositorio no fija una plataforma de hosting ni una versión de Node.js.

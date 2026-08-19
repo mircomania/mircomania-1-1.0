@@ -1,264 +1,96 @@
 # Arquitectura
 
-## Filosofía
+Este documento describe la estructura observable del repositorio. Las rutas usan Next.js App Router; los componentes son Server Components salvo cuando un archivo declara `'use client'`.
 
-El proyecto sigue una arquitectura simple, escalable y mantenible.
+## Estructura principal
 
-Cada archivo debe tener una única responsabilidad y una estructura predecible para facilitar el mantenimiento a largo plazo.
+```text
+public/
+└── documents/                  # CV público en PDF
 
----
-
-## Estructura
-
-```
 src/
-│
 ├── app/
-│   ├──api/
-│   │  └──contact/
-│   │     └──route.ts
-│   │
-│   ├──contacto/
-│   │  └──page.tsx
-│   │
-│   ├──politica-privacidad/
-│   │  └──page.tsx
-│   │
-│   ├── globals.css
-│   ├── icon.svg
-│   ├── layout.tsx
-│   ├── not-found.module.css
+│   ├── (site)/                 # Route group de páginas públicas
+│   │   ├── page.tsx            # /
+│   │   ├── contacto/page.tsx   # /contacto
+│   │   └── politica-privacidad/page.tsx
+│   ├── api/contact/route.ts    # POST /api/contact
+│   ├── layout.tsx              # Layout raíz, fuentes, Navbar, Footer y GTM
 │   ├── not-found.tsx
-│   ├── opengraph-image.alt.txt
-│   ├── opengraph-image.png
-│   ├── page.tsx
 │   ├── robots.ts
 │   ├── sitemap.ts
-│   ├── twitter-image.alt.txt
-│   └── twitter-image.png
-│
-├── assets/
-│   ├──icons/
-│   │  ├── Arrow.tsx
-│   │  ├── Github.tsx
-│   │  ├── Linkedin.tsx
-│   │  ├── Logo.tsx
-│   │  ├── Menu.tsx
-│   │  ├── Spinner.tsx
-│   │  └── Star.tsx
-│   │
-│   └──images/
-│
+│   └── globals.css
+├── assets/icons/               # Iconos SVG como componentes React
 ├── components/
-│   ├── visuals/
-│   │   └── particlePlanet/
-│   │       ├── DesktopParticlePlanet.tsx
-│   │       ├── particlePlanet.module.css
-│   │       └── ParticlePlanet.tsx
-│   │
-│   ├── common/
-│   │   ├── footer/
-│   │   │   ├── footer.module.css
-│   │   │   ├── Footer.tsx
-│   │   │   └── footerLinks.ts
-│   │   │
-│   │   └── navbar/
-│   │       ├── BurgerMenu.tsx
-│   │       ├── navbar.module.css
-│   │       ├── Navbar.tsx
-│   │       ├── navbarMenu.ts
-│   │       ├── NavItems.tsx
-│   │       ├── useBurgerMenu.ts
-│   │       └── useNavbarScroll.tsx
-│   │
-│   └── exports/
-│       ├── contact/
-│       │   └── contact1/
-│       │       ├── Contact1.tsx
-│       │       └── contact1.module.css
-│       │
-│       ├── privacy/
-│       │   └── pribacy1/
-│       │       ├── Privacy1.tsx
-│       │       └── privacy1.module.css
-│       │
-│       ├── form/
-│       │   ├── contactForm.module.css
-│       │   ├── ContactForm.tsx
-│       │   ├── ContactFormStatus.tsx
-│       │   ├── pushContactFormEvent.ts
-│       │   ├── useContactForm.ts
-│       │   └── validateContact.ts
-│       │
-│       └── home/
-│           ├── home1/
-│           │   ├── home1.module.css
-│           │   └── Home1.tsx
-│           │
-│           ├── home2/
-│           │   ├── home2.module.css
-│           │   ├── Home2.tsx
-│           │   ├── stars.ts
-│           │   └── useConstellation.ts
-│           │
-│           ├── home3/
-│           │   ├── home3.module.css
-│           │   ├── Home3.tsx
-│           │   ├── MobileProjectsDeck.tsx
-│           │   ├── ProjectCard.tsx
-│           │   └── useMobileProjectsDeck.ts
-│           │
-│           ├── home4/
-│           │   ├── home4.module.css
-│           │   └── Home4.tsx
-│           │
-│           └── home5/
-│               ├── home5.module.css
-│               └── Home5.tsx
-│
-├── constants/
-│   └── routes.ts
-│
-├── hooks/
-│   └── useMediaQuery.tsx
-│
-├── lib/
-│   └──supabase/
-│      ├── admin.ts
-│      ├── getPublicMediaUrl.tsx
-│      └── server.ts
-│
+│   ├── common/                 # Navbar y Footer
+│   ├── exports/                # Secciones de página y formulario
+│   └── visuals/                # Planeta de partículas
+├── constants/routes.ts         # URL del sitio, rutas, anclas y enlaces externos
+├── hooks/useMediaQuery.tsx
+├── lib/supabase/               # Clientes Supabase y URL pública de Storage
 ├── services/
-│   ├──contacts/
-│   │  ├── createContacts.ts
-│   │  └── submitContact.ts
-│   │
-│   └──proyects/
-│      ├── getFeaturedProjects.ts
-│      └── getProjectCover.ts
-│
-├── styles/
-│
-├── types/
-│   ├── contact.ts
-│   ├── global.d.ts
-│   ├── navigation.tsx
-│   └── projects.tsx
-│
-├── utils/
-│   ├── starryBackground/
-│   │   ├── starryBackground.module.css
-│   │   └── StarryBackground.tsx
-│   │
-│   ├── ButtonLink.tsx
-│   ├── createMetadata.ts
-│   ├── getRequestPath.ts
-│   ├── getUtmParams.ts
-│   └── SmartLink.tsx
+│   ├── contacts/               # Envío al endpoint e inserción en Supabase
+│   └── projects/               # Consulta y selección de portada
+├── styles/                     # Estilos globales importados por globals.css
+├── types/                      # Tipos compartidos de contacto, navegación y proyectos
+└── utils/                      # Links, metadata, UTM, referer y fondo estrellado
 ```
 
----
+El detalle de componentes y archivos auxiliares está en [components.md](components.md).
 
-## Responsabilidades
+## Composición de la aplicación
 
-### app/
+`src/app/layout.tsx` define `lang="es"`, carga Montserrat, Inter y Space Grotesk mediante `next/font`, monta `Navbar` y `Footer` alrededor de todas las páginas e incorpora Google Tag Manager.
 
-Contiene las rutas de Next.js, APIs, layouts y páginas.
+Las tres páginas públicas están dentro de `(site)`, un grupo que organiza archivos sin añadir un segmento a la URL. Cada página define sus metadatos con `createMetadata` y renderiza el fondo estrellado junto con sus secciones.
 
----
+La página de inicio es asíncrona, consulta los proyectos destacados antes de renderizar y exporta `revalidate = 3600`.
 
-### components/
+## Límites servidor/cliente
 
-Componentes reutilizables de la aplicación.
+### Servidor
 
-Se dividen en:
+- Las páginas y las secciones sin `'use client'` se renderizan como Server Components.
+- `getFeaturedProjects` consulta Supabase desde la página de inicio.
+- `POST /api/contact` valida la solicitud y delega la escritura a `createContact`.
+- `src/lib/supabase/admin.ts` y `createContact.ts` importan `server-only`; la clave `SUPABASE_SECRET_KEY` queda en ese límite.
 
-- common
-- exports
+### Cliente
 
----
+Se usa `'use client'` únicamente en piezas con estado o APIs del navegador: navegación responsive, menú móvil, formulario, constelación, mazo móvil de proyectos, `SmartLink` y planeta de partículas.
 
-### hooks/
+## Flujos de datos
 
-Toda la lógica reutilizable.
+### Proyectos destacados
 
-No deben renderizar UI en caso de no ser necesario.
-
----
-
-### services/
-
-Comunicación con APIs, Supabase o cualquier fuente de datos.
-
-Los componentes nunca consultan directamente la base de datos.
-
----
-
-### lib/
-
-Configuraciones y clientes compartidos.
-
-Ejemplo:
-
-- Supabase
-- Helpers
-
----
-
-### styles/
-
-Variables globales.
-
-- colors.css
-- fonts.css
-- buttons.css
-- spinner.css
-- background.css
-- common.css
-- navbar.css
-- utils.css
-
----
-
-### types/
-
-Todos los tipos compartidos del proyecto.
-
----
-
-## Flujo de datos
-
-```
-Page (Server Component)
-
-↓
-
-Service
-
-↓
-
-Supabase
-
-↓
-
-Page
-
-↓
-
-Componentes
+```text
+src/app/(site)/page.tsx
+  → getFeaturedProjects()
+  → cliente Supabase con publishable key
+  → projects + project_media
+  → Home3
+  → ProjectCard
+  → getPublicMediaUrl(project-media)
 ```
 
-Los datos se obtienen en Server Components siempre que sea posible.
+La consulta filtra proyectos destacados y publicados, los ordena por `featured_order` y la portada se muestra con `next/image` cuando tiene ancho y alto.
 
-Los Client Components reciben únicamente las props necesarias.
+### Formulario de contacto
 
----
+```text
+ContactForm
+  → useContactForm
+  → validación en cliente
+  → POST /api/contact
+  → validación en servidor + honeypot + referer same-origin
+  → createContact
+  → contact_messages mediante el cliente admin de Supabase
+```
 
-## Organización
+Los parámetros `utm_source`, `utm_medium` y `utm_campaign` se leen de la URL, se conservan hasta 15 días en `localStorage` y se envían con el formulario. Tras un envío exitoso se agrega el evento `send_form` a `window.dataLayer`.
 
-- Mobile First.
-- Componentes pequeños.
-- Responsabilidad única.
-- Lógica desacoplada.
-- CSS Modules.
-- Sin dependencias innecesarias.
+## Estilos y assets
+
+`src/app/globals.css` importa ocho hojas globales para reset, tokens, tipografías, navegación, fondo y utilidades. Cada área visual mantiene sus estilos locales en archivos `*.module.css`. Los estilos base son móviles y se amplían con media queries.
+
+El único archivo bajo `public` es el CV. Las imágenes de proyecto no se almacenan en el repositorio: se sirven desde Supabase Storage.

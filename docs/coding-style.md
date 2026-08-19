@@ -1,91 +1,55 @@
-# Coding Style
+# Coding style
 
-## Filosofía
+Este documento resume la configuración y los patrones repetidos en el código actual. No sustituye las comprobaciones automáticas.
 
-El código debe priorizar la claridad por sobre la complejidad.
+## Formato y lint
 
-Siempre es preferible escribir código fácil de entender que una solución demasiado ingeniosa.
+`.prettierrc` configura:
 
----
+- indentación de 4 espacios;
+- ancho de línea de 150 caracteres;
+- comillas simples.
+
+ESLint 9 usa la configuración flat de `eslint-config-next`, con las reglas `core-web-vitals` y TypeScript. No hay una regla de orden de imports configurada; los archivos suelen separar imports por procedencia mediante líneas en blanco, pero el orden no es uniforme.
 
 ## TypeScript
 
-- Nunca utilizar any.
-- Preferir type antes que interface.
-- Tipar todas las funciones.
-- Tipar props y retornos.
+`tsconfig.json` habilita `strict`, `noEmit`, resolución `bundler`, JSX de React y el alias `@/*` hacia `src/*`. Los modelos y props compartidos se expresan principalmente con `type`; la ampliación global de `Window.dataLayer` usa `interface` dentro de `global.d.ts`.
 
----
+El código evita `any` y utiliza `unknown` para datos de entrada no validados, como el body del endpoint de contacto. Los payloads se estrechan antes de llegar al servicio de escritura.
 
-## React
+## React y Next.js
 
-- Componentes pequeños.
-- Una responsabilidad por componente.
-- No utilizar React.FC.
-- Extraer lógica compleja a hooks.
-- Evitar estados innecesarios.
-- Preferir composición antes que componentes gigantes.
-
----
-
-## Next.js
-
-- Server Components por defecto.
-- Client Components únicamente cuando sean necesarios.
-- Obtener datos desde Server Components siempre que sea posible.
-- Mantener page.tsx limpio.
-
----
+- Los componentes son funciones y reciben props con tipos explícitos cuando corresponde.
+- Los archivos de ruta y la mayoría de las secciones permanecen como Server Components.
+- Los módulos que requieren estado, efectos, eventos o APIs del navegador declaran `'use client'`.
+- El acceso a Supabase se concentra en `src/lib/supabase` y `src/services`; las páginas consumen servicios y pasan datos a los componentes de presentación.
+- Los módulos que usan la clave secreta importan `server-only`.
+- Los metadatos de página se construyen mediante `createMetadata` y las rutas se centralizan en `src/constants/routes.ts`.
 
 ## CSS
 
-- CSS Modules.
-- Mobile First.
-- Variables CSS para todos los colores reutilizables.
-- Evitar valores mágicos repetidos.
-- Agrupar estilos relacionados.
+- `src/app/globals.css` importa reset, tokens, tipografías, navegación, fondos, botones, spinner y utilidades globales.
+- Los estilos propios de cada componente viven en `*.module.css` junto al componente.
+- Las reglas base corresponden a móvil y los layouts se amplían mediante `min-width`.
+- Los colores y efectos compartidos usan custom properties de `src/styles/colors.css`; las alturas del navbar se definen en `src/styles/navbar.css`.
+- Los estados de teclado usan `:focus-visible` en navegación, formularios, enlaces y controles interactivos.
 
----
+## Organización y nombres
 
-## Imports
+- Componentes: PascalCase (`ProjectCard.tsx`).
+- Hooks: prefijo `use` (`useContactForm.ts`).
+- Servicios y utilidades: camelCase (`getFeaturedProjects.ts`).
+- CSS Modules: nombre del área en camelCase (`contactForm.module.css`).
+- Tipos compartidos: `src/types`; constantes compartidas: `src/constants`.
 
-Orden recomendado:
+## Validación local
 
-1. React / Next
-2. Librerías
-3. Components
-4. Hooks
-5. Services
-6. Types
-7. Styles
+Después de cambiar código, los comandos disponibles son:
 
----
+```bash
+npm run lint
+npm run build
+```
 
-## Arquitectura
-
-- Separación por responsabilidades.
-- Componentes reutilizables.
-- Hooks reutilizables.
-- Services para acceso a datos.
-- Types centralizados.
-
----
-
-## Dependencias
-
-Antes de instalar una librería preguntarse:
-
-- ¿Existe una API nativa?
-- ¿Realmente aporta valor?
-- ¿Vale el peso adicional?
-
----
-
-## Convenciones
-
-- Variables descriptivas.
-- Funciones descriptivas.
-- Componentes en PascalCase.
-- Hooks con prefijo use.
-- Evitar comentarios innecesarios.
-- Código autoexplicativo siempre que sea posible.
+El repositorio no define actualmente un script ni archivos de pruebas automatizadas.
