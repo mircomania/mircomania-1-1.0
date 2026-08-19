@@ -50,15 +50,15 @@
 ## v1.1
 
 - [x] Analytics
-- [ ] Google Ads
-- [ ] Configuracion para recivir leads por correo o por algun lado. (a definir)
+- [x] Google Ads Investigacion
+- [ ] Configuracion para recibir leads por correo o por algun lado. (a definir)
 - [ ] Revision general copilot (SEO, estructura, buenas practicas, seguridad, optimizacion)
-- [ ] FAQ
 
 ---
 
 ## v1.2
 
+- [ ] FAQ
 - [ ] Página de servicios
 - [ ] Página de proyectos
 - [ ] Página del CV
@@ -67,9 +67,10 @@
 
 ## v1.3
 
-- Blog.
-- Panel para administrar proyectos.
-- Dark / Light Theme (evaluar).
+- [ ] Blog.
+- [ ] Panel para administrar proyectos.
+- [ ] Dark / Light Theme (evaluar).
+- [ ] Google Ads
 
 ---
 
@@ -92,6 +93,8 @@
 - ***
 
 ## Deuda técnica
+
+- Revisar y ordenar diseño en general (fuentes, colores, iconos)
 
 - Cambiar el display none de home3 en las cards movile y desktop por algo mas funcional.
 

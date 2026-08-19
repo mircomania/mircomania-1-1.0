@@ -139,3 +139,7 @@
 67.- se lanza a produccion la VERSION 1.0 definitiva.
 
 68.- se integra google search console.
+
+69.- se crea una tabla basica en looker studio.
+
+70.- se considera hacer ads, pero es muy caro para este momento del proyecto, por lo que solo se hace una investigacion y planeacion de ads.
