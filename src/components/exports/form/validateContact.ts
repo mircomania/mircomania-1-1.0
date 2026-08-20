@@ -43,7 +43,7 @@ export function validateContactPayload(payload: ContactFormPayload): ContactVali
         errors.name = 'Ingresa un nombre válido.';
     }
 
-    if (email.length < 5 || email.length > 320 || !EMAIL_PATTERN.test(email)) {
+    if (email.length < 5 || email.length > 254 || !EMAIL_PATTERN.test(email)) {
         errors.email = 'Ingresa un correo válido.';
     }
 

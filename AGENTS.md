@@ -32,6 +32,14 @@ Read only the documents relevant to the task instead of assuming every document 
 
 When documentation conflicts with the implementation, report the inconsistency instead of silently changing the code to match the documentation.
 
+## Supabase
+
+- Make schema changes through local migrations under `supabase/migrations/`; do not modify the remote production schema directly unless an exceptional intervention is explicitly requested.
+- Review migration SQL before applying it and, when applicable, run `supabase db push --dry-run` before `supabase db push`.
+- Treat production data separately from migrations.
+- Keep `supabase/config.toml` synchronized with versionable structural configuration.
+- If remote state and local migrations differ, report the discrepancy before changing either one.
+
 ## Validation
 
 After code changes, when applicable run:

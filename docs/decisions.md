@@ -143,3 +143,15 @@
 69.- se crea una tabla basica en looker studio.
 
 70.- se considera hacer ads, pero es muy caro para este momento del proyecto, por lo que solo se hace una investigacion y planeacion de ads.
+
+71.- se comienza a utilizar por primera vez codex de gpt en el proyeto, se utilizo por primera vez para actualizar los archivos .md y sincronizarlos con el proyecto.
+
+72.- se agrega un AGENTS.md basico
+
+73.- se comienza con la auditoria completa de codex, destaca varios problemas, pero nos enfocamos primero en solucionar la seguridad de la bas de datos, que lo consideraba lo mas importante.
+
+74.- se instala el complemento SUPABASE en gpt chat por primera vez en la vida, para que haga los cambios solicitados por la auditoria. resulatado SATISFACTORIO.
+
+75.- esto nos lleva a registrar y desde ahora manejar, las modificaciones estructurales de supabase con "migraciones" desde el CLI de SUPABASE, instalado de manera local. las migraciones son archivos SQL, que sirven como registro util de las modificaciones de la base de datos, que quiere decir utiles, que son ejecutables, con estos archivos se puede reconstruir la base de datos desde 0, siguiendo cada migracion, lo que tambien hace que sirven como archivos de test para implementaciones deseables, sin arriesgar hacer un cambio irreversible.
+
+76.- pasamos a revisar el resto de la auditoria.
