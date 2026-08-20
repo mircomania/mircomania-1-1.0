@@ -80,7 +80,6 @@
     max-width: 310px;
     margin: 0;
     color: var(--text-secondary);
-    font-family: var(--font-inter), sans-serif;
     font-size: 16px;
     line-height: 1.7;
 }
@@ -182,7 +181,6 @@
 .copyright {
     margin: 0;
     color: rgba(230, 235, 255, 0.52);
-    font-family: var(--font-inter), sans-serif;
     font-size: 13px;
     line-height: 1.6;
 }

@@ -50,7 +50,7 @@ export default function ContactForm() {
                     value={values.email}
                     onChange={handleTextChange}
                     autoComplete="email"
-                    maxLength={320}
+                    maxLength={254}
                     required
                     aria-invalid={Boolean(errors.email)}
                     aria-describedby={errors.email ? 'contact-email-error' : undefined}
