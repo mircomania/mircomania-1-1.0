@@ -33,7 +33,7 @@ El layout raíz configura:
 
 Las páginas son Server Components. El inicio usa regeneración con `revalidate = 3600`; las otras páginas no declaran revalidación.
 
-Las portadas de proyecto usan `next/image` con `alt`, `width`, `height` y `sizes`. Esos valores provienen de `project_media`; una tarjeta no se renderiza si la portada carece de dimensiones. Los SVG decorativos incluyen `aria-hidden="true"` y `focusable="false"`.
+Las portadas de proyecto usan `next/image` con `alt`, `width`, `height` y `sizes`. El servicio de servidor valida y normaliza esos valores desde la portada de `project_media`; una fila sin portada renderizable se omite antes de llegar a la UI. Los SVG decorativos incluyen `aria-hidden="true"` y `focusable="false"`.
 
 ## Accesibilidad implementada
 

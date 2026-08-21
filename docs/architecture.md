@@ -27,10 +27,10 @@ src/
 │   └── visuals/                # Planeta de partículas
 ├── constants/routes.ts         # URL del sitio, rutas, anclas y enlaces externos
 ├── hooks/useMediaQuery.tsx
-├── lib/supabase/               # Clientes Supabase y URL pública de Storage
+├── lib/supabase/               # Clientes Supabase y utilidades server-only
 ├── services/
 │   ├── contacts/               # Envío al endpoint e inserción en Supabase
-│   └── projects/               # Consulta y selección de portada
+│   └── projects/               # Consulta y normalización para presentación
 ├── styles/                     # Estilos globales importados por globals.css
 ├── types/                      # Tipos compartidos de contacto, navegación y proyectos
 └── utils/                      # Links, metadata, UTM, referer y fondo estrellado
@@ -51,7 +51,8 @@ La página de inicio es asíncrona, consulta los proyectos destacados antes de r
 ### Servidor
 
 - Las páginas y las secciones sin `'use client'` se renderizan como Server Components.
-- `getFeaturedProjects` consulta Supabase desde la página de inicio.
+- `getFeaturedProjects` consulta Supabase, valida cada fila y entrega a la UI un DTO preparado para renderizar.
+- El cliente de lectura de Supabase y la resolución de URLs de Storage están protegidos con `server-only`.
 - `POST /api/contact` valida la solicitud y delega la escritura a `createContact`.
 - `src/lib/supabase/admin.ts` y `createContact.ts` importan `server-only`; la clave `SUPABASE_SECRET_KEY` queda en ese límite.
 
@@ -66,14 +67,15 @@ Se usa `'use client'` únicamente en piezas con estado o APIs del navegador: nav
 ```text
 src/app/(site)/page.tsx
   → getFeaturedProjects()
-  → cliente Supabase con publishable key
-  → projects + project_media
+  → cliente Supabase server-only con publishable key
+  → projects + portada filtrada por is_cover
+  → validación y resolución de URL de Storage
+  → FeaturedProjectCard
   → Home3
-  → ProjectCard
-  → getPublicMediaUrl(project-media)
+  → ProjectCard / MobileProjectsDeck
 ```
 
-La consulta filtra proyectos destacados y publicados, los ordena por `featured_order` y la portada se muestra con `next/image` cuando tiene ancho y alto.
+La consulta filtra proyectos destacados y publicados, limita la relación a la portada y ordena por `featured_order`. El servicio omite con un warning de servidor las filas que no pueden convertirse en una tarjeta segura. Si la consulta devuelve cero proyectos renderizables, la sección no se monta; si Supabase falla, la home conserva el resto del contenido y muestra un estado de error local.
 
 ### Formulario de contacto
 

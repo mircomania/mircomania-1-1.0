@@ -6,10 +6,10 @@ El esquema `public` está versionado a partir del baseline `supabase/migrations/
 
 | Cliente | Credenciales | Uso actual |
 | --- | --- | --- |
-| `supabase` | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Lee proyectos publicados y genera URLs públicas de `project-media`. |
+| `supabase` | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Lee proyectos publicados y genera URLs públicas de `project-media` desde módulos `server-only`. |
 | `supabaseAdmin` | `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SECRET_KEY` | Inserta mensajes de contacto desde código protegido con `server-only`; no persiste sesión ni renueva tokens. |
 
-La clave secreta solo se importa desde servicios de servidor. Las consultas de presentación permanecen fuera de los componentes.
+La clave secreta solo se importa desde servicios de servidor. Tanto el cliente de lectura como el de escritura permanecen fuera del árbol cliente y las consultas de presentación permanecen fuera de los componentes.
 
 ## Esquema `public`
 
@@ -35,7 +35,7 @@ Cada registro pertenece a `projects` mediante `project_id`; la foreign key elimi
 - las dimensiones presentes deben ser positivas;
 - las imágenes requieren `alt_text` no vacío.
 
-La aplicación obtiene la relación junto con los proyectos destacados y usa el registro marcado como portada.
+La aplicación filtra la relación por `is_cover = true` al consultar los proyectos destacados. En servidor valida que la portada sea una imagen con ruta, texto alternativo y dimensiones utilizables, resuelve su URL pública y entrega a la UI un DTO sin detalles de persistencia.
 
 ### `contact_messages`
 

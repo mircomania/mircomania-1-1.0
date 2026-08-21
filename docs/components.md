@@ -19,8 +19,9 @@
 | `Home1` | Hero con el título principal y “Full Stack Dev”. |
 | `Home2` | Constelación interactiva de cuatro servicios y su contenido desplazable. |
 | `Home3` | Encabezado y presentación responsive de proyectos destacados. |
-| `ProjectCard` | Portada con `next/image`, tipo, año, resumen, stack y enlaces externos del proyecto. |
+| `ProjectCard` | Presenta con `next/image` un DTO que ya contiene portada, tipo, año, resumen, stack y enlaces externos. |
 | `MobileProjectsDeck` | Mazo expandible de proyectos para anchos inferiores a `1200px`. |
+| `ProjectsLoadError` | Estado accesible y local cuando no es posible consultar los proyectos destacados. |
 | `Home4` | CTA al CV público. |
 | `Home5` | Bloque de colaboración, planeta de escritorio y formulario. |
 | `Contact1` | Presentación de `/contacto`, planeta de escritorio y formulario. |
@@ -59,11 +60,10 @@ El formulario acepta los motivos `project`, `job`, `collaboration` y `general`. 
 
 | Módulo | Responsabilidad actual |
 | --- | --- |
-| `lib/supabase/server.ts` | Crea un cliente con URL y publishable key públicas. |
+| `lib/supabase/server.ts` | Crea el cliente de lectura con URL y publishable key públicas dentro de un límite `server-only`. |
 | `lib/supabase/admin.ts` | Crea el cliente de escritura con clave secreta y límite `server-only`. |
-| `getPublicMediaUrl` | Resuelve una ruta del bucket `project-media` a URL pública. |
-| `getFeaturedProjects` | Consulta proyectos publicados y destacados con su media y los ordena por `featured_order`. |
-| `getProjectCover` | Devuelve el primer elemento de media marcado `is_cover`. |
+| `getPublicMediaUrl` | Resuelve en servidor una ruta válida del bucket `project-media` a URL pública. |
+| `getFeaturedProjects` | Consulta proyectos publicados y destacados con solo su portada, valida las filas y las convierte al DTO de presentación ordenado por `featured_order`. |
 | `submitContact` | Envía JSON a `POST /api/contact` y normaliza la respuesta. |
 | `createContact` | Inserta el mensaje validado en `contact_messages` mediante el cliente admin. |
 

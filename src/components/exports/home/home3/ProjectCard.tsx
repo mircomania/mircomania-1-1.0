@@ -3,40 +3,31 @@ import Image from 'next/image';
 import styles from './home3.module.css';
 
 import { projectTypeLabels } from '@/types/projects';
-import type { FeaturedProject } from '@/types/projects';
-
-import { getProjectCover } from '@/services/projects/getProjectCover';
-import { getPublicMediaUrl } from '@/lib/supabase/getPublicMediaUrl';
+import type { FeaturedProjectCard } from '@/types/projects';
 
 import ButtonLink from '@/utils/ButtonLink';
 
 type Props = {
-    project: FeaturedProject;
+    project: FeaturedProjectCard;
 };
 
 export default function ProjectCard({ project }: Readonly<Props>) {
-    const cover = getProjectCover(project);
-
-    if (!cover?.width || !cover?.height) {
-        return null;
-    }
-
     return (
         <article className={styles.card}>
             <Image
-                src={getPublicMediaUrl(cover.storage_path)}
-                alt={cover.alt_text}
-                width={cover.width}
-                height={cover.height}
+                src={project.cover.src}
+                alt={project.cover.alt}
+                width={project.cover.width}
+                height={project.cover.height}
                 sizes="(max-width: 1199px) 100vw, 360px"
                 className={styles.cardImage}
             />
 
             <div className={styles.cardContent}>
                 <div className={styles.cardMeta}>
-                    <span>{projectTypeLabels[project.project_type]}</span>
+                    <span>{projectTypeLabels[project.projectType]}</span>
                     <span aria-hidden="true">•</span>
-                    <span>{project.project_year}</span>
+                    <span>{project.projectYear}</span>
                 </div>
 
                 <h3>{project.title}</h3>
@@ -45,16 +36,16 @@ export default function ProjectCard({ project }: Readonly<Props>) {
 
                 <p className={styles.stack}>{project.stack.join(' • ')}</p>
 
-                {(project.demo_url || project.repository_url) && (
+                {(project.demoUrl || project.repositoryUrl) && (
                     <div className={styles.cardActions}>
-                        {project.demo_url && (
-                            <ButtonLink href={project.demo_url} variant="secondary" dataLink={`"proyectos-demo-link-"${project.slug}`}>
+                        {project.demoUrl && (
+                            <ButtonLink href={project.demoUrl} variant="secondary" dataLink={`"proyectos-demo-link-"${project.slug}`}>
                                 Ver proyecto
                             </ButtonLink>
                         )}
 
-                        {project.repository_url && (
-                            <ButtonLink href={project.repository_url} variant="secondary" dataLink={`"proyectos-github-link-"${project.slug}`}>
+                        {project.repositoryUrl && (
+                            <ButtonLink href={project.repositoryUrl} variant="secondary" dataLink={`"proyectos-github-link-"${project.slug}`}>
                                 Repositorio
                             </ButtonLink>
                         )}

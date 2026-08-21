@@ -4,13 +4,13 @@ import type { CSSProperties } from 'react';
 
 import styles from './home3.module.css';
 
-import type { FeaturedProject } from '@/types/projects';
+import type { FeaturedProjectCard } from '@/types/projects';
 
 import ProjectCard from './ProjectCard';
 import useMobileProjectsDeck from './useMobileProjectsDeck';
 
 type Props = Readonly<{
-    projects: readonly FeaturedProject[];
+    projects: readonly FeaturedProjectCard[];
 }>;
 
 type DeckCardStyle = CSSProperties & {

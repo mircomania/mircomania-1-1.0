@@ -36,6 +36,19 @@
     display: none;
 }
 
+.projectsLoadError {
+    width: min(550px, 100%);
+    padding: 24px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    background: linear-gradient(145deg, rgba(55, 64, 91, 0.45), rgba(24, 29, 43, 0.25));
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+}
+
 /* =========================================================
     PROJECT CARD
    ========================================================= */

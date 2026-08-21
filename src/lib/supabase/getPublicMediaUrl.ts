@@ -1,7 +1,27 @@
+import 'server-only';
+
 import { supabase } from './server';
 
-export function getPublicMediaUrl(storagePath: string): string {
-    const { data } = supabase.storage.from('project-media').getPublicUrl(storagePath);
+const PROJECT_MEDIA_BUCKET = 'project-media';
 
-    return data.publicUrl;
+export function getPublicMediaUrl(storagePath: string): string | null {
+    const normalizedPath = storagePath.trim();
+
+    if (!normalizedPath) {
+        return null;
+    }
+
+    const { data } = supabase.storage.from(PROJECT_MEDIA_BUCKET).getPublicUrl(normalizedPath);
+
+    try {
+        const publicUrl = new URL(data.publicUrl);
+
+        if (publicUrl.protocol !== 'http:' && publicUrl.protocol !== 'https:') {
+            return null;
+        }
+
+        return publicUrl.toString();
+    } catch {
+        return null;
+    }
 }

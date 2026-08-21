@@ -1,12 +1,12 @@
 import styles from './home3.module.css';
 
-import type { FeaturedProject } from '@/types/projects';
+import type { FeaturedProjectCard } from '@/types/projects';
 
 import ProjectCard from './ProjectCard';
 import MobileProjectsDeck from './MobileProjectsDeck';
 
 type Props = {
-    projects: FeaturedProject[];
+    projects: FeaturedProjectCard[];
 };
 
 export default function Home3({ projects }: Readonly<Props>) {
