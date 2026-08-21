@@ -53,3 +53,9 @@
         padding-bottom: 250px;
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .star {
+        animation: none;
+    }
+}

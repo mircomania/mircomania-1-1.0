@@ -10,7 +10,6 @@ type UseMobileProjectsDeckReturn = {
     isExpanded: boolean;
     isAnimating: boolean;
     deckRef: RefObject<HTMLDivElement | null>;
-    openButtonRef: RefObject<HTMLButtonElement | null>;
     setCardRef: (index: number, element: HTMLDivElement | null) => void;
     handleOpen: () => Promise<void>;
     handleClose: () => Promise<void>;
@@ -63,7 +62,6 @@ export default function useMobileProjectsDeck(): UseMobileProjectsDeckReturn {
     const [isAnimating, setIsAnimating] = useState(false);
 
     const deckRef = useRef<HTMLDivElement | null>(null);
-    const openButtonRef = useRef<HTMLButtonElement | null>(null);
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     const setCardRef = (index: number, element: HTMLDivElement | null) => {
@@ -184,12 +182,6 @@ export default function useMobileProjectsDeck(): UseMobileProjectsDeckReturn {
                 top: targetTop,
                 behavior: 'auto',
             });
-
-            requestAnimationFrame(() => {
-                openButtonRef.current?.focus({
-                    preventScroll: true,
-                });
-            });
         } finally {
             setIsAnimating(false);
         }
@@ -199,7 +191,6 @@ export default function useMobileProjectsDeck(): UseMobileProjectsDeckReturn {
         isExpanded,
         isAnimating,
         deckRef,
-        openButtonRef,
         setCardRef,
         handleOpen,
         handleClose,

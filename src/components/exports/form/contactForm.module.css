@@ -127,6 +127,11 @@
     cursor: pointer;
 }
 
+.checkboxField input[aria-invalid='true'] {
+    outline: 2px solid rgb(224 105 105 / 72%);
+    outline-offset: 2px;
+}
+
 .checkboxField label {
     color: var(--text-secondary);
     cursor: pointer;

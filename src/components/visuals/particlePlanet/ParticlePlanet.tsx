@@ -116,6 +116,11 @@ export default function ParticlePlanet() {
             }
         };
 
+        const handleResize = () => {
+            resizeCanvas();
+            drawPlanet();
+        };
+
         const animate = (timestamp: number) => {
             const elapsedTime = timestamp - previousTimestamp;
             previousTimestamp = timestamp;
@@ -181,13 +186,13 @@ export default function ParticlePlanet() {
 
         visibilityObserver.observe(canvas);
         reducedMotionQuery.addEventListener('change', handleReducedMotionChange);
-        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('resize', handleResize);
 
         return () => {
             stopAnimation();
             visibilityObserver.disconnect();
             reducedMotionQuery.removeEventListener('change', handleReducedMotionChange);
-            window.removeEventListener('resize', resizeCanvas);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 

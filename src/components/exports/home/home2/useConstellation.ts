@@ -6,6 +6,10 @@ export type Phase = 'map' | 'hideLabels' | 'aligning' | 'content';
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+const prefersReducedMotion = (): boolean => {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+};
+
 export function useConstellation() {
     const [phase, setPhase] = useState<Phase>('map');
     const [activeStarId, setActiveStarId] = useState<number | null>(null);
@@ -19,6 +23,7 @@ export function useConstellation() {
     const goToSlide = (id: number) => {
         const slider = sliderRef.current;
         const index = STARS.findIndex((star) => star.id === id);
+        const reducedMotion = prefersReducedMotion();
 
         if (!slider || index === -1) return;
 
@@ -27,14 +32,18 @@ export function useConstellation() {
         slider.scrollTo({
             left: isDesktop() ? 0 : slider.clientWidth * index,
             top: isDesktop() ? slider.clientHeight * index : 0,
-            behavior: 'smooth',
+            behavior: reducedMotion ? 'auto' : 'smooth',
         });
 
         setActiveStarId(id);
 
-        window.setTimeout(() => {
+        if (reducedMotion) {
             ignoreScrollRef.current = false;
-        }, 500);
+        } else {
+            window.setTimeout(() => {
+                ignoreScrollRef.current = false;
+            }, 500);
+        }
     };
 
     const handleClick = async (id: number) => {
@@ -47,6 +56,12 @@ export function useConstellation() {
 
         setActiveStarId(id);
         initialStarRef.current = id;
+
+        if (prefersReducedMotion()) {
+            setPhase('content');
+            return;
+        }
+
         setPhase('hideLabels');
 
         await wait(450);
@@ -76,9 +91,13 @@ export function useConstellation() {
                 slider.scrollLeft = slider.clientWidth * index;
             }
 
-            window.setTimeout(() => {
+            if (prefersReducedMotion()) {
                 ignoreScrollRef.current = false;
-            }, 100);
+            } else {
+                window.setTimeout(() => {
+                    ignoreScrollRef.current = false;
+                }, 100);
+            }
         });
     }, [phase]);
 

@@ -18,7 +18,7 @@ type DeckCardStyle = CSSProperties & {
 };
 
 export default function MobileProjectsDeck({ projects }: Props) {
-    const { isExpanded, isAnimating, deckRef, openButtonRef, setCardRef, handleOpen, handleClose } = useMobileProjectsDeck();
+    const { isExpanded, isAnimating, deckRef, setCardRef, handleOpen, handleClose } = useMobileProjectsDeck();
 
     return (
         <div ref={deckRef} className={`${styles.mobileDeck} ${isExpanded ? styles.mobileDeckExpanded : ''}`} aria-busy={isAnimating}>
@@ -44,32 +44,16 @@ export default function MobileProjectsDeck({ projects }: Props) {
                 })}
             </div>
 
-            {!isExpanded && (
-                <button
-                    ref={openButtonRef}
-                    type="button"
-                    className={styles.mobileDeckButton}
-                    aria-expanded="false"
-                    aria-controls="mobile-projects-list"
-                    disabled={isAnimating}
-                    onClick={handleOpen}
-                >
-                    Explorar proyectos
-                </button>
-            )}
-
-            {isExpanded && (
-                <button
-                    type="button"
-                    className={styles.mobileDeckButton}
-                    aria-expanded="true"
-                    aria-controls="mobile-projects-list"
-                    disabled={isAnimating}
-                    onClick={handleClose}
-                >
-                    Cerrar proyectos
-                </button>
-            )}
+            <button
+                type="button"
+                className={styles.mobileDeckButton}
+                aria-expanded={isExpanded}
+                aria-controls="mobile-projects-list"
+                disabled={isAnimating}
+                onClick={isExpanded ? handleClose : handleOpen}
+            >
+                {isExpanded ? 'Cerrar proyectos' : 'Explorar proyectos'}
+            </button>
         </div>
     );
 }

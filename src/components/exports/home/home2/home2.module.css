@@ -1,5 +1,6 @@
 @media (prefers-reduced-motion: reduce) {
     .constelacionLineas,
+    .estrellaContainer,
     .estrellaInner,
     .estrella,
     .sliderMobile {

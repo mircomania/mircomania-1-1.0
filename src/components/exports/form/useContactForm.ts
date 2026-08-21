@@ -21,6 +21,24 @@ const INITIAL_VALUES: ContactFormValues = {
 
 type ContactTextField = 'name' | 'email' | 'message' | 'website';
 
+const CONTACT_FIELD_ORDER: (keyof ContactFieldErrors)[] = ['name', 'email', 'contactType', 'message', 'privacyAccepted'];
+
+function focusFirstInvalidField(form: HTMLFormElement, fieldErrors: ContactFieldErrors): void {
+    const firstInvalidField = CONTACT_FIELD_ORDER.find((field) => Boolean(fieldErrors[field]));
+
+    if (!firstInvalidField) {
+        return;
+    }
+
+    requestAnimationFrame(() => {
+        const control = form.elements.namedItem(firstInvalidField);
+
+        if (control instanceof HTMLElement) {
+            control.focus();
+        }
+    });
+}
+
 type UseContactFormReturn = {
     values: ContactFormValues;
     errors: ContactFieldErrors;
@@ -97,6 +115,8 @@ export function useContactForm(): UseContactFormReturn {
     async function handleSubmit(event: SubmitEvent<HTMLFormElement>): Promise<void> {
         event.preventDefault();
 
+        const form = event.currentTarget;
+
         if (isSubmitting) {
             return;
         }
@@ -111,6 +131,7 @@ export function useContactForm(): UseContactFormReturn {
 
         if (!validation.success) {
             setErrors(validation.errors);
+            focusFirstInvalidField(form, validation.errors);
             return;
         }
 
@@ -124,8 +145,11 @@ export function useContactForm(): UseContactFormReturn {
             });
 
             if (!response.success) {
-                setErrors(response.errors ?? {});
+                const responseErrors = response.errors ?? {};
+
+                setErrors(responseErrors);
                 setSubmitError(response.message);
+                focusFirstInvalidField(form, responseErrors);
                 return;
             }
 
