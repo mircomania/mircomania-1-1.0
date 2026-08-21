@@ -38,6 +38,22 @@ export default async function Home() {
         projectsLoadFailed = true;
     }
 
+    let projectsSection = null;
+
+    if (projectsLoadFailed) {
+        projectsSection = (
+            <section id="proyectos">
+                <ProjectsLoadError />
+            </section>
+        );
+    } else if (projects.length > 0) {
+        projectsSection = (
+            <section id="proyectos">
+                <Home3 projects={projects} />
+            </section>
+        );
+    }
+
     return (
         <main className="space-main">
             <StarryBackground />
@@ -48,15 +64,7 @@ export default async function Home() {
                 <Home2 />
             </section>
 
-            {projectsLoadFailed ? (
-                <section id="proyectos">
-                    <ProjectsLoadError />
-                </section>
-            ) : projects.length > 0 ? (
-                <section id="proyectos">
-                    <Home3 projects={projects} />
-                </section>
-            ) : null}
+            {projectsSection}
 
             <section id="cv">
                 <Home4 />
