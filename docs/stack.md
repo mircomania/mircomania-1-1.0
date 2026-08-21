@@ -4,12 +4,12 @@ Versiones resueltas por `package-lock.json`:
 
 | Área | Tecnología | Versión |
 | --- | --- | --- |
-| Framework | Next.js (App Router) | 16.2.10 |
+| Framework | Next.js (App Router) | 16.3.1 |
 | UI | React / React DOM | 19.2.4 |
 | Lenguaje | TypeScript | 5.9.3 |
 | Datos y Storage | `@supabase/supabase-js` | 2.110.7 |
 | Analytics | `@next/third-parties` | 16.3.0 |
-| Lint | ESLint / `eslint-config-next` | 9.39.4 / 16.2.10 |
+| Lint | ESLint / `eslint-config-next` | 9.39.4 / 16.3.1 |
 
 ## Implementación
 
