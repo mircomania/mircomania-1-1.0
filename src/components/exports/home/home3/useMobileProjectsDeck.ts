@@ -5,13 +5,15 @@ const SCROLL_OFFSET = 150;
 
 const ANIMATION_DURATION = 1000;
 const ANIMATION_STAGGER = 90;
+const CARD_FOCUSABLE_SELECTOR = 'a[href], button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])';
 
 type UseMobileProjectsDeckReturn = {
     isExpanded: boolean;
     isAnimating: boolean;
     deckRef: RefObject<HTMLDivElement | null>;
+    toggleButtonRef: RefObject<HTMLButtonElement | null>;
     setCardRef: (index: number, element: HTMLDivElement | null) => void;
-    handleOpen: () => Promise<void>;
+    handleOpen: (moveFocusToFirstProject?: boolean) => Promise<void>;
     handleClose: () => Promise<void>;
 };
 
@@ -62,6 +64,7 @@ export default function useMobileProjectsDeck(): UseMobileProjectsDeckReturn {
     const [isAnimating, setIsAnimating] = useState(false);
 
     const deckRef = useRef<HTMLDivElement | null>(null);
+    const toggleButtonRef = useRef<HTMLButtonElement | null>(null);
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     const setCardRef = (index: number, element: HTMLDivElement | null) => {
@@ -139,7 +142,7 @@ export default function useMobileProjectsDeck(): UseMobileProjectsDeckReturn {
         });
     };
 
-    const handleOpen = async (): Promise<void> => {
+    const handleOpen = async (moveFocusToFirstProject = false): Promise<void> => {
         if (isAnimating) return;
 
         setIsAnimating(true);
@@ -148,6 +151,14 @@ export default function useMobileProjectsDeck(): UseMobileProjectsDeckReturn {
             await animateLayoutChange(true);
         } finally {
             setIsAnimating(false);
+
+            if (moveFocusToFirstProject) {
+                requestAnimationFrame(() => {
+                    const firstProjectAction = cardRefs.current[0]?.querySelector<HTMLElement>(CARD_FOCUSABLE_SELECTOR);
+
+                    (firstProjectAction ?? toggleButtonRef.current)?.focus();
+                });
+            }
         }
     };
 
@@ -184,6 +195,12 @@ export default function useMobileProjectsDeck(): UseMobileProjectsDeckReturn {
             });
         } finally {
             setIsAnimating(false);
+
+            requestAnimationFrame(() => {
+                toggleButtonRef.current?.focus({
+                    preventScroll: true,
+                });
+            });
         }
     };
 
@@ -191,6 +208,7 @@ export default function useMobileProjectsDeck(): UseMobileProjectsDeckReturn {
         isExpanded,
         isAnimating,
         deckRef,
+        toggleButtonRef,
         setCardRef,
         handleOpen,
         handleClose,

@@ -2,6 +2,15 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+const FOCUSABLE_SELECTOR =
+    'a[href], button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])';
+
+function getFocusableElements(container: HTMLElement): HTMLElement[] {
+    return Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter((element) => {
+        return !element.matches(':disabled') && element.tabIndex >= 0 && element.getAttribute('aria-hidden') !== 'true' && element.getClientRects().length > 0;
+    });
+}
+
 export function useBurgerMenu() {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -20,6 +29,14 @@ export function useBurgerMenu() {
     useEffect(() => {
         if (!isOpen) return;
 
+        const focusFirstElementFrame = requestAnimationFrame(() => {
+            const panel = panelRef.current;
+
+            if (!panel) return;
+
+            getFocusableElements(panel)[0]?.focus();
+        });
+
         const handlePointerDown = (event: PointerEvent): void => {
             const target = event.target;
 
@@ -34,16 +51,46 @@ export function useBurgerMenu() {
         };
 
         const handleKeyDown = (event: KeyboardEvent): void => {
-            if (event.key !== 'Escape') return;
+            if (event.key === 'Escape') {
+                triggerRef.current?.focus();
+                closeMenu();
+                return;
+            }
 
-            triggerRef.current?.focus();
-            closeMenu();
+            if (event.key !== 'Tab') return;
+
+            const panel = panelRef.current;
+
+            if (!panel) return;
+
+            const focusableElements = getFocusableElements(panel);
+
+            if (focusableElements.length === 0) {
+                event.preventDefault();
+                return;
+            }
+
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements.at(-1);
+            const activeElement = document.activeElement;
+
+            if (event.shiftKey && (activeElement === firstElement || !panel.contains(activeElement))) {
+                event.preventDefault();
+                lastElement?.focus();
+                return;
+            }
+
+            if (!event.shiftKey && (activeElement === lastElement || !panel.contains(activeElement))) {
+                event.preventDefault();
+                firstElement.focus();
+            }
         };
 
         document.addEventListener('pointerdown', handlePointerDown);
         document.addEventListener('keydown', handleKeyDown);
 
         return () => {
+            cancelAnimationFrame(focusFirstElementFrame);
             document.removeEventListener('pointerdown', handlePointerDown);
             document.removeEventListener('keydown', handleKeyDown);
         };
