@@ -1,15 +1,31 @@
+import { checkContactRateLimit } from '@/services/contacts/checkContactRateLimit';
 import { createContact } from '@/services/contacts/createContact';
 
 import type { ContactFormPayload } from '@/types/contact';
 
 import { validateContactPayload } from '@/components/exports/form/validateContact';
 
+import { getClientIdentity } from '@/utils/getClientIdentity';
 import { getRequestPath } from '@/utils/getRequestPath';
+import { hashRateLimitIdentifier } from '@/utils/hashRateLimitIdentifier';
+import { readLimitedJsonBody } from '@/utils/readLimitedJsonBody';
 
 const MAX_REQUEST_SIZE = 10_000;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function serviceUnavailableResponse(): Response {
+    return Response.json(
+        {
+            success: false,
+            message: 'El servicio no está disponible temporalmente. Inténtalo nuevamente más tarde.',
+        },
+        {
+            status: 503,
+        },
+    );
 }
 
 export async function POST(request: Request): Promise<Response> {
@@ -40,11 +56,54 @@ export async function POST(request: Request): Promise<Response> {
         );
     }
 
-    let rawPayload: unknown;
+    const clientIdentity = getClientIdentity(request);
 
-    try {
-        rawPayload = await request.json();
-    } catch {
+    if (!clientIdentity.success) {
+        return serviceUnavailableResponse();
+    }
+
+    const identifierHash = hashRateLimitIdentifier(clientIdentity.identity);
+
+    if (!identifierHash.success) {
+        return serviceUnavailableResponse();
+    }
+
+    const rateLimit = await checkContactRateLimit(identifierHash.identifierHash);
+
+    if (rateLimit.status === 'error') {
+        return serviceUnavailableResponse();
+    }
+
+    if (rateLimit.status === 'blocked') {
+        return Response.json(
+            {
+                success: false,
+                message: 'Has realizado demasiados intentos. Inténtalo nuevamente más tarde.',
+            },
+            {
+                status: 429,
+                headers: {
+                    'Retry-After': String(rateLimit.retryAfterSeconds),
+                },
+            },
+        );
+    }
+
+    const bodyResult = await readLimitedJsonBody(request, MAX_REQUEST_SIZE);
+
+    if (!bodyResult.success && bodyResult.error === 'body_too_large') {
+        return Response.json(
+            {
+                success: false,
+                message: 'La solicitud excede el tamaño permitido.',
+            },
+            {
+                status: 413,
+            },
+        );
+    }
+
+    if (!bodyResult.success) {
         return Response.json(
             {
                 success: false,
@@ -55,6 +114,8 @@ export async function POST(request: Request): Promise<Response> {
             },
         );
     }
+
+    const rawPayload = bodyResult.data;
 
     if (!isRecord(rawPayload)) {
         return Response.json(
