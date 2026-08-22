@@ -27,6 +27,22 @@ export function useBurgerMenu() {
     }, []);
 
     useEffect(() => {
+        const desktopQuery = window.matchMedia('(min-width: 992px)');
+
+        const handleDesktopChange = (event: MediaQueryListEvent): void => {
+            if (event.matches) {
+                closeMenu();
+            }
+        };
+
+        desktopQuery.addEventListener('change', handleDesktopChange);
+
+        return () => {
+            desktopQuery.removeEventListener('change', handleDesktopChange);
+        };
+    }, [closeMenu]);
+
+    useEffect(() => {
         if (!isOpen) return;
 
         const focusFirstElementFrame = requestAnimationFrame(() => {

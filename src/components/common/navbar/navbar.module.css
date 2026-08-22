@@ -123,6 +123,11 @@
     transition: transform 180ms ease;
 }
 
+.desktopMenu,
+.desktopContactButton {
+    display: none;
+}
+
 /* ==========================================================================
     Burger button
    ========================================================================== */
@@ -130,6 +135,7 @@
 .burgerMenu {
     position: relative;
     z-index: 3;
+    display: block;
 }
 
 .menuButton {
@@ -296,6 +302,11 @@ Desktop
    ========================================================================== */
 
 @media (min-width: 992px) {
+    .burgerMenu,
+    .mobileMenuPanel {
+        display: none;
+    }
+
     .header {
         padding-inline: 24px;
     }

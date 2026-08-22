@@ -1,6 +1,5 @@
 'use client';
 
-import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useNavbarScroll } from '@/components/common/navbar/useNavbarScroll';
 
 import { ROUTES } from '@/constants/routes';
@@ -17,7 +16,6 @@ import { navbarMenu } from './navbarMenu';
 import styles from './navbar.module.css';
 
 export function Navbar() {
-    const isMobile = useMediaQuery('(max-width: 991px)');
     const scrollState = useNavbarScroll();
 
     return (
@@ -27,24 +25,20 @@ export function Navbar() {
                     <Logo className={styles.logo} />
                 </SmartLink>
 
-                {!isMobile && (
-                    <ul className={styles.desktopMenu}>
-                        {navbarMenu.map((item) => (
-                            <li key={item.id}>
-                                <NavItems item={item} className={styles.navLink} />
-                            </li>
-                        ))}
-                    </ul>
-                )}
+                <ul className={styles.desktopMenu}>
+                    {navbarMenu.map((item) => (
+                        <li key={item.id}>
+                            <NavItems item={item} className={styles.navLink} />
+                        </li>
+                    ))}
+                </ul>
 
-                {!isMobile && (
-                    <SmartLink href={ROUTES.contact} className={styles.desktopContactButton} dataCta="navbar-contacto-btn">
-                        <span>Contacto</span>
-                        <Arrow className={styles.contactArrow} />
-                    </SmartLink>
-                )}
+                <SmartLink href={ROUTES.contact} className={styles.desktopContactButton} dataCta="navbar-contacto-btn">
+                    <span>Contacto</span>
+                    <Arrow className={styles.contactArrow} />
+                </SmartLink>
 
-                {isMobile && <BurgerMenu />}
+                <BurgerMenu />
             </nav>
         </header>
     );
