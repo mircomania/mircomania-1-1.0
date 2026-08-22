@@ -20,6 +20,7 @@ export default function RouteFocusManager() {
             return;
         }
 
+        main.classList.add('programmatic-focus-target');
         main.tabIndex = -1;
         main.focus({
             preventScroll: true,

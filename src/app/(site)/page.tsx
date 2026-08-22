@@ -42,13 +42,13 @@ export default async function Home() {
 
     if (projectsLoadFailed) {
         projectsSection = (
-            <section id="proyectos">
+            <section id="proyectos" className="programmatic-focus-target" tabIndex={-1}>
                 <ProjectsLoadError />
             </section>
         );
     } else if (projects.length > 0) {
         projectsSection = (
-            <section id="proyectos">
+            <section id="proyectos" className="programmatic-focus-target" tabIndex={-1}>
                 <Home3 projects={projects} />
             </section>
         );
@@ -60,13 +60,13 @@ export default async function Home() {
 
             <Home1 />
 
-            <section id="servicios">
+            <section id="servicios" className="programmatic-focus-target" tabIndex={-1}>
                 <Home2 />
             </section>
 
             {projectsSection}
 
-            <section id="cv">
+            <section id="cv" className="programmatic-focus-target" tabIndex={-1}>
                 <Home4 />
             </section>
 

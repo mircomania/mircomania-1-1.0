@@ -27,3 +27,7 @@ input:-webkit-autofill:active {
 ::-webkit-scrollbar-thumb:hover {
     background: #777;
 }
+
+.programmatic-focus-target:focus {
+    outline: none;
+}
