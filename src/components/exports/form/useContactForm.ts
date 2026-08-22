@@ -22,6 +22,20 @@ const INITIAL_VALUES: ContactFormValues = {
 type ContactTextField = 'name' | 'email' | 'message' | 'website';
 
 const CONTACT_FIELD_ORDER: (keyof ContactFieldErrors)[] = ['name', 'email', 'contactType', 'message', 'privacyAccepted'];
+const CONTACT_TIMEOUT_MESSAGE =
+    'La respuesta está tardando más de lo esperado y no pudimos confirmar si el mensaje fue recibido. Espera unos minutos antes de intentarlo nuevamente.';
+const CONTACT_NETWORK_ERROR_MESSAGE =
+    'Se perdió la conexión y no pudimos confirmar si el mensaje fue recibido. Espera unos minutos antes de intentarlo nuevamente.';
+const CONTACT_UNEXPECTED_ERROR_MESSAGE =
+    'Ocurrió un problema inesperado y no pudimos confirmar si el mensaje fue recibido. Espera unos minutos antes de intentarlo nuevamente.';
+
+function isTimeoutError(error: unknown): boolean {
+    return error instanceof DOMException && error.name === 'TimeoutError';
+}
+
+function isNetworkError(error: unknown): boolean {
+    return error instanceof TypeError || (error instanceof DOMException && error.name === 'NetworkError');
+}
 
 function focusFirstInvalidField(form: HTMLFormElement, fieldErrors: ContactFieldErrors): void {
     const firstInvalidField = CONTACT_FIELD_ORDER.find((field) => Boolean(fieldErrors[field]));
@@ -164,7 +178,13 @@ export function useContactForm(): UseContactFormReturn {
         } catch (error: unknown) {
             console.error('Error enviando formulario de contacto:', error);
 
-            setSubmitError('No fue posible conectar con el servidor. Inténtalo nuevamente.');
+            if (isTimeoutError(error)) {
+                setSubmitError(CONTACT_TIMEOUT_MESSAGE);
+            } else if (isNetworkError(error)) {
+                setSubmitError(CONTACT_NETWORK_ERROR_MESSAGE);
+            } else {
+                setSubmitError(CONTACT_UNEXPECTED_ERROR_MESSAGE);
+            }
         } finally {
             setIsSubmitting(false);
         }

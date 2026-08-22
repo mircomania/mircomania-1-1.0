@@ -24,8 +24,22 @@ function readUtmParamsFromUrl(): UtmParams {
     };
 }
 
+function removeStoredUtmParams(): void {
+    try {
+        localStorage.removeItem(STORAGE_KEY);
+    } catch {
+        // La persistencia de UTM es opcional.
+    }
+}
+
 function readStoredUtmParams(): UtmParams {
-    const storedValue = localStorage.getItem(STORAGE_KEY);
+    let storedValue: string | null;
+
+    try {
+        storedValue = localStorage.getItem(STORAGE_KEY);
+    } catch {
+        return EMPTY_UTM_PARAMS;
+    }
 
     if (!storedValue) {
         return EMPTY_UTM_PARAMS;
@@ -40,14 +54,14 @@ function readStoredUtmParams(): UtmParams {
             typeof parsedValue.utmMedium !== 'string' ||
             typeof parsedValue.utmCampaign !== 'string'
         ) {
-            localStorage.removeItem(STORAGE_KEY);
+            removeStoredUtmParams();
             return EMPTY_UTM_PARAMS;
         }
 
         const ageInDays = (Date.now() - parsedValue.timestamp) / MILLISECONDS_PER_DAY;
 
         if (ageInDays > UTM_EXPIRATION_DAYS) {
-            localStorage.removeItem(STORAGE_KEY);
+            removeStoredUtmParams();
             return EMPTY_UTM_PARAMS;
         }
 
@@ -57,7 +71,7 @@ function readStoredUtmParams(): UtmParams {
             utmCampaign: parsedValue.utmCampaign,
         };
     } catch {
-        localStorage.removeItem(STORAGE_KEY);
+        removeStoredUtmParams();
         return EMPTY_UTM_PARAMS;
     }
 }
@@ -71,7 +85,11 @@ export function getUtmParams(): UtmParams {
             timestamp: Date.now(),
         };
 
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(storedParams));
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(storedParams));
+        } catch {
+            // Las UTM de la URL siguen siendo válidas aunque no puedan persistirse.
+        }
 
         return urlUtmParams;
     }
