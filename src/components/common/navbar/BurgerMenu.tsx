@@ -1,5 +1,6 @@
 'use client';
 
+import { useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 
 import { ROUTES } from '@/constants/routes';
@@ -15,8 +16,18 @@ import { SmartLink } from '@/utils/SmartLink';
 
 import styles from './navbar.module.css';
 
+function useIsMounted(): boolean {
+    return useSyncExternalStore(
+        () => () => {},
+        () => true,
+        () => false,
+    );
+}
+
 export function BurgerMenu() {
     const { isOpen, toggleMenu, closeMenu, menuRef, panelRef, triggerRef } = useBurgerMenu();
+
+    const isMounted = useIsMounted();
 
     const menuButtonLabel = isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación';
 
@@ -51,7 +62,7 @@ export function BurgerMenu() {
                 data-link={isOpen ? 'burger-menu-close' : 'burger-menu-open'}
             />
 
-            {typeof document !== 'undefined' && createPortal(mobilePanel, document.body)}
+            {isMounted && createPortal(mobilePanel, document.body)}
         </div>
     );
 }
