@@ -6,6 +6,7 @@ import { SITE_URL } from '@/constants/routes';
 
 import { Footer } from '@/components/common/footer/Footer';
 import { Navbar } from '@/components/common/navbar/Navbar';
+import RouteFocusManager from '@/utils/RouteFocusManager';
 
 import './globals.css';
 
@@ -34,6 +35,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     return (
         <html lang="es" data-scroll-behavior="smooth">
             <body className={`${montserrat.variable} ${inter.variable} ${spaceGrotesk.variable}`}>
+                <RouteFocusManager />
+
                 <Navbar />
 
                 {children}

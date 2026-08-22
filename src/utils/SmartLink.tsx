@@ -27,6 +27,7 @@ export function SmartLink({ href, children, dataCta, dataLink, onClick, draggabl
 
         const targetUrl = new URL(href, window.location.origin);
         const isSamePath = pathname === targetUrl.pathname;
+        const scrollBehavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
 
         if (!isSamePath) return;
 
@@ -35,7 +36,7 @@ export function SmartLink({ href, children, dataCta, dataLink, onClick, draggabl
         if (!targetUrl.hash) {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth',
+                behavior: scrollBehavior,
             });
 
             return;
@@ -48,8 +49,12 @@ export function SmartLink({ href, children, dataCta, dataLink, onClick, draggabl
         if (!targetElement) return;
 
         targetElement.scrollIntoView({
-            behavior: 'smooth',
+            behavior: scrollBehavior,
             block: 'start',
+        });
+
+        targetElement.focus({
+            preventScroll: true,
         });
 
         window.history.replaceState(null, '', `${targetUrl.pathname}${targetUrl.search}${targetUrl.hash}`);

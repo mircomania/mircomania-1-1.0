@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { RefObject } from 'react';
 
 const SCROLL_OFFSET = 150;
@@ -66,6 +66,18 @@ export default function useMobileProjectsDeck(): UseMobileProjectsDeckReturn {
     const deckRef = useRef<HTMLDivElement | null>(null);
     const toggleButtonRef = useRef<HTMLButtonElement | null>(null);
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const shouldRestoreFocusRef = useRef(false);
+
+    useEffect(() => {
+        if (isExpanded || isAnimating || !shouldRestoreFocusRef.current) {
+            return;
+        }
+
+        shouldRestoreFocusRef.current = false;
+        toggleButtonRef.current?.focus({
+            preventScroll: true,
+        });
+    }, [isExpanded, isAnimating]);
 
     const setCardRef = (index: number, element: HTMLDivElement | null) => {
         cardRefs.current[index] = element;
@@ -193,14 +205,10 @@ export default function useMobileProjectsDeck(): UseMobileProjectsDeckReturn {
                 top: targetTop,
                 behavior: 'auto',
             });
+
+            shouldRestoreFocusRef.current = true;
         } finally {
             setIsAnimating(false);
-
-            requestAnimationFrame(() => {
-                toggleButtonRef.current?.focus({
-                    preventScroll: true,
-                });
-            });
         }
     };
 
