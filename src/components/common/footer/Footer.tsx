@@ -21,7 +21,7 @@ export const Footer = () => {
                             href={ROUTES.home}
                             className={styles.logoLink}
                             aria-label="Ir al inicio de Mircomania"
-                            dataLink="footer-incio-icon"
+                            dataLink="footer-inicio-icon"
                         >
                             <Logo className={styles.logo} />
 

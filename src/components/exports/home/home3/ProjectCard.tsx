@@ -39,13 +39,13 @@ export default function ProjectCard({ project }: Readonly<Props>) {
                 {(project.demoUrl || project.repositoryUrl) && (
                     <div className={styles.cardActions}>
                         {project.demoUrl && (
-                            <ButtonLink href={project.demoUrl} variant="secondary" dataLink={`"proyectos-demo-link-"${project.slug}`}>
+                            <ButtonLink href={project.demoUrl} variant="secondary" dataLink={`proyectos-demo-link-${project.slug}`}>
                                 Ver proyecto
                             </ButtonLink>
                         )}
 
                         {project.repositoryUrl && (
-                            <ButtonLink href={project.repositoryUrl} variant="secondary" dataLink={`"proyectos-github-link-"${project.slug}`}>
+                            <ButtonLink href={project.repositoryUrl} variant="secondary" dataLink={`proyectos-github-link-${project.slug}`}>
                                 Repositorio
                             </ButtonLink>
                         )}
