@@ -52,16 +52,17 @@
 - [x] Analytics
 - [x] Google Ads Investigacion
 - [ ] Configuracion para recibir leads por correo o por algun lado. (a definir)
-- [ ] Revision general copilot (SEO, estructura, buenas practicas, seguridad, optimizacion)
+- [x] Revision general copilot (SEO, estructura, buenas practicas, seguridad, optimizacion)
+- [ ] estandarizacion de diseño (focus, colores, botones, iconos)
 
 ---
 
 ## v1.2
 
-- [ ] FAQ
 - [ ] Página de servicios
 - [ ] Página de proyectos
 - [ ] Página del CV
+- [ ] FAQ
 
 ---
 
@@ -80,7 +81,7 @@
 
 - Boton de CV en ingles y español para la seccion home 4
 
-- Hacer un sistema de defensa medio/fuerte contra bots de formulario, no porque crea que mircomania es un sitio de interes, sino que al ser el sitio web de un dev full stack, quiero que cumpla estadares altos, para que el sitio web sea interesante y completo para usuarios casuales, reculatadores, clientes y programadores
+-
 
 - ***
 
@@ -94,10 +95,10 @@
 
 ## Deuda técnica
 
-- Revisar y ordenar diseño en general (fuentes, colores, iconos)
-
-- Cambiar el display none de home3 en las cards movile y desktop por algo mas funcional.
-
 - Hacer estilos reutilizables para SmartLink, similar a ButtonLink
+
+-
+
+-
 
 - ***

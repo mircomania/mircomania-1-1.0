@@ -155,3 +155,21 @@
 75.- esto nos lleva a registrar y desde ahora manejar, las modificaciones estructurales de supabase con "migraciones" desde el CLI de SUPABASE, instalado de manera local. las migraciones son archivos SQL, que sirven como registro util de las modificaciones de la base de datos, que quiere decir utiles, que son ejecutables, con estos archivos se puede reconstruir la base de datos desde 0, siguiendo cada migracion, lo que tambien hace que sirven como archivos de test para implementaciones deseables, sin arriesgar hacer un cambio irreversible.
 
 76.- pasamos a revisar el resto de la auditoria.
+
+77.- implementamos rate limit de 5 envios cada 10 minutos
+
+78.- Se mejora el GET para traer los proyectos desde supabase, limpiando la imagen mobil y solo dejando una, ademas se establece como permanente la estructura de la seccion home 3 (porque adelante existira /proyectos y muy posiblemente esa seccion cambie), por lo que se elimina de la deuda tecnica y se mantiene con display none.
+
+79.- se mejora completamente la accesibilidad de navegacion por todo el sitio con TAB, haciendo test completos de recorrido. Algo que se va a corregir en la etapa de "estadarizacion de diseño" sera el diseño del focus del tab, ya que son casi todos diseños distintos, se estandarizara, sobre todo el color.
+
+80.- se remplaza el hook useMediaQueri en el navbar por un simple display none, esto para mejorar la hidratacion del sitio.
+
+81.- relacionado al paso anterior, nos damos cuenta de que useMediaQueri siempre parte false, por lo que el componente hidratara el componente contrario al declarado en el primer request (isMobil, isDesktop), debido a esto hacemos una modificacion a Home2 cambiando isMobile por isDesktop, con la intencion de que redenrize primero la version mobil.
+
+82.- se integra timeout al formulario de 20 segundos.
+
+83.- se implementa vitest, nueva libreria que nos ayudara a hacer test automaticos antes de cada build "npm test"
+
+84.- se actualiza toda la documentacion, agent y readme.
+
+85.- se vuelve a sobreauditar y damos por terminada la auditoria de la version 1 del sitio. Cabe destacar que todas las mejoras/ajustes fueron testeados, ahora solo falta el test final en produccion para darlo 100% cerrado.

@@ -38,7 +38,7 @@ Styling uses global CSS and CSS Modules. Supabase provides PostgreSQL persistenc
 
 ## Requirements
 
-- Node.js and npm. The repository does not pin an exact Node.js version; use a release compatible with the installed Next.js version.
+- Node.js >= 22.0.0 and npm.
 - Access to a Supabase project with the versioned schema and Storage configuration when using data-backed features.
 - Supabase CLI only when working on local database state or migrations.
 
