@@ -64,4 +64,10 @@ Los estilos se escriben con base móvil. Los breakpoints presentes son `576px`, 
 
 ## Movimiento
 
-Hay manejo de `prefers-reduced-motion` en el scroll global, botones compartidos, navbar, footer, privacidad, constelación, tarjetas, página 404, mazo móvil y planeta de partículas. La cobertura no es total: el fondo estrellado, el spinner y la estrella animada de `Home4` no tienen una desactivación efectiva propia en el código actual.
+Hay manejo de `prefers-reduced-motion` en el scroll global y `SmartLink`, botones compartidos, navbar, footer, privacidad, constelación, tarjetas, página 404, mazo móvil, planeta de partículas y estrella de `Home4`. Los hooks evitan scroll o animaciones Web Animations cuando corresponde, y el planeta detiene su bucle de canvas.
+
+La cobertura no es total: las capas de `StarryBackground` y el spinner global continúan animándose sin una regla propia de movimiento reducido.
+
+## Foco y estados
+
+Navbar, footer, controles de formulario, estrellas de servicios y botones compartidos definen estados de `:focus-visible`. Los campos inválidos tienen borde u outline específico; los estados de error y éxito usan colores definidos directamente en el CSS del formulario. El repositorio permite verificar estos valores y selectores, pero no contiene mediciones de ratio de contraste.

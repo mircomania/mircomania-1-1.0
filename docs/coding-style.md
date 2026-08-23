@@ -48,8 +48,12 @@ El código evita `any` y utiliza `unknown` para datos de entrada no validados, c
 Después de cambiar código, los comandos disponibles son:
 
 ```bash
+npm test
+npm run test:watch
 npm run lint
 npm run build
 ```
 
-El repositorio no define actualmente un script ni archivos de pruebas automatizadas.
+Los tests actuales son archivos `*.test.ts` colocados junto al módulo probado, usan imports explícitos de Vitest y se ejecutan en entorno Node. Las suites unitarias controlan fronteras externas concretas con `vi.mock`; la integración de `/api/contact` mantiene reales `Request`, `Response`, parsing, validación, identidad y HMAC, y mockea solo los servicios que salen hacia Supabase.
+
+La suite cubre la lógica crítica del contacto, pero el comportamiento visual, responsive y de interacción continúa requiriendo QA manual.

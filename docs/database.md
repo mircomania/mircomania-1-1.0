@@ -1,6 +1,6 @@
 # Persistencia en Supabase
 
-El esquema `public` está versionado a partir del baseline `supabase/migrations/20260820001640_initial_remote_schema.sql`. Este documento resume ese SQL, `supabase/config.toml` y las operaciones visibles en la aplicación; no sustituye a las migrations.
+El estado estructural versionado se compone del baseline `supabase/migrations/20260820001640_initial_remote_schema.sql`, la migration `20260821002738_add_contact_rate_limit.sql` y `supabase/config.toml`. Este documento resume lo necesario para mantenerlos; no sustituye al SQL.
 
 ## Clientes
 
@@ -48,7 +48,15 @@ Almacena `name`, `email`, `contact_type`, `message`, consentimiento, estado, ori
 - `status`: `new`, `read`, `replied`, `closed` o `spam`;
 - `utm_source` y `utm_medium`: hasta 150 caracteres; `utm_campaign`: hasta 200.
 
-El índice `(status, created_at DESC)` facilita la gestión de la bandeja. El formulario limita el input de correo a 254 caracteres, igual que PostgreSQL; sin embargo, `validateContactPayload` todavía admite hasta 320, por lo que un payload directo de 255 a 320 caracteres puede superar la validación de la API y ser rechazado por la base de datos.
+El índice `(status, created_at DESC)` facilita la gestión de la bandeja. Los límites de aplicación y PostgreSQL están alineados: correo hasta 254 caracteres y mensaje hasta 3000, siempre después de `trim`.
+
+## Rate limit en el schema `private`
+
+La segunda migration crea `private.contact_rate_limits`, fuera de los schemas expuestos por la Data API. Su clave primaria es `identifier_hash`, un HMAC-SHA256 hexadecimal de 64 caracteres; también conserva el inicio de ventana, contador y fecha de actualización. El contador debe ser positivo.
+
+`public.check_contact_rate_limit(text)` es una función `SECURITY DEFINER` con `search_path` vacío que realiza la actualización atómica de la tabla. Implementa una ventana fija de diez minutos y permite como máximo cinco solicitudes por identificador; devuelve `allowed`, `remaining` y `retry_after_seconds`.
+
+La aplicación no accede directamente a `private.contact_rate_limits`: la tabla revoca permisos a `PUBLIC`, `anon`, `authenticated` y `service_role`. La función revoca ejecución pública y para `anon`/`authenticated`, y concede `EXECUTE` solo a `service_role`.
 
 ## RLS, policies y permisos
 
@@ -66,9 +74,20 @@ Los roles públicos no tienen permisos de escritura sobre estas tablas. El basel
 
 `public.rls_auto_enable()` es una función `SECURITY DEFINER` usada por el event trigger `ensure_rls` para habilitar RLS al crear tablas en `public`. Su ejecución está revocada para `PUBLIC` y no está concedida a `anon` ni `authenticated`; el baseline solo la concede a `postgres`.
 
+La función de rate limit y sus permisos se describen en la sección anterior. `private.contact_rate_limits` no depende de acceso público ni de una policy RLS: se aísla mediante schema privado, revocaciones y la RPC autorizada.
+
 ## Escritura del formulario
 
-`POST /api/contact` exige JSON, rechaza un `Content-Length` declarado superior a 10 000 bytes, descarta bots mediante honeypot y vuelve a validar los campos en el servidor. Solo conserva el path del `Referer` si pertenece al mismo host. Tras validar, `createContact` inserta con `status = 'new'`, `source = 'website'` y la fecha de aceptación de privacidad. El navegador nunca recibe `SUPABASE_SECRET_KEY`.
+`POST /api/contact` procesa la solicitud en este orden:
+
+1. exige `application/json` y rechaza tempranamente un `Content-Length` superior a 10 000 bytes;
+2. obtiene una IP válida del header confiable `!~Passenger-Client-Address` en producción; si no existe, falla cerrado;
+3. genera un HMAC-SHA256 con `RATE_LIMIT_SECRET` y consulta la RPC de rate limit, sin enviar la IP original a Supabase;
+4. lee el body mediante stream, suma bytes reales y solo decodifica UTF-8 y parsea JSON si no supera 10 000 bytes;
+5. exige un objeto plano, aplica honeypot y vuelve a validar los campos;
+6. conserva el path del `Referer` solo si pertenece al mismo host y llama a `createContact`.
+
+`createContact` inserta con `status = 'new'`, `source = 'website'` y la fecha de aceptación de privacidad. El navegador nunca recibe `SUPABASE_SECRET_KEY` ni la identidad utilizada por el rate limit.
 
 ## Storage
 
@@ -78,11 +97,11 @@ Los roles públicos no tienen permisos de escritura sobre estas tablas. El basel
 - límite por archivo de `5MiB`;
 - MIME types permitidos: `image/avif`, `image/webp`, `image/jpeg`, `video/webm` y `video/mp4`.
 
-Que el bucket sea público no concede escritura pública: no existen policies públicas de escritura en `storage.objects`. Los objetos reales almacenados en el bucket no forman parte del repositorio.
+Que el bucket sea público no concede escritura pública: el SQL versionado no define policies públicas de escritura en `storage.objects`. Los objetos reales almacenados en el bucket no forman parte del repositorio.
 
 ## Versionado y mantenimiento
 
-- `supabase/migrations/` contiene el baseline del esquema remoto y debe recibir las futuras modificaciones SQL: tablas, constraints, índices, RLS, policies, funciones, triggers y grants.
+- `supabase/migrations/` contiene el baseline del schema `public` y la migration que agrega el rate limit privado; debe recibir las futuras modificaciones SQL: schemas, tablas, constraints, índices, RLS, policies, funciones, triggers y grants.
 - `supabase/config.toml` describe configuración estructural versionable de Supabase, incluida la del bucket; debe mantenerse sincronizado con el estado estructural esperado.
 - Las filas de producción y los objetos reales de Storage son datos remotos, no migrations ni configuración versionada.
 - El vínculo de Supabase CLI con el proyecto remoto `mircomania-web` se conserva como estado local ignorado por Git.

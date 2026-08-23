@@ -50,7 +50,7 @@ npm run lint
 npm run build
 ```
 
-Do not consider a task finished if either command fails because of the changes made.
+Do not consider a task finished if any command fails because of the changes made.
 
 ## Scope
 
