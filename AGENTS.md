@@ -45,6 +45,7 @@ When documentation conflicts with the implementation, report the inconsistency i
 After code changes, when applicable run:
 
 ```bash
+npm test
 npm run lint
 npm run build
 ```
