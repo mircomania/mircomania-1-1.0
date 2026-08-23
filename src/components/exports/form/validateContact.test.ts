@@ -68,6 +68,15 @@ describe('validateContactPayload', () => {
     });
 
     it.each([
+        ['exactamente 2 caracteres', 'a'.repeat(2)],
+        ['exactamente 100 caracteres', 'a'.repeat(100)],
+    ])('acepta un nombre con %s', (_case, name) => {
+        const result = validateContactPayload(createValidPayload({ name }));
+
+        expect(result.success).toBe(true);
+    });
+
+    it.each([
         ['menos de 2 caracteres', 'a'],
         ['más de 100 caracteres', 'a'.repeat(101)],
     ])('rechaza un nombre con %s', (_case, name) => {
@@ -101,6 +110,15 @@ describe('validateContactPayload', () => {
         if (!result.success) {
             expect(result.errors.contactType).toBeDefined();
         }
+    });
+
+    it.each([
+        ['exactamente 10 caracteres', 'a'.repeat(10)],
+        ['exactamente 3000 caracteres', 'a'.repeat(3000)],
+    ])('acepta un mensaje con %s', (_case, message) => {
+        const result = validateContactPayload(createValidPayload({ message }));
+
+        expect(result.success).toBe(true);
     });
 
     it.each([
