@@ -51,14 +51,14 @@
 
 - [x] Analytics
 - [x] Google Ads Investigacion
-- [ ] Configuracion para recibir leads por correo o por algun lado. (a definir)
 - [x] Revision general copilot (SEO, estructura, buenas practicas, seguridad, optimizacion)
-- [ ] estandarizacion de diseño (focus, colores, botones, iconos)
+- [ ] Configuracion para recibir leads por correo o por algun lado. (a definir)
 
 ---
 
 ## v1.2
 
+- [ ] estandarizacion de diseño (focus, colores, botones, iconos)
 - [ ] Página de servicios
 - [ ] Página de proyectos
 - [ ] Página del CV

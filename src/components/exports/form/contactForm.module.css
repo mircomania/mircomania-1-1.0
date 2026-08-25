@@ -122,7 +122,7 @@
 .checkboxField input {
     width: 18px;
     height: 18px;
-    margin: 1px 0 0;
+    margin: 4px 0 0;
     accent-color: rgb(160 174 255);
     cursor: pointer;
 }

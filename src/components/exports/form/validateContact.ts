@@ -52,11 +52,11 @@ export function validateContactPayload(payload: ContactFormPayload): ContactVali
     }
 
     if (message.length < 10 || message.length > 3000) {
-        errors.message = 'El mensaje debe tener mínimo 10 caracteres.';
+        errors.message = 'Debe tener mínimo 10 caracteres.';
     }
 
     if (payload.privacyAccepted !== true) {
-        errors.privacyAccepted = 'Debes aceptar el tratamiento de tus datos.';
+        errors.privacyAccepted = 'Debes aceptar el tratamiento de datos.';
     }
 
     if (Object.keys(errors).length > 0) {

@@ -2,15 +2,15 @@
 
 Versiones resueltas por `package-lock.json`:
 
-| Área | Tecnología | Versión |
-| --- | --- | --- |
-| Framework | Next.js (App Router) | 16.3.1 |
-| UI | React / React DOM | 19.2.4 |
-| Lenguaje | TypeScript | 5.9.3 |
-| Datos y Storage | `@supabase/supabase-js` | 2.110.7 |
-| Analytics | `@next/third-parties` | 16.3.0 |
-| Lint | ESLint / `eslint-config-next` | 9.39.4 / 16.3.1 |
-| Tests | Vitest | 4.1.11 |
+| Área            | Tecnología                    | Versión         |
+| --------------- | ----------------------------- | --------------- |
+| Framework       | Next.js (App Router)          | 16.3.1          |
+| UI              | React / React DOM             | 19.2.4          |
+| Lenguaje        | TypeScript                    | 5.9.3           |
+| Datos y Storage | `@supabase/supabase-js`       | 2.110.7         |
+| Analytics       | `@next/third-parties`         | 16.3.0          |
+| Lint            | ESLint / `eslint-config-next` | 9.39.4 / 16.3.1 |
+| Tests           | Vitest                        | 4.1.11          |
 
 ## Implementación
 
@@ -25,6 +25,6 @@ Versiones resueltas por `package-lock.json`:
 
 ## Build
 
-Los scripts usan los CLI de Next.js, ESLint y Vitest. `next.config.ts` activa `output: 'standalone'` cuando `VERCEL` no está definida y deja el output predeterminado de Next.js bajo Vercel. El repositorio no fija una plataforma de hosting ni una versión de Node.js.
+Los scripts usan los CLI de Next.js, ESLint y Vitest. `next.config.ts` activa `output: 'standalone'` cuando `VERCEL` no está definida y deja el output predeterminado de Next.js bajo Vercel. El repositorio no fija una plataforma de hosting. `package.json` requiere Node.js >= 22.0.0.
 
 Vitest usa `vitest.config.mts`, entorno Node, alias `@` hacia `src` y un sustituto vacío de `server-only` exclusivo para tests. La suite cubre lógica crítica y el contrato HTTP de `/api/contact`; no representa cobertura total de la UI.
