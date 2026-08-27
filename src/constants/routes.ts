@@ -14,7 +14,8 @@ export const ANCHORS = {
 
 export const SOCIAL_LINKS = {
     emailContact: 'hola@mircomania.cl',
-    cv: '/documents/mirco-rodriguez-cv-es-2026.pdf',
+    cvEs: '/documents/mirco-rodriguez-cv-es-2026.pdf',
+    cvEn: '/documents/mirco-rodriguez-cv-en-2026.pdf',
     github: 'https://github.com/mircomania',
     linkedin: 'https://www.linkedin.com/in/mircorodriguez',
 } as const;

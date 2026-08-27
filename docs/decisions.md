@@ -173,3 +173,5 @@
 84.- se actualiza toda la documentacion, agent y readme.
 
 85.- se vuelve a sobreauditar y damos por terminada la auditoria de la version 1 del sitio. Cabe destacar que todas las mejoras/ajustes fueron testeados, ahora solo falta el test final en produccion para darlo 100% cerrado.
+
+86.- se lleva a cabo una idea futura "agregar boton de cv ingles a la seccion 4 home"

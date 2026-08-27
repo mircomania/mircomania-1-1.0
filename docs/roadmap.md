@@ -79,7 +79,7 @@
 
 - Hacer que el sitio web detecte el idioma (ingles/español) y muestre el texto en el susudicho idioma
 
-- Boton de CV en ingles y español para la seccion home 4
+-
 
 -
 
