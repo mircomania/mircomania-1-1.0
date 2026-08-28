@@ -98,9 +98,15 @@ ContactForm
   → objeto plano → honeypot → validación en servidor → referer same-origin
   → createContact
   → contact_messages mediante el cliente admin de Supabase
+  → Supabase Database Webhook (INSERT)
+  → Make / Watch Events
+  → SMTP hola@mircomania.cl
+  → mirco@mircomania.cl
 ```
 
 En producción la identidad solo acepta una IP válida del header de Passenger. Antes de llamar a Supabase se transforma mediante HMAC con `RATE_LIMIT_SECRET`, de modo que la RPC recibe un hash y no la IP original. La política persistente permite cinco solicitudes por identidad en una ventana fija de diez minutos y falla cerrado si no puede establecer identidad, hash o estado del rate limit.
+
+El escenario de Make está activo, procesa cada nuevo contacto inmediatamente y envía la notificación autenticándose por SMTP como `hola@mircomania.cl`. El flujo fue validado desde producción. El forwarder del hosting desde esa casilla hacia `mirco@mircomania.cl` es independiente y solo opera sobre mensajes enviados directamente por personas a `hola@mircomania.cl`.
 
 Los parámetros `utm_source`, `utm_medium` y `utm_campaign` se leen de la URL, se conservan hasta 15 días en `localStorage` y se envían con el formulario; todos los accesos a Storage toleran fallos. `useContactForm` distingue timeout, error de red y error inesperado sin afirmar que el mensaje no llegó cuando la entrega es incierta. Tras un envío confirmado se agrega `send_form` a `window.dataLayer`.
 

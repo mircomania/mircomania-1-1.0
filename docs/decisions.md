@@ -175,3 +175,7 @@
 85.- se vuelve a sobreauditar y damos por terminada la auditoria de la version 1 del sitio. Cabe destacar que todas las mejoras/ajustes fueron testeados, ahora solo falta el test final en produccion para darlo 100% cerrado.
 
 86.- se lleva a cabo una idea futura "agregar boton de cv ingles a la seccion 4 home"
+
+87.- se hace automatizacion con make. Se contacta supabase con make para que envie un correo desde hola@mircomania.cl a mirco@hotmail.com, cada vez que se agrega una nueva fila a la tabla de contact_messsages.
+
+88.- se da por terminada la version 1.1 del sitio web.

@@ -23,6 +23,10 @@ Versiones resueltas por `package-lock.json`:
 - Google Tag Manager mediante `GoogleTagManager` y `window.dataLayer`.
 - Metadata API, archivos de metadata, `robots.ts` y `sitemap.ts` para SEO.
 
+## Servicios externos
+
+- Make recibe los eventos de nuevos contactos desde Supabase mediante `Supabase / Watch Events` y envía las notificaciones por correo con `Email / Send an Email`.
+
 ## Build
 
 Los scripts usan los CLI de Next.js, ESLint y Vitest. `next.config.ts` activa `output: 'standalone'` cuando `VERCEL` no está definida y deja el output predeterminado de Next.js bajo Vercel. El repositorio no fija una plataforma de hosting. `package.json` requiere Node.js >= 22.0.0.

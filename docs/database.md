@@ -50,6 +50,8 @@ Almacena `name`, `email`, `contact_type`, `message`, consentimiento, estado, ori
 
 El índice `(status, created_at DESC)` facilita la gestión de la bandeja. Los límites de aplicación y PostgreSQL están alineados: correo hasta 254 caracteres y mensaje hasta 3000, siempre después de `trim`.
 
+Cada `INSERT` sobre `public.contact_messages` dispara un Database Webhook hacia Make; los eventos `UPDATE` y `DELETE` no forman parte de esta automatización. El webhook depende de la extensión `pg_net` habilitada y de la integración oficial Database Webhooks de Supabase.
+
 ## Rate limit en el schema `private`
 
 La segunda migration crea `private.contact_rate_limits`, fuera de los schemas expuestos por la Data API. Su clave primaria es `identifier_hash`, un HMAC-SHA256 hexadecimal de 64 caracteres; también conserva el inicio de ventana, contador y fecha de actualización. El contador debe ser positivo.

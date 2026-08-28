@@ -52,7 +52,7 @@
 - [x] Analytics
 - [x] Google Ads Investigacion
 - [x] Revision general copilot (SEO, estructura, buenas practicas, seguridad, optimizacion)
-- [ ] Configuracion para recibir leads por correo o por algun lado. (a definir)
+- [x] Notificaciones de nuevos leads por correo mediante Supabase + Make
 
 ---
 
