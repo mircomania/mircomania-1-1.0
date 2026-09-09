@@ -4,10 +4,10 @@ El estado estructural versionado se compone del baseline `supabase/migrations/20
 
 ## Clientes
 
-| Cliente | Credenciales | Uso actual |
-| --- | --- | --- |
-| `supabase` | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Lee proyectos publicados y genera URLs públicas de `project-media` desde módulos `server-only`. |
-| `supabaseAdmin` | `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SECRET_KEY` | Inserta mensajes de contacto desde código protegido con `server-only`; no persiste sesión ni renueva tokens. |
+| Cliente         | Credenciales                                                       | Uso actual                                                                                                   |
+| --------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `supabase`      | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Lee proyectos publicados y genera URLs públicas de `project-media` desde módulos `server-only`.              |
+| `supabaseAdmin` | `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SECRET_KEY`                  | Inserta mensajes de contacto desde código protegido con `server-only`; no persiste sesión ni renueva tokens. |
 
 La clave secreta solo se importa desde servicios de servidor. Tanto el cliente de lectura como el de escritura permanecen fuera del árbol cliente y las consultas de presentación permanecen fuera de los componentes.
 
@@ -91,6 +91,26 @@ La función de rate limit y sus permisos se describen en la sección anterior. `
 
 `createContact` inserta con `status = 'new'`, `source = 'website'` y la fecha de aceptación de privacidad. El navegador nunca recibe `SUPABASE_SECRET_KEY` ni la identidad utilizada por el rate limit.
 
+## Integraciones externas no versionadas
+
+Las integraciones externas conectadas a Supabase no forman parte de las migrations del proyecto.
+
+Aunque algunas de estas integraciones pueden crear extensiones, funciones, triggers u otros objetos internos dentro de PostgreSQL, se consideran infraestructura externa y no estructura propia del modelo de datos de la aplicación.
+
+Actualmente, la automatización de nuevos contactos requiere:
+
+- extensión `pg_net` habilitada;
+- integración oficial Database Webhooks de Supabase instalada;
+- Database Webhook configurado sobre `public.contact_messages`;
+- evento limitado a `INSERT`;
+- escenario externo en Make encargado de recibir el evento y enviar la notificación por correo.
+
+Esta configuración no se versiona mediante `supabase/migrations/` y debe recrearse manualmente si el proyecto se reconstruye o migra a una nueva instancia.
+
+La decisión busca mantener las migrations desacopladas de proveedores externos. Las migrations permanecen reservadas para la estructura, seguridad y lógica propia de la base de datos utilizada directamente por la aplicación.
+
+Si una integración externa se reemplaza o elimina, su configuración debe modificarse fuera del historial de migrations sin alterar innecesariamente el modelo estructural del proyecto.
+
 ## Storage
 
 `supabase/config.toml` versiona el bucket `project-media` con:
@@ -103,9 +123,14 @@ Que el bucket sea público no concede escritura pública: el SQL versionado no d
 
 ## Versionado y mantenimiento
 
-- `supabase/migrations/` contiene el baseline del schema `public` y la migration que agrega el rate limit privado; debe recibir las futuras modificaciones SQL: schemas, tablas, constraints, índices, RLS, policies, funciones, triggers y grants.
+- `supabase/migrations/` contiene el baseline del schema `public` y la migration que agrega el rate limit privado; debe recibir los cambios estructurales, de seguridad y de lógica propios del modelo de datos de la aplicación, incluyendo schemas, tablas, constraints, índices, RLS, policies, funciones, triggers y grants propios del proyecto.
+- Las integraciones externas, aunque utilicen capacidades internas de PostgreSQL o Supabase, no forman parte de las migrations salvo que pasen a convertirse explícitamente en lógica propia y estable del proyecto.
 - `supabase/config.toml` describe configuración estructural versionable de Supabase, incluida la del bucket; debe mantenerse sincronizado con el estado estructural esperado.
 - Las filas de producción y los objetos reales de Storage son datos remotos, no migrations ni configuración versionada.
 - El vínculo de Supabase CLI con el proyecto remoto `mircomania-web` se conserva como estado local ignorado por Git.
 
-Para un cambio estructural, crear una migration local, revisar su SQL y validarla antes de aplicarla. Cuando corresponda, ejecutar `supabase db push --dry-run` antes de `supabase db push`. No cambiar directamente el schema de producción salvo una intervención excepcional explícita; si el remoto y las migrations divergen, detenerse y reportar la diferencia antes de modificar cualquiera de los dos.
+Para un cambio estructural propio del proyecto, crear una migration local, revisar su SQL y validarla antes de aplicarla. Cuando corresponda, ejecutar `supabase db push --dry-run` antes de `supabase db push`.
+
+No cambiar directamente el schema de producción salvo una intervención excepcional explícita. Si el remoto y las migrations divergen en elementos que sí pertenecen al modelo estructural del proyecto, detenerse y reportar la diferencia antes de modificar cualquiera de los dos.
+
+Las diferencias originadas exclusivamente por integraciones externas configuradas fuera del sistema de migrations deben tratarse como configuración operativa y documentarse por separado.
