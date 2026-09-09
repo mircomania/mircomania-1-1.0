@@ -22,7 +22,7 @@ export default function Privacy1() {
                     </p>
 
                     <p className={styles.updated}>
-                        Última actualización: <time dateTime="2026-09-09">9 de septiembre de 2026</time> · Versión 1.1
+                        Última actualización: <time dateTime="2026-09-09">9 de septiembre de 2026</time> · Versión 1.2
                     </p>
                 </header>
 
@@ -169,22 +169,50 @@ export default function Privacy1() {
                         </p>
                     </section>
 
-                    {/* TODO: Definir una política operativa concreta de retención y eliminación para contactos, notificaciones e identificadores
-                        de seguridad, para cumplir completamente con el artículo 14 ter letra i) desde el 1 de diciembre de 2026. */}
+                    {/* TODO: Implementar la eliminación real de contactos conforme al máximo ordinario de 24 meses desde la última interacción,
+                        contemplando la eliminación anticipada y las excepciones con fundamento jurídico. */}
+                    {/* TODO: Definir e implementar una política específica de eliminación de identificadores seudonimizados, contadores de rate
+                        limit y registros técnicos de seguridad, con una retención breve y proporcional a su finalidad. */}
+                    {/* TODO: Contemplar en la implementación las copias y notificaciones existentes en Supabase, Make y sistemas de correo,
+                        cuando corresponda. Actualmente no existe eliminación automática sincronizada entre estos servicios. */}
                     <section className={styles.policySection}>
                         <h2>7. Conservación de la información</h2>
 
                         <p>
-                            La información se conservará únicamente durante el tiempo necesario para atender la solicitud, mantener comunicaciones
-                            relacionadas o cumplir obligaciones legales y de seguridad aplicables.
+                            Los datos personales vinculados a una consulta podrán conservarse por un máximo ordinario de 24 meses desde la última
+                            interacción relacionada con ella. Este plazo permite gestionar consultas, propuestas, oportunidades laborales, proyectos
+                            y colaboraciones que puedan desarrollarse durante un período prolongado, sin conservar los datos indefinidamente.
                         </p>
 
-                        <p>Cuando los datos dejen de ser necesarios para estas finalidades, podrán ser eliminados o anonimizados.</p>
+                        <p>
+                            Este criterio abarca el nombre, correo electrónico, tipo de contacto, mensaje, fecha de aceptación de privacidad, origen,
+                            ruta de la página y parámetros utm_source, utm_medium y utm_campaign cuando estén asociados a la consulta.
+                        </p>
+
+                        <p>
+                            No es necesario conservar los datos durante todo ese plazo: se eliminarán o anonimizarán cuando dejen de ser necesarios.
+                            También podrán eliminarse antes si solicitas válidamente su supresión o retiras tu consentimiento y no existe otra base
+                            jurídica para conservarlos. Solo podrán mantenerse por más tiempo cuando una obligación legal u otra base jurídica
+                            aplicable lo permita o requiera.
+                        </p>
 
                         <p>
                             Los UTM guardados en el navegador tienen una vigencia de 15 días: al volver a consultarlos, se descartan si han vencido.
-                            Puedes borrarlos desde los ajustes de almacenamiento de tu navegador. Este plazo no determina la conservación de los datos
-                            ya enviados con una consulta, sus notificaciones por correo ni los registros de seguridad.
+                            Puedes borrarlos desde los ajustes de almacenamiento de tu navegador. Esta regla corresponde al almacenamiento local
+                            previo al envío y es independiente de los UTM que se incorporen a un mensaje enviado, sujetos al plazo de la consulta.
+                        </p>
+
+                        <p>
+                            Los identificadores seudonimizados, contadores de solicitudes y registros técnicos de seguridad tienen una finalidad
+                            distinta. Su conservación se regirá por un criterio independiente, breve y proporcional a la protección del sitio; el
+                            máximo ordinario de 24 meses de las consultas no se aplica a estos datos.
+                        </p>
+
+                        <p>
+                            Cuando los datos de una consulta se procesen en proveedores como Supabase, Make o sistemas de correo, se procurará aplicar
+                            el mismo criterio de conservación a sus copias y notificaciones, o períodos menores cuando resulte posible. Esta política
+                            define el criterio de retención; su aplicación técnica está pendiente y todavía no existe eliminación automática
+                            sincronizada entre estos servicios.
                         </p>
                     </section>
 
