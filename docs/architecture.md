@@ -110,6 +110,19 @@ El escenario de Make está activo, procesa cada nuevo contacto inmediatamente y 
 
 Los parámetros `utm_source`, `utm_medium` y `utm_campaign` se leen de la URL, se conservan hasta 15 días en `localStorage` y se envían con el formulario; todos los accesos a Storage toleran fallos. `useContactForm` distingue timeout, error de red y error inesperado sin afirmar que el mensaje no llegó cuando la entrega es incierta. Tras un envío confirmado se agrega `send_form` a `window.dataLayer`.
 
+### Ciclo de vida de los contactos
+
+Supabase inicializa `last_interaction_at` con `now()` para cada contacto nuevo, aproximadamente igual a `created_at`; los contactos existentes se inicializaron desde `created_at`. El plazo ordinario máximo de retención es de 24 meses desde la última interacción relacionada con la consulta.
+
+Las interacciones posteriores se registran manualmente como `postgres` mediante `private.touch_contact_interaction(uuid)`. La función devuelve la nueva fecha, mantiene `created_at` y deja que el trigger existente actualice `updated_at`; si el contacto no existe, lanza una excepción. No hay sincronización automática con correo, CRM o Make para mantener esa fecha. Sin registro posterior, el plazo se cuenta desde la fecha inicial.
+
+Dos jobs internos de `pg_cron`, versionados en las migrations y ejecutados como `postgres`, aplican la limpieza diaria:
+
+- A las 03:15 UTC, `delete-stale-contact-rate-limits` ejecuta `private.delete_stale_contact_rate_limits()` para eliminar registros técnicos sin actualización durante más de 24 horas. La ventana operativa del rate limit sigue siendo de diez minutos.
+- A las 03:30 UTC, `delete-expired-contacts` ejecuta `private.delete_expired_contacts()` para eliminar contactos cuya `last_interaction_at` sea anterior a 24 meses.
+
+Las tres funciones privadas usan `SECURITY INVOKER` y ejecución restringida a `postgres`. La frecuencia diaria permite intencionalmente algunas horas adicionales hasta el siguiente ciclo exitoso. La limpieza afecta a Supabase; las copias de Make/correo se gestionan por separado y no hay un mecanismo automático de excepciones legales de retención. Los permisos, horarios y criterios exactos se detallan en [database.md](database.md).
+
 ## Navegación y foco
 
 `SmartLink` gestiona el scroll y el foco de anclas en la ruta actual, respetando `prefers-reduced-motion`. Tras un cambio de pathname, `RouteFocusManager` mueve el foco programático al `main`. El menú móvil y el mazo de proyectos mantienen su lógica de teclado y foco dentro de sus hooks; el detalle operativo está en [seo-accessibility.md](seo-accessibility.md).

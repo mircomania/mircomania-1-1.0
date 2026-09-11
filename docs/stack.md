@@ -18,6 +18,7 @@ Versiones resueltas por `package-lock.json`:
 - CSS global y CSS Modules, sin preprocesador ni framework de componentes.
 - Fuentes Montserrat, Inter y Space Grotesk mediante `next/font/google`.
 - Supabase para consultar `projects`/`project_media`, insertar en `contact_messages`, aplicar el rate limit mediante RPC y resolver URLs del bucket `project-media`.
+- PostgreSQL/Supabase Cron (`pg_cron`) para limpieza diaria de contactos vencidos y registros antiguos del rate limit, con funciones privadas y jobs versionados en migrations. La última interacción del contacto se registra manualmente mediante SQL; los detalles de retención y permisos están en [database.md](database.md).
 - `next/image` para portadas remotas de proyectos.
 - Canvas 2D, Web Animations API, `IntersectionObserver`, `matchMedia` y `localStorage` para las interacciones visuales y de formulario.
 - Google Tag Manager mediante `GoogleTagManager` y `window.dataLayer`.

@@ -8,6 +8,7 @@ Mircomania is a production portfolio website for presenting web development and 
 - Server-side project loading with hourly revalidation, validated presentation DTOs, and an isolated error state when the project query fails.
 - Contact form with shared client/server validation, a honeypot, UTM attribution, a 20-second client timeout, and the `send_form` Google Tag Manager event.
 - Hardened `POST /api/contact` flow with a real 10,000-byte body limit and a persistent Supabase rate limit of five requests per hashed identity in a fixed ten-minute window.
+- Daily Supabase Cron cleanup of contacts older than 24 months since their last recorded interaction and rate-limit records unchanged for over 24 hours. Later contact interactions are recorded manually through a restricted SQL function; email/Make copies are not automatically deleted.
 - Per-page metadata, Open Graph and Twitter images, `robots.txt`, `sitemap.xml`, and a custom not-found page.
 - Responsive keyboard-accessible navigation and interactions, route focus management, reduced-motion handling, and canvas-based visual effects.
 
@@ -101,6 +102,9 @@ Vitest runs TypeScript tests in a Node environment using `vitest.config.mts`. Th
 
 - `supabase/migrations/20260820001640_initial_remote_schema.sql` is the versioned baseline for the current public schema.
 - `supabase/migrations/20260821002738_add_contact_rate_limit.sql` adds the private persistent rate-limit table and its restricted RPC.
+- `supabase/migrations/20260909214742_add_data_retention.sql` adds `last_interaction_at`, private cleanup functions, indexes, and the daily rate-limit cleanup job.
+- `supabase/migrations/20260911033436_add_touch_contact_interaction.sql` adds manual interaction tracking through `private.touch_contact_interaction(uuid)`, restricted to `postgres`.
+- `supabase/migrations/20260911040426_schedule_expired_contact_cleanup.sql` schedules expired-contact cleanup daily at 03:30 UTC; rate-limit cleanup runs at 03:15 UTC.
 - Future structural database changes must be added under `supabase/migrations/`, reviewed as SQL, and checked with `supabase db push --dry-run` when applicable before `supabase db push`.
 - `supabase/config.toml` versions local structural configuration, including the public `project-media` bucket, its 5 MiB limit, and allowed media types.
 - Migrations and configuration describe structure; production rows and stored media files are not part of this repository.

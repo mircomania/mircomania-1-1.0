@@ -79,7 +79,7 @@
 
 - Hacer que el sitio web detecte el idioma (ingles/español) y muestre el texto en el susudicho idioma
 
--
+- Hacer automatizacion para que la ultima interaccion con el contacto/cliente se actualice sola en supabase y no de forma manual (utilizar make que ya esta en flujo actual)
 
 -
 

@@ -1,6 +1,14 @@
 # Persistencia en Supabase
 
-El estado estructural versionado se compone del baseline `supabase/migrations/20260820001640_initial_remote_schema.sql`, la migration `20260821002738_add_contact_rate_limit.sql` y `supabase/config.toml`. Este documento resume lo necesario para mantenerlos; no sustituye al SQL.
+El estado estructural se define en `supabase/config.toml` y las siguientes migrations bajo `supabase/migrations/`:
+
+- `20260820001640_initial_remote_schema.sql`: baseline del schema público.
+- `20260821002738_add_contact_rate_limit.sql`: rate limit privado y RPC.
+- `20260909214742_add_data_retention.sql`: última interacción, funciones de limpieza, índices y Cron del rate limit.
+- `20260911033436_add_touch_contact_interaction.sql`: registro manual de nuevas interacciones.
+- `20260911040426_schedule_expired_contact_cleanup.sql`: Cron de eliminación de contactos vencidos.
+
+Este documento resume lo necesario para mantenerlos; no sustituye al SQL.
 
 ## Clientes
 
@@ -50,6 +58,8 @@ Almacena `name`, `email`, `contact_type`, `message`, consentimiento, estado, ori
 
 El índice `(status, created_at DESC)` facilita la gestión de la bandeja. Los límites de aplicación y PostgreSQL están alineados: correo hasta 254 caracteres y mensaje hasta 3000, siempre después de `trim`.
 
+`last_interaction_at timestamptz NOT NULL DEFAULT now()` determina el inicio del plazo de retención. La migration inicializó las filas existentes con `last_interaction_at = created_at`, preservando `updated_at` durante ese backfill. En contactos nuevos, ambos valores iniciales son aproximadamente iguales. El índice `contact_messages_last_interaction_idx` facilita la búsqueda y eliminación de contactos vencidos.
+
 Cada `INSERT` sobre `public.contact_messages` dispara un Database Webhook hacia Make; los eventos `UPDATE` y `DELETE` no forman parte de esta automatización. El webhook depende de la extensión `pg_net` habilitada y de la integración oficial Database Webhooks de Supabase.
 
 ## Rate limit en el schema `private`
@@ -59,6 +69,8 @@ La segunda migration crea `private.contact_rate_limits`, fuera de los schemas ex
 `public.check_contact_rate_limit(text)` es una función `SECURITY DEFINER` con `search_path` vacío que realiza la actualización atómica de la tabla. Implementa una ventana fija de diez minutos y permite como máximo cinco solicitudes por identificador; devuelve `allowed`, `remaining` y `retry_after_seconds`.
 
 La aplicación no accede directamente a `private.contact_rate_limits`: la tabla revoca permisos a `PUBLIC`, `anon`, `authenticated` y `service_role`. La función revoca ejecución pública y para `anon`/`authenticated`, y concede `EXECUTE` solo a `service_role`.
+
+La limpieza diaria elimina registros cuya última actualización supera las 24 horas, sin cambiar la ventana operativa de diez minutos. El índice `contact_rate_limits_updated_at_idx` facilita esa limpieza y evita mantener indefinidamente los identificadores seudonimizados cuando los jobs se ejecutan correctamente.
 
 ## RLS, policies y permisos
 
@@ -78,6 +90,41 @@ Los roles públicos no tienen permisos de escritura sobre estas tablas. El basel
 
 La función de rate limit y sus permisos se describen en la sección anterior. `private.contact_rate_limits` no depende de acceso público ni de una policy RLS: se aísla mediante schema privado, revocaciones y la RPC autorizada.
 
+### Funciones privadas de retención
+
+| Función | Comportamiento | Retorno |
+| --- | --- | --- |
+| `private.delete_expired_contacts()` | Elimina contactos con `last_interaction_at < now() - interval '24 months'`. | Cantidad de filas eliminadas (`bigint`). |
+| `private.delete_stale_contact_rate_limits()` | Elimina registros con `updated_at < now() - interval '24 hours'`. | Cantidad de filas eliminadas (`bigint`). |
+| `private.touch_contact_interaction(uuid)` | Actualiza exclusivamente `last_interaction_at = now()` de un contacto; lanza `Contact message not found` si no existe y no crea filas. | Nuevo `last_interaction_at` (`timestamptz`). |
+
+Las tres funciones usan `SECURITY INVOKER`, `search_path = ''` y `timezone = 'UTC'`, con owner `postgres`. Revocan permisos a `PUBLIC`, `anon`, `authenticated` y `service_role`, y conceden ejecución únicamente a `postgres`. El schema `private` no está expuesto por la Data API; estas funciones no modifican RLS ni policies.
+
+## Ciclo de vida y retención
+
+La política pública de privacidad, versión 1.2, establece un máximo ordinario de 24 meses desde la última interacción relacionada con la consulta. Si no se registra otra interacción, `last_interaction_at` conserva la fecha inicial y el contacto vence aproximadamente 24 meses después de su creación.
+
+Las interacciones posteriores se registran manualmente desde Supabase SQL Editor, como `postgres`:
+
+```sql
+select private.touch_contact_interaction('UUID_DEL_CONTACTO');
+```
+
+El UUID del ejemplo debe sustituirse por el del contacto existente. La función reinicia el cómputo del plazo mediante `last_interaction_at`; no modifica `created_at`. El trigger `contact_messages_set_updated_at` permanece activo y actualiza automáticamente `updated_at`. No existe sincronización con correo, CRM o Make para registrar estas interacciones: recibir o responder un correo no actualiza por sí solo la columna.
+
+### Cron interno
+
+`pg_cron` está habilitado por la migration de retención. Los dos jobs activos se programan como `postgres`:
+
+| Job | Expresión | Horario diario UTC | Comando |
+| --- | --- | --- | --- |
+| `delete-stale-contact-rate-limits` | `15 3 * * *` | 03:15 | `select private.delete_stale_contact_rate_limits();` |
+| `delete-expired-contacts` | `30 3 * * *` | 03:30 | `select private.delete_expired_contacts();` |
+
+Las migrations verifican que `cron.timezone` sea compatible con UTC/GMT sin cambiar la configuración global. Los jobs con nombre se actualizan para el mismo rol al repetir la programación. La frecuencia diaria permite intencionalmente que un registro permanezca algunas horas después de vencer, hasta el siguiente ciclo exitoso.
+
+La limpieza actúa sobre las filas de Supabase. No elimina automáticamente las copias ni las notificaciones históricas en Make o correo. Tampoco implementa excepciones legales automáticas de conservación ni sustituye la gestión de solicitudes de eliminación anticipada. La política pública contempla esas situaciones, pero el criterio SQL de contactos se basa únicamente en `last_interaction_at`.
+
 ## Escritura del formulario
 
 `POST /api/contact` procesa la solicitud en este orden:
@@ -93,7 +140,7 @@ La función de rate limit y sus permisos se describen en la sección anterior. `
 
 ## Integraciones externas no versionadas
 
-Las integraciones externas conectadas a Supabase no forman parte de las migrations del proyecto.
+Las integraciones externas de notificaciones conectadas a Supabase no forman parte de las migrations del proyecto. El Cron interno de retención sí se versiona como lógica propia de la base de datos, según la sección anterior.
 
 Aunque algunas de estas integraciones pueden crear extensiones, funciones, triggers u otros objetos internos dentro de PostgreSQL, se consideran infraestructura externa y no estructura propia del modelo de datos de la aplicación.
 
@@ -123,7 +170,7 @@ Que el bucket sea público no concede escritura pública: el SQL versionado no d
 
 ## Versionado y mantenimiento
 
-- `supabase/migrations/` contiene el baseline del schema `public` y la migration que agrega el rate limit privado; debe recibir los cambios estructurales, de seguridad y de lógica propios del modelo de datos de la aplicación, incluyendo schemas, tablas, constraints, índices, RLS, policies, funciones, triggers y grants propios del proyecto.
+- `supabase/migrations/` contiene el baseline del schema `public`, el rate limit privado y las migrations de retención, interacción manual y Cron; debe recibir los cambios estructurales, de seguridad y de lógica propios del modelo de datos de la aplicación, incluyendo schemas, tablas, constraints, índices, RLS, policies, funciones, triggers y grants propios del proyecto.
 - Las integraciones externas, aunque utilicen capacidades internas de PostgreSQL o Supabase, no forman parte de las migrations salvo que pasen a convertirse explícitamente en lógica propia y estable del proyecto.
 - `supabase/config.toml` describe configuración estructural versionable de Supabase, incluida la del bucket; debe mantenerse sincronizado con el estado estructural esperado.
 - Las filas de producción y los objetos reales de Storage son datos remotos, no migrations ni configuración versionada.
