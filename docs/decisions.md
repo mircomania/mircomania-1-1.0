@@ -180,12 +180,12 @@
 
 88.- se da por terminada la version 1.1 del sitio web.
 
-89.- Actualizamos los terminos y condiciones segun la nueva normativa que entra en vigencia en 2027. Debido a esto nos vemos "obligados" a implementar un sistema de eliminacion de datos de contacto en supabase.
+89.- Actualizamos la política de privacidad para adecuarla a los cambios introducidos por la Ley 21.719, que entran en vigor el 1 de diciembre de 2026. Esto nos lleva a implementar una política real de retención y eliminación de contactos en Supabase.
 
-90.- Creamos las nuevas funciones en supabase mediante migraciones.
+90.- Creamos las nuevas funciones de retención mediante migrations de Supabase.
 
-91.- La primera migracion, para eliminar contactos despues de 2 años despues de la fecha registrada en la nueva columna "last_interaction_at", esta columna se rellena de manera automatica al crearse un contacto, por lo que por si sola, borra un contacto luego de 2 años de creado.
+91.- La primera migration agrega last_interaction_at, inicializa los contactos existentes desde created_at, crea las funciones de limpieza y programa la limpieza diaria de registros antiguos del rate limit. Los contactos tienen un plazo ordinario máximo de 24 meses desde su última interacción registrada.
 
-92.- Creamos la segunda migracion que es una funcion para actualizar los campos "last_interaction_at" y "update_at" de manera manual, mediante SQL en supabase. Si algun dia se le hace ads o tiene una entrada de leads importate se implementara una automatizacion con make. Mientras tanto se queda manual.
+92.- La segunda migration crea private.touch_contact_interaction(uuid) para actualizar manualmente last_interaction_at. El trigger existente actualiza automáticamente updated_at. Si el volumen de leads aumenta, podría automatizarse en el futuro mediante Make.
 
-93.- y la tercera migracion algo mas pequeña es basicamente para que la primera migracion se realice sola 1 vez al dia. Con esto damos por terminada la actualizacion de politicas de privavidad y eliminacion de contactos.
+93.- La tercera migration programa private.delete_expired_contacts() una vez al día a las 03:30 UTC. Con esto queda implementada la retención automática de contactos en Supabase.
