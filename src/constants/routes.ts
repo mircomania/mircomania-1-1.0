@@ -3,6 +3,7 @@ export const SITE_URL = 'https://mircomania.cl';
 export const ROUTES = {
     home: '/',
     contact: '/contacto',
+    ads: '/ads',
     privacy: '/politica-privacidad',
 } as const;
 
