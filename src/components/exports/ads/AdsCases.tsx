@@ -1,6 +1,7 @@
 import type { PublishedAdsCase } from '@/types/ads';
 
 import AdsCaseCard from './AdsCaseCard';
+import MobileAdsCasesCarousel from './MobileAdsCasesCarousel';
 import styles from './ads.module.css';
 
 export default function AdsCases({ cases, loadFailed }: Readonly<{ cases: PublishedAdsCase[]; loadFailed: boolean }>) {
@@ -18,9 +19,7 @@ export default function AdsCases({ cases, loadFailed }: Readonly<{ cases: Publis
                     <p>Inténtalo más tarde. También podemos conversar sobre los objetivos de tu proyecto.</p>
                 </div>
             ) : cases.length > 0 ? (
-                <div className={styles.casesGrid}>
-                    {cases.map((study) => <AdsCaseCard key={study.id} study={study} />)}
-                </div>
+                <MobileAdsCasesCarousel slides={cases.map((study) => <AdsCaseCard key={study.id} study={study} />)} />
             ) : (
                 <div className={styles.catalogState}>
                     <p className={styles.eyebrow}>Cada resultado necesita contexto</p>

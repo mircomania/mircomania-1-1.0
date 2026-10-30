@@ -1,3 +1,4 @@
+import Star from '@/assets/icons/Star';
 import AdsCases from '@/components/exports/ads/AdsCases';
 import styles from '@/components/exports/ads/ads.module.css';
 import { ROUTES } from '@/constants/routes';
@@ -169,9 +170,7 @@ export default async function AdsPage() {
             </section>
 
             <section className={`${styles.section} ${styles.finalCta}`} aria-labelledby="ads-contact-title">
-                <span className={styles.ctaStar} aria-hidden="true">
-                    ✦
-                </span>
+                <Star className={styles.ctaStar} />
                 <p className={styles.eyebrow}>El siguiente paso</p>
                 <h2 id="ads-contact-title">Tu siguiente cliente puede estar buscándote.</h2>
                 <p>Cuéntame sobre tu proyecto y evaluemos qué estrategia tiene sentido para tu negocio.</p>

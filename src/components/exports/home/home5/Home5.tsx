@@ -16,7 +16,7 @@ export default function Home5() {
                         <ul aria-label="Áreas de colaboración">
                             <li>Proyectos web</li>
                             <li>Automatizaciones</li>
-                            <li>Marketing digital</li>
+                            <li>Publicidad digital</li>
                             <li>Analítica web</li>
                         </ul>
                     </div>

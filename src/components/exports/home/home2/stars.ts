@@ -15,9 +15,9 @@ export const STARS = [
 
     {
         id: 3,
-        title: 'Marketing Digital',
+        title: 'Publicidad Digital',
         text: 'Estrategias de Google Ads y Meta Ads orientadas a generar tráfico de calidad, captar clientes potenciales y maximizar el retorno de inversión.',
-        dataLink: 'constelacion-marketing-star',
+        dataLink: 'constelacion-publicidad-star',
     },
 
     {
