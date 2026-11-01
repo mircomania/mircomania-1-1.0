@@ -1,0 +1,158 @@
+{
+    "source": {
+        "file": "Informe sin título (1).xml",
+        "sha256": "831d03fd14376ec07b552910dc267cf226f270722f5f9e30005d74d5027f41b3",
+        "rowCount": 42,
+        "currency": "MXN",
+        "conversionColumn": "Conversiones",
+        "reportedDateRange": "Todo el período",
+        "octoberCutoff": null
+    },
+    "period": {
+        "startMonth": "2025-06",
+        "endMonth": "2026-10",
+        "calendarMonths": 17,
+        "partialEndMonth": true
+    },
+    "totals": {
+        "conversions": 34795.1,
+        "costPerConversion": 15.29
+    },
+    "monthly": [
+        {
+            "month": "2025-06",
+            "conversions": 32.0,
+            "costPerConversion": 6.69,
+            "partial": false
+        },
+        {
+            "month": "2025-07",
+            "conversions": 849.0,
+            "costPerConversion": 8.86,
+            "partial": false
+        },
+        {
+            "month": "2025-08",
+            "conversions": 2020.22,
+            "costPerConversion": 6.03,
+            "partial": false
+        },
+        {
+            "month": "2025-09",
+            "conversions": 1528.08,
+            "costPerConversion": 9.94,
+            "partial": false
+        },
+        {
+            "month": "2025-10",
+            "conversions": 1471.72,
+            "costPerConversion": 15.63,
+            "partial": false
+        },
+        {
+            "month": "2025-11",
+            "conversions": 1696.33,
+            "costPerConversion": 16.6,
+            "partial": false
+        },
+        {
+            "month": "2025-12",
+            "conversions": 2424.87,
+            "costPerConversion": 12.6,
+            "partial": false
+        },
+        {
+            "month": "2026-01",
+            "conversions": 1992.55,
+            "costPerConversion": 15.38,
+            "partial": false
+        },
+        {
+            "month": "2026-02",
+            "conversions": 3269.15,
+            "costPerConversion": 9.73,
+            "partial": false
+        },
+        {
+            "month": "2026-03",
+            "conversions": 3486.42,
+            "costPerConversion": 10.95,
+            "partial": false
+        },
+        {
+            "month": "2026-04",
+            "conversions": 2168.0,
+            "costPerConversion": 19.07,
+            "partial": false
+        },
+        {
+            "month": "2026-05",
+            "conversions": 3202.68,
+            "costPerConversion": 16.73,
+            "partial": false
+        },
+        {
+            "month": "2026-06",
+            "conversions": 1534.19,
+            "costPerConversion": 17.12,
+            "partial": false
+        },
+        {
+            "month": "2026-07",
+            "conversions": 172.0,
+            "costPerConversion": 31.34,
+            "partial": false
+        },
+        {
+            "month": "2026-08",
+            "conversions": 763.85,
+            "costPerConversion": 43.72,
+            "partial": false
+        },
+        {
+            "month": "2026-09",
+            "conversions": 1854.14,
+            "costPerConversion": 29.49,
+            "partial": false
+        },
+        {
+            "month": "2026-10",
+            "conversions": 6329.9,
+            "costPerConversion": 15.78,
+            "partial": true
+        }
+    ],
+    "comparison": {
+        "month": "2026-10",
+        "partial": true,
+        "family": "Mi Cuenta · Mejoravit 4",
+        "classificationSource": "Confirmación del responsable del caso, 30 de octubre de 2026",
+        "primaryActionReported": "formulario_enviado",
+        "actionIdsAvailableInExport": false,
+        "channels": [
+            {
+                "name": "Google Search",
+                "campaigns": [
+                    "Mi Cuenta MX",
+                    "Mi Cuenta NL"
+                ],
+                "complete": true,
+                "conversions": 1522.51,
+                "costPerConversion": 16.43
+            },
+            {
+                "name": "Performance Max",
+                "campaigns": [
+                    "Mi cuenta | Max | MIX",
+                    "Mi cuenta | Max | NL"
+                ],
+                "complete": true,
+                "conversions": 3168.73,
+                "costPerConversion": 7.98
+            }
+        ],
+        "excludedCampaigns": [
+            "En Linea NL"
+        ]
+    }
+}

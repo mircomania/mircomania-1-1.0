@@ -92,6 +92,11 @@ describe('getPublishedAdsCases', () => {
         expect((await getPublishedAdsCases())[0].studyHref).toBeNull();
     });
 
+    it('links the implemented Mejoravit study and keeps unknown study routes closed', async () => {
+        mocks.order.mockResolvedValue({ data: [{ ...validRow, slug: 'mejoravit' }, validRow], error: null });
+        expect((await getPublishedAdsCases()).map((study) => study.studyHref)).toEqual(['/ads/mejoravit', null]);
+    });
+
     it.each([{ data: null, error: { code: '42501' } }, { data: {}, error: null }])('fails distinctly from an empty catalog: %j', async (response) => {
         mocks.order.mockResolvedValue(response);
         await expect(getPublishedAdsCases()).rejects.toThrow('No fue posible cargar los casos de publicidad');

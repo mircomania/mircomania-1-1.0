@@ -4,6 +4,7 @@ export const ROUTES = {
     home: '/',
     contact: '/contacto',
     ads: '/ads',
+    adsMejoravit: '/ads/mejoravit',
     privacy: '/politica-privacidad',
 } as const;
 

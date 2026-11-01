@@ -1,12 +1,13 @@
 import 'server-only';
 
+import { ROUTES } from '@/constants/routes';
 import { getPublicMediaUrl } from '@/lib/supabase/getPublicMediaUrl';
 import { supabase } from '@/lib/supabase/server';
 
 import type { AdsMetric, PublishedAdsCase } from '@/types/ads';
 
-// Register a study only after its App Router page exists. Phase 1 has no study routes.
-const studyRoutes: ReadonlyMap<string, string> = new Map();
+// Register a study only after its App Router page exists.
+const studyRoutes: ReadonlyMap<string, string> = new Map([['mejoravit', ROUTES.adsMejoravit]]);
 
 function text(value: unknown, min: number, max: number): string | null {
     if (typeof value !== 'string') return null;
