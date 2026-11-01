@@ -39,20 +39,23 @@ const stages = [
     {
         period: 'Junio 2025 – junio 2026',
         title: 'Consolidación',
-        text: 'Campañas de búsqueda, medición de acciones de captación y aprendizaje operativo. Una primera etapa para entender la relación entre tráfico, formularios y cobertura de la operación.',
-        evidence: 'El informe registra distintas campañas y alcances geográficos a lo largo de esta etapa.',
+        text: 'El proyecto comenzó con campañas de Google Search, probando diferentes configuraciones y enfoques para identificar las estrategias más efectivas de captación.',
+        evidence:
+            'Se trabajó en segmentaciones geográficas, horarios de publicación, palabras clave, términos negativos, anuncios y estrategias de puja. Los resultados permitieron ajustar progresivamente las campañas y ampliar los enfoques que mostraban mejor desempeño.',
     },
     {
         period: 'Julio – agosto 2026',
         title: 'Reestructuración',
-        text: 'Adaptación de la operación durante 2026, con cambios en las campañas y las páginas de captación. La estrategia debía responder a las condiciones reales del negocio.',
-        evidence: 'En estos meses aparecen en la exportación En Linea NL y las campañas Mi Cuenta.',
+        text: 'La operación se adaptó a nuevas páginas web y páginas de destino, reorganizando las campañas para responder a los cambios del proyecto y mejorar la experiencia de captación.',
+        evidence:
+            'Los aprendizajes obtenidos mediante Search ayudaron a orientar mejoras en el diseño, la experiencia de usuario y los formularios. Las campañas se ajustaron a las nuevas páginas y a las necesidades de la operación.',
     },
     {
         period: 'Septiembre – octubre 2026, parcial',
         title: 'Diversificación',
-        text: 'Una combinación de Search y Performance Max dentro de la familia Mi Cuenta, acompañada por seguimiento de la calidad de los contactos y optimización.',
-        evidence: 'Los registros incluyen las variantes Max; la comparación verificada se acota a octubre y a la misma familia de campañas.',
+        text: 'Con la nueva estructura de campañas Search consolidada, se incorporó Performance Max para ampliar las oportunidades de captación y complementar la estrategia existente.',
+        evidence:
+            'Se desarrollaron nuevas campañas para diferentes zonas geográficas, combinando ambos formatos. En la comparación documentada de octubre, Performance Max registró un menor costo por conversión que Search dentro de las campañas Mi Cuenta analizadas.',
     },
 ];
 
@@ -75,22 +78,23 @@ export default function MejoravitPage() {
                 </h1>
                 <p className={styles.subtitle}>De campañas de búsqueda a una estrategia de captación diversificada.</p>
                 <p className={styles.heroIntro}>
-                    Una mirada a la evolución de una operación de captación: campañas, tecnología web y lectura de resultados con contexto.
+                    Un proyecto de generación de clientes potenciales que evolucionó mediante campañas de Google Search, optimización de páginas web y
+                    la incorporación de Performance Max.
                 </p>
                 <p className={styles.professionalContext}>
                     Experiencia profesional desarrollada en <strong>PRO Consultores</strong> (México).
                 </p>
                 <dl className={styles.heroMetrics}>
                     <div>
-                        <dt>Conversiones registradas, redondeadas</dt>
+                        <dt>Conversiones registradas</dt>
                         <dd>{formatWholeNumber(totals.conversions)}</dd>
                     </div>
                     <div>
-                        <dt>Costo agregado por conversión</dt>
+                        <dt>Costo por conversión</dt>
                         <dd>{formatMxn(totals.costPerConversion)}</dd>
                     </div>
                     <div>
-                        <dt>Meses calendario representados</dt>
+                        <dt>Período analizado</dt>
                         <dd>
                             {period.calendarMonths}
                             <span> meses</span>
@@ -98,7 +102,7 @@ export default function MejoravitPage() {
                     </div>
                 </dl>
                 <p className={styles.metricNote}>
-                    Junio de 2025 – octubre de 2026. Total exacto: {formatConversions(totals.conversions)} conversiones.
+                    Junio de 2025 – octubre de 2026, con octubre parcial. Las conversiones registradas no equivalen a ventas.
                 </p>
             </section>
 
@@ -109,26 +113,28 @@ export default function MejoravitPage() {
                 </header>
                 <div className={styles.editorialCopy}>
                     <p>
-                        La operación buscaba recibir contactos mediante formularios en sus páginas de captación. La segmentación geográfica y la
-                        experiencia después del clic debían acompañar la cobertura y las condiciones del negocio.
+                        El objetivo de Mejoravit era generar solicitudes de personas interesadas en sus servicios mediante campañas de Google Ads y
+                        formularios en sus páginas web. Para conseguir contactos relevantes, era fundamental orientar la publicidad hacia las zonas
+                        geográficas donde el negocio podía ofrecer atención.
                     </p>
                     <p>
-                        Medir esas acciones permitía observar el costo de la captación. Para interpretar el resultado también era necesario entender
-                        qué contactos podían atenderse y qué significaba una conversión en cada configuración.
+                        La estrategia no se limitaba a atraer visitantes. También era necesario optimizar las páginas de destino y sus formularios,
+                        facilitando que los usuarios completaran sus solicitudes y permitiendo medir los resultados de cada campaña.
                     </p>
                     <div className={styles.roleNote}>
-                        <h3>Mi aportación profesional</h3>
+                        <h3>Mi rol en el proyecto</h3>
                         <p>
-                            Desarrollo y mantenimiento web, integración de formularios y servicios, analítica y trabajo con Google Ads dentro de PRO
-                            Consultores. Estas responsabilidades combinaban publicidad digital y tecnología web.
+                            Dentro de PRO Consultores participé en el desarrollo y mantenimiento de las páginas web, la integración de formularios y
+                            servicios, la analítica de conversiones y la gestión y optimización de campañas de Google Ads.
                         </p>
                         <SmartLink href={SOCIAL_LINKS.cvEs} className={styles.textLink}>
                             Consultar la experiencia profesional en el CV <span aria-hidden="true">↗</span>
                         </SmartLink>
                     </div>
                     <p className={styles.smallNote}>
-                        El objetivo de captación pertenece a la operación. Las cifras describen el conjunto de campañas; no permiten atribuir cada
-                        variación a una intervención personal.
+                        Trabajar tanto en las campañas publicitarias como en el desarrollo y la medición de las páginas de destino me permitió abordar
+                        el proceso de captación de manera integral, identificando oportunidades de mejora desde el anuncio hasta el envío del
+                        formulario.
                     </p>
                 </div>
             </section>
@@ -151,7 +157,6 @@ export default function MejoravitPage() {
                         </li>
                     ))}
                 </ol>
-                <p className={styles.smallNote}>Las fechas organizan los registros; no señalan el día de activación de cada campaña.</p>
             </section>
 
             <section className={styles.section} aria-labelledby="mejoravit-results-title">
@@ -159,18 +164,28 @@ export default function MejoravitPage() {
                     <p className={styles.eyebrow}>03 / Resultados históricos</p>
                     <h2 id="mejoravit-results-title">La evolución de los resultados.</h2>
                     <p>
-                        Una serie con cambios de volumen, campañas y condiciones de operación. El costo por conversión ayuda a leer esa trayectoria
-                        cuando se conserva su contexto.
+                        Durante 2026, la reestructuración de campañas y páginas de destino estuvo acompañada de cambios importantes en el rendimiento.
+                        Tras el período de transición, la estrategia recuperó volumen y redujo el costo medio por conversión.
                     </p>
                 </header>
                 <MonthlyCpaChart data={mejoravitHistory.monthly} />
+                <div className={styles.comparisonContext}>
+                    <p>
+                        Entre agosto y octubre de 2026, el costo por conversión se redujo un 63,9%, mientras la operación recuperaba volumen de
+                        captación.
+                    </p>
+                </div>
             </section>
 
             <section className={styles.section} aria-labelledby="mejoravit-comparison-title">
                 <header className={styles.sectionHeader}>
                     <p className={styles.eyebrow}>04 / Search y Performance Max</p>
                     <h2 id="mejoravit-comparison-title">Dos enfoques de captación.</h2>
-                    <p>Octubre de 2026 · Mejoravit</p>
+                    <p>
+                        Octubre de 2026 (parcial) · Campañas Mejoravit. Una vez consolidada la estrategia de búsqueda, se incorporó Performance Max
+                        para ampliar la captación. La comparación de campañas Mejoravit durante octubre de 2026 mostró diferencias importantes en el
+                        costo y volumen de conversiones.
+                    </p>
                 </header>
                 <div className={styles.comparisonGrid}>
                     {comparison.channels.map((channel, index) => (
@@ -182,7 +197,7 @@ export default function MejoravitPage() {
                             {channel.complete && channel.costPerConversion !== null && channel.conversions !== null ? (
                                 <dl className={styles.comparisonMetrics}>
                                     <div>
-                                        <dt>Costo agregado por conversión</dt>
+                                        <dt>Costo por conversión</dt>
                                         <dd>{formatMxn(channel.costPerConversion)}</dd>
                                     </div>
                                     <div>
@@ -196,6 +211,12 @@ export default function MejoravitPage() {
                         </article>
                     ))}
                 </div>
+                <div className={styles.comparisonContext}>
+                    <p>
+                        Durante el período analizado, Performance Max registró más del doble de conversiones y un costo medio por conversión
+                        aproximadamente un 51% menor que Search. Es una comparación descriptiva, no un experimento controlado.
+                    </p>
+                </div>
             </section>
 
             <section className={`${styles.section} ${styles.quality}`} aria-labelledby="mejoravit-quality-title">
@@ -203,8 +224,8 @@ export default function MejoravitPage() {
                     <p className={styles.eyebrow}>05 / Calidad y aprendizajes</p>
                     <h2 id="mejoravit-quality-title">Más allá de las conversiones.</h2>
                     <p>
-                        La cantidad de formularios recibidos no representa necesariamente oportunidades comerciales útiles. La lectura publicitaria
-                        necesita el contexto del equipo que atiende esos contactos.
+                        Generar formularios es solo una parte del proceso. Para evaluar la calidad de una campaña también es importante conocer
+                        cuántos contactos son relevantes para el negocio y qué ocurre cuando llegan al equipo comercial.
                     </p>
                 </header>
                 <aside className={styles.commercialNote} aria-labelledby="mejoravit-commercial-title">
@@ -223,14 +244,16 @@ export default function MejoravitPage() {
                             <strong>
                                 <time dateTime={quality.start}>27 de septiembre</time> – <time dateTime={quality.end}>26 de octubre de 2026</time>.
                             </strong>{' '}
-                            El equipo comercial reportó {formatWholeNumber(quality.usefulReported)} útiles de aproximadamente{' '}
-                            {formatWholeNumber(quality.evaluatedApproximate)} contactos evaluados; los restantes fueron aproximadamente{' '}
-                            {formatWholeNumber(quality.remainingApproximate)}.
+                            Durante el período analizado, el equipo comercial reportó {formatWholeNumber(quality.usefulReported)} de aproximadamente{' '}
+                            {formatWholeNumber(quality.evaluatedApproximate)} contactos como útiles, equivalente al{' '}
+                            {formatReportedPercentage(quality.usefulPercentage)}% de los registros evaluados. Los restantes fueron aproximadamente{' '}
+                            {formatWholeNumber(quality.remainingApproximate)}. Esta información permitió conocer mejor la calidad de los contactos
+                            recibidos. El seguimiento comercial es un complemento importante de las métricas publicitarias, porque ayuda a identificar
+                            qué tipo de oportunidades está generando la inversión.
                         </p>
                         <p className={styles.smallNote}>
-                            Porcentaje redondeado de una clasificación comercial, no una métrica nativa de Google Ads ni una tasa de ventas o cierres.
-                            No se aportó el documento original ni una conciliación individual con las conversiones de Ads; este período tampoco
-                            coincide con el agregado mensual de octubre.
+                            Clasificación reportada por el equipo comercial para el período indicado. No representa una tasa de ventas ni de trámites
+                            cerrados.
                         </p>
                     </div>
                 </aside>
@@ -238,24 +261,30 @@ export default function MejoravitPage() {
                     <li>
                         <span aria-hidden="true">01</span>
                         <div>
-                            <h3>Medir para interpretar.</h3>
-                            <p>La medición correcta y una definición clara de conversión son necesarias para entender las cifras.</p>
+                            <h3>Priorizar contactos útiles</h3>
+                            <p>
+                                El objetivo no es únicamente conseguir más formularios, sino atraer personas cuyas necesidades correspondan con los
+                                servicios que ofrece el negocio.
+                            </p>
                         </div>
                     </li>
                     <li>
                         <span aria-hidden="true">02</span>
                         <div>
-                            <h3>Adaptarse a la operación.</h3>
-                            <p>Las estrategias deben responder a las condiciones reales del negocio, su cobertura y su capacidad de atención.</p>
+                            <h3>Conectar publicidad y ventas</h3>
+                            <p>
+                                La comunicación con el equipo comercial permite conocer la calidad de los contactos recibidos y utilizar esa
+                                información para orientar futuras optimizaciones.
+                            </p>
                         </div>
                     </li>
                     <li>
                         <span aria-hidden="true">03</span>
                         <div>
-                            <h3>Mirar la calidad.</h3>
+                            <h3>Mejorar continuamente</h3>
                             <p>
-                                La utilidad comercial de los contactos importa tanto como el volumen. Sin datos de ventas e ingresos no corresponde
-                                afirmar ROI ni cierres.
+                                Los resultados publicitarios y el seguimiento comercial aportan información para ajustar segmentaciones, anuncios y
+                                páginas de destino, buscando mejorar progresivamente la captación.
                             </p>
                         </div>
                     </li>

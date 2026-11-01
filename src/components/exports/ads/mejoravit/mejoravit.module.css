@@ -527,6 +527,10 @@
         padding-top: var(--navbar-height-desktop);
     }
 
+    .learnings li > span {
+        flex-shrink: 0;
+    }
+
     .context {
         display: grid;
         grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
