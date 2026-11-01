@@ -98,7 +98,7 @@ export default function MonthlyCpaChart({ data }: Readonly<{ data: readonly Mont
             </p>
             {data.length > 0 && (
                 <details className={styles.dataDetails}>
-                    <summary>Consultar los datos del gráfico</summary>
+                    <summary data-link="mejoravit-chart-data-link">Consultar los datos del gráfico</summary>
                     <div className={styles.tableScroll} tabIndex={0} role="region" aria-label="Tabla de datos mensuales, desplazable horizontalmente">
                         <table className={styles.dataTable}>
                             <caption>Valores mensuales de la columna Conversiones del informe y su costo agregado por conversión.</caption>

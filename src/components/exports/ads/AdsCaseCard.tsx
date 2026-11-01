@@ -27,7 +27,7 @@ export default function AdsCaseCard({ study }: Readonly<{ study: PublishedAdsCas
             {study.period && <p className={styles.period}>Período de referencia: {study.period}</p>}
             <div className={styles.caseAction}>
                 {study.studyHref ? (
-                    <SmartLink href={study.studyHref} className={`button-link button-link--secondary ${styles.link}`}>
+                    <SmartLink href={study.studyHref} className={`button-link button-link--secondary ${styles.link}`} dataLink="ads-mejoravit-link">
                         Explorar estudio de caso <span aria-hidden="true">↗</span>
                     </SmartLink>
                 ) : (

@@ -69,7 +69,7 @@ export default function MejoravitPage() {
                 <StarryBackground />
             </div>
             <section className={`${styles.section} ${styles.hero}`} aria-labelledby="mejoravit-title">
-                <SmartLink href={ROUTES.ads} className={styles.backLink}>
+                <SmartLink href={ROUTES.ads} className={styles.backLink} dataLink="mejoravit-ads-link">
                     <span aria-hidden="true">←</span> Volver a publicidad digital
                 </SmartLink>
                 <p className={styles.eyebrow}>Caso de estudio · Google Ads · México</p>
@@ -127,7 +127,7 @@ export default function MejoravitPage() {
                             Dentro de PRO Consultores participé en el desarrollo y mantenimiento de las páginas web, la integración de formularios y
                             servicios, la analítica de conversiones y la gestión y optimización de campañas de Google Ads.
                         </p>
-                        <SmartLink href={SOCIAL_LINKS.cvEs} className={styles.textLink}>
+                        <SmartLink href={SOCIAL_LINKS.cvEs} className={styles.textLink} dataLink="mejoravit-cv-link">
                             Consultar la experiencia profesional en el CV <span aria-hidden="true">↗</span>
                         </SmartLink>
                     </div>
@@ -296,7 +296,11 @@ export default function MejoravitPage() {
                 <p className={styles.eyebrow}>La estrategia empieza con contexto</p>
                 <h2 id="mejoravit-contact-title">¿Buscas resultados medibles para tu negocio?</h2>
                 <p>Conversemos sobre tus objetivos y evaluemos qué estrategia publicitaria tiene sentido para tu proyecto.</p>
-                <SmartLink href={`${ROUTES.contact}?servicio=marketing`} className={`button-link button-link--primary ${styles.ctaLink}`}>
+                <SmartLink
+                    href={`${ROUTES.contact}?servicio=marketing`}
+                    className={`button-link button-link--primary ${styles.ctaLink}`}
+                    dataCta="mejoravit-contacto-btn"
+                >
                     Evaluemos tu estrategia <span aria-hidden="true">↗</span>
                 </SmartLink>
             </section>

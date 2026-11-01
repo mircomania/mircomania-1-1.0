@@ -74,10 +74,14 @@ export default async function AdsPage() {
                         las personas adecuadas.
                     </p>
                     <div className={styles.actions}>
-                        <SmartLink href={contactHref} className={`button-link button-link--primary ${styles.link}`}>
+                        <SmartLink href={contactHref} className={`button-link button-link--primary ${styles.link}`} dataCta="ads-contacto-btn-1">
                             Solicitar evaluación <span aria-hidden="true">↗</span>
                         </SmartLink>
-                        <SmartLink href={`${ROUTES.ads}#casos-estudio`} className={`button-link button-link--secondary ${styles.link}`}>
+                        <SmartLink
+                            href={`${ROUTES.ads}#casos-estudio`}
+                            className={`button-link button-link--secondary ${styles.link}`}
+                            dataLink="ads-casos-link"
+                        >
                             Explorar casos <span aria-hidden="true">↓</span>
                         </SmartLink>
                     </div>
@@ -174,7 +178,7 @@ export default async function AdsPage() {
                 <p className={styles.eyebrow}>El siguiente paso</p>
                 <h2 id="ads-contact-title">Tu siguiente cliente puede estar buscándote.</h2>
                 <p>Cuéntame sobre tu proyecto y evaluemos qué estrategia tiene sentido para tu negocio.</p>
-                <SmartLink href={contactHref} className={`button-link button-link--primary ${styles.link}`}>
+                <SmartLink href={contactHref} className={`button-link button-link--primary ${styles.link}`} dataCta="ads-contacto-btn-2">
                     Hablemos de tu proyecto <span aria-hidden="true">↗</span>
                 </SmartLink>
             </section>
