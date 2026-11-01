@@ -182,9 +182,9 @@ export default function MejoravitPage() {
                     <p className={styles.eyebrow}>04 / Search y Performance Max</p>
                     <h2 id="mejoravit-comparison-title">Dos enfoques de captación.</h2>
                     <p>
-                        Octubre de 2026 (parcial) · Campañas Mejoravit. Una vez consolidada la estrategia de búsqueda, se incorporó Performance Max
-                        para ampliar la captación. La comparación de campañas Mejoravit durante octubre de 2026 mostró diferencias importantes en el
-                        costo y volumen de conversiones.
+                        Octubre de 2026 (parcial) · Campañas Mi Cuenta — Mejoravit 4. Una vez consolidada la estrategia de búsqueda, se incorporó
+                        Performance Max para ampliar la captación. La comparación de campañas Mi Cuenta durante octubre de 2026 mostró diferencias
+                        importantes en el costo y volumen de conversiones.
                     </p>
                 </header>
                 <div className={styles.comparisonGrid}>

@@ -70,8 +70,7 @@ export default function MonthlyCpaChart({ data }: Readonly<{ data: readonly Mont
                                             className={point.row.partial ? styles.partialPoint : styles.chartPoint}
                                         >
                                             <title>
-                                                {formatHistoryMonth(point.row.month)}
-                                                {point.row.partial ? ' (parcial)' : ''}: {formatMxn(point.value)}
+                                                {`${formatHistoryMonth(point.row.month)}${point.row.partial ? ' (parcial)' : ''}: ${formatMxn(point.value)}`}
                                             </title>
                                         </circle>
                                     ),

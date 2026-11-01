@@ -1,8 +1,8 @@
 import { createElement } from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
-import { describe, expect, it } from 'vitest';
+import { renderToStaticMarkup, renderToString } from 'react-dom/server';
+import { describe, expect, it, vi } from 'vitest';
 
-import { mejoravitHistory } from '@/data/ads/mejoravit';
+import { formatMxn, mejoravitHistory } from '@/data/ads/mejoravit';
 import type { MonthlyCpaPoint } from '@/data/ads/mejoravit';
 
 import MonthlyCpaChart from './MonthlyCpaChart';
@@ -48,6 +48,29 @@ describe('monthly CPA chart', () => {
         expect(html).toContain('octubre de 2026 (parcial)');
         expect(html).toContain('$43,72 MXN');
         expect(html).toContain('no se promedian los CPA individuales');
+    });
+
+    it('server-renders all 17 complete SVG tooltips as text without React warnings', () => {
+        const consoleError = vi.spyOn(console, 'error');
+        try {
+            const html = renderToString(createElement(MonthlyCpaChart, { data: mejoravitHistory.monthly }));
+            const titles = Array.from(html.matchAll(/<circle\b[^>]*><title>([^<]*)<\/title><\/circle>/g), (match) => match[1]);
+            const months = [
+                'junio de 2025', 'julio de 2025', 'agosto de 2025', 'septiembre de 2025', 'octubre de 2025',
+                'noviembre de 2025', 'diciembre de 2025', 'enero de 2026', 'febrero de 2026', 'marzo de 2026',
+                'abril de 2026', 'mayo de 2026', 'junio de 2026', 'julio de 2026', 'agosto de 2026',
+                'septiembre de 2026', 'octubre de 2026',
+            ];
+            expect(titles).toHaveLength(17);
+            expect(titles).toEqual(mejoravitHistory.monthly.map((row, index) =>
+                `${months[index]}${row.partial ? ' (parcial)' : ''}: ${formatMxn(row.costPerConversion)}`,
+            ));
+            expect(titles[0]).toBe('junio de 2025: $6,69 MXN');
+            expect(titles[16]).toBe('octubre de 2026 (parcial): $15,78 MXN');
+            expect(consoleError).not.toHaveBeenCalled();
+        } finally {
+            consoleError.mockRestore();
+        }
     });
 
     it('renders an honest empty state instead of a fabricated series', () => {
