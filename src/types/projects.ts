@@ -5,6 +5,7 @@ export const projectTypeLabels = {
     automation: 'Automatización',
     ecommerce: 'E-commerce',
     mobile_app: 'Aplicación móvil',
+    digital_ads: 'Publicidad Digital',
 } as const;
 
 export type ProjectType = keyof typeof projectTypeLabels;
@@ -19,6 +20,7 @@ export type FeaturedProjectCard = {
     stack: string[];
     demoUrl: string | null;
     repositoryUrl: string | null;
+    interNav: string | null;
     cover: {
         src: string;
         alt: string;

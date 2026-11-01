@@ -5,7 +5,10 @@ import styles from './home3.module.css';
 import { projectTypeLabels } from '@/types/projects';
 import type { FeaturedProjectCard } from '@/types/projects';
 
+import { SmartLink } from '@/utils/SmartLink';
 import ButtonLink from '@/utils/ButtonLink';
+
+import { Arrow } from '@/assets/icons/Arrow';
 
 type Props = {
     project: FeaturedProjectCard;
@@ -36,8 +39,19 @@ export default function ProjectCard({ project }: Readonly<Props>) {
 
                 <p className={styles.stack}>{project.stack.join(' • ')}</p>
 
-                {(project.demoUrl || project.repositoryUrl) && (
+                {(project.interNav || project.demoUrl || project.repositoryUrl) && (
                     <div className={styles.cardActions}>
+                        {project.interNav && (
+                            <SmartLink
+                                href={project.interNav}
+                                className="button-link button-link--secondary"
+                                dataLink={`proyectos-estudio-link-${project.slug}`}
+                            >
+                                Ver estudio de caso
+                                <Arrow className={styles.studyArrow} />
+                            </SmartLink>
+                        )}
+
                         {project.demoUrl && (
                             <ButtonLink href={project.demoUrl} variant="secondary" dataLink={`proyectos-demo-link-${project.slug}`}>
                                 Ver proyecto

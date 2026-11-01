@@ -7,6 +7,10 @@ import styles from './home2.module.css';
 import { STARS } from './stars';
 import { useConstellation } from './useConstellation';
 
+import { SmartLink } from '@/utils/SmartLink';
+
+import { Arrow } from '@/assets/icons/Arrow';
+
 export default function Home2() {
     const isDesktop = useMediaQuery('(min-width: 1200px)');
 
@@ -32,7 +36,7 @@ export default function Home2() {
                         <div
                             key={star.id}
                             className={`${styles.estrellaContainer} ${styles[`estrellaContainer${index + 1}`]} ${isActive ? styles.activeStar : ''}`}
-                            data-link={star.dataLink}
+                            data-link={star.dataLinkInter}
                         >
                             <div className={styles.estrellaInner}>
                                 <button
@@ -53,7 +57,15 @@ export default function Home2() {
                         {STARS.map((star) => (
                             <article key={star.id} className={styles.slideCard}>
                                 <h3>{star.title}</h3>
+
                                 <p>{star.text}</p>
+
+                                {star.link && (
+                                    <SmartLink href={star.link} className="button-link button-link--secondary" dataLink={star.dataLink}>
+                                        Explorar {star.title}
+                                        <Arrow className={styles.linkArrow} />
+                                    </SmartLink>
+                                )}
                             </article>
                         ))}
                     </div>

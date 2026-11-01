@@ -72,6 +72,16 @@ function normalizeFeaturedProject(row: unknown): ProjectNormalizationResult {
         };
     }
 
+    if (
+        !isNullableString(row.inter_nav) ||
+        (row.inter_nav !== null && !/^\/[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/.test(row.inter_nav))
+    ) {
+        return {
+            success: false,
+            reason: 'inter_nav no es una ruta interna válida',
+        };
+    }
+
     if (!Array.isArray(row.project_media) || row.project_media.length === 0) {
         return {
             success: false,
@@ -116,6 +126,7 @@ function normalizeFeaturedProject(row: unknown): ProjectNormalizationResult {
             stack: row.stack,
             demoUrl: row.demo_url,
             repositoryUrl: row.repository_url,
+            interNav: row.inter_nav as string | null,
             cover: {
                 src: coverUrl,
                 alt: cover.alt_text,
@@ -156,6 +167,7 @@ export async function getFeaturedProjects(): Promise<FeaturedProjectCard[]> {
             stack,
             demo_url,
             repository_url,
+            inter_nav,
             project_media (
                 media_type,
                 storage_path,

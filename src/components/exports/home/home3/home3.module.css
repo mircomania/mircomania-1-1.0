@@ -152,6 +152,19 @@
     padding-top: 24px;
 }
 
+.studyArrow {
+    display: block;
+    flex: 0 0 auto;
+    transition: transform 180ms ease;
+    width: 14px;
+    height: 14px;
+    margin-left: 3px;
+}
+
+.cardActions a:hover .studyArrow {
+    transform: translateX(3px);
+}
+
 /* =========================================================
     MOBILE PROJECT DECK
    ========================================================= */

@@ -225,8 +225,10 @@
 .slideCard {
     flex: 0 0 100%;
     scroll-snap-align: center;
+    align-items: start;
     text-align: center;
     padding: 20px 20px;
+    gap: 20px;
 }
 
 .slideCard h3 {
@@ -236,7 +238,6 @@
     letter-spacing: 3px;
     font-size: 22px;
     font-weight: 700;
-    margin-bottom: 22px;
 }
 
 .slideCard p {
@@ -245,6 +246,23 @@
     line-height: 1.65;
     margin: 0 auto;
     font-weight: 500;
+}
+
+.slideCard a {
+    color: var(--text-primary);
+}
+
+.linkArrow {
+    display: block;
+    flex: 0 0 auto;
+    transition: transform 180ms ease;
+    width: 16px;
+    height: 16px;
+    margin-left: 3px;
+}
+
+.slideCard:hover .linkArrow {
+    transform: translateX(3px);
 }
 
 .constelacionContainer[data-phase='hideLabels'] .constelacionLineas,
