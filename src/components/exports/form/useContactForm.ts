@@ -65,8 +65,11 @@ type UseContactFormReturn = {
     handleSubmit: (event: SubmitEvent<HTMLFormElement>) => Promise<void>;
 };
 
-export function useContactForm(): UseContactFormReturn {
-    const [values, setValues] = useState<ContactFormValues>(INITIAL_VALUES);
+export function useContactForm(initialContactType: ContactType | '' = ''): UseContactFormReturn {
+    const [values, setValues] = useState<ContactFormValues>(() => ({
+        ...INITIAL_VALUES,
+        contactType: initialContactType,
+    }));
 
     const utmParamsRef = useRef(EMPTY_UTM_PARAMS);
 

@@ -1,4 +1,4 @@
-export const CONTACT_TYPES = ['project', 'job', 'collaboration', 'general'] as const;
+export const CONTACT_TYPES = ['project', 'automation', 'advertising', 'analytics', 'job', 'collaboration', 'general'] as const;
 
 export type ContactType = (typeof CONTACT_TYPES)[number];
 

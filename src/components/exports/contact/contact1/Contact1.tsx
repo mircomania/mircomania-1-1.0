@@ -1,9 +1,15 @@
 import ContactForm from '@/components/exports/form/ContactForm';
 import DesktopParticlePlanet from '@/components/visuals/particlePlanet/DesktopParticlePlanet';
 
+import type { ContactType } from '@/types/contact';
+
 import styles from './contact1.module.css';
 
-export default function Contact1() {
+type Props = {
+    initialContactType: ContactType | '';
+};
+
+export default function Contact1({ initialContactType }: Readonly<Props>) {
     return (
         <section className={styles.sectionContainer} aria-labelledby="contact-title">
             <div className={styles.sectionContent}>
@@ -23,7 +29,7 @@ export default function Contact1() {
                 </div>
 
                 <div className={styles.formContainer}>
-                    <ContactForm />
+                    <ContactForm key={initialContactType} initialContactType={initialContactType} />
                 </div>
             </div>
         </section>

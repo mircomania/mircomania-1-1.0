@@ -6,6 +6,12 @@ import Contact1 from '@/components/exports/contact/contact1/Contact1';
 
 import StarryBackground from '@/utils/starryBackground/StarryBackground';
 
+type ContactPageProps = {
+    searchParams: Promise<{
+        servicio?: string | string[];
+    }>;
+};
+
 export const metadata = createMetadata({
     title: 'Contacto',
 
@@ -14,12 +20,16 @@ export const metadata = createMetadata({
     path: ROUTES.contact,
 });
 
-export default function Contact() {
+export default async function Contact({ searchParams }: ContactPageProps) {
+    const { servicio } = await searchParams;
+
+    const initialContactType = servicio === 'marketing' ? 'advertising' : '';
+
     return (
         <main className="space-main">
             <StarryBackground />
 
-            <Contact1 />
+            <Contact1 initialContactType={initialContactType} />
         </main>
     );
 }

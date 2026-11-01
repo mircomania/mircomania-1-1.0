@@ -3,14 +3,18 @@
 import { Spinner } from '@/assets/icons/Spinner';
 import { useContactForm } from '@/components/exports/form/useContactForm';
 
-import type { ContactFormValues } from '@/types/contact';
+import type { ContactFormValues, ContactType } from '@/types/contact';
 
 import ContactFormStatus from './ContactFormStatus';
 import styles from './contactForm.module.css';
 
-export default function ContactForm() {
+type Props = {
+    initialContactType?: ContactType | '';
+};
+
+export default function ContactForm({ initialContactType = '' }: Readonly<Props>) {
     const { values, errors, isSubmitting, successMessage, submitError, handleTextChange, updateContactType, updatePrivacyAccepted, handleSubmit } =
-        useContactForm();
+        useContactForm(initialContactType);
 
     return (
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
@@ -83,7 +87,10 @@ export default function ContactForm() {
                         Selecciona una opción
                     </option>
 
-                    <option value="project">Proyecto o servicio</option>
+                    <option value="project">Desarrollo web</option>
+                    <option value="automation">Automatizaciones</option>
+                    <option value="advertising">Publicidad digital</option>
+                    <option value="analytics">Analítica web</option>
                     <option value="job">Oportunidad laboral</option>
                     <option value="collaboration">Colaboración</option>
                     <option value="general">Consulta general</option>

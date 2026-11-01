@@ -57,15 +57,18 @@ describe('validateContactPayload', () => {
         }
     });
 
-    it.each(['project', 'job', 'collaboration', 'general'] as const)('acepta el tipo de contacto %s', (contactType) => {
-        const result = validateContactPayload(createValidPayload({ contactType }));
+    it.each(['project', 'automation', 'advertising', 'analytics', 'job', 'collaboration', 'general'] as const)(
+        'acepta el tipo de contacto %s',
+        (contactType) => {
+            const result = validateContactPayload(createValidPayload({ contactType }));
 
-        expect(result.success).toBe(true);
+            expect(result.success).toBe(true);
 
-        if (result.success) {
-            expect(result.data.contactType).toBe(contactType);
-        }
-    });
+            if (result.success) {
+                expect(result.data.contactType).toBe(contactType);
+            }
+        },
+    );
 
     it.each([
         ['exactamente 2 caracteres', 'a'.repeat(2)],
@@ -102,8 +105,8 @@ describe('validateContactPayload', () => {
         }
     });
 
-    it('rechaza un tipo de contacto no soportado', () => {
-        const result = validateContactPayload(createValidPayload({ contactType: 'support' }));
+    it.each(['support', 'marketing', 'invalid'])('rechaza el tipo de contacto no soportado %s', (contactType) => {
+        const result = validateContactPayload(createValidPayload({ contactType }));
 
         expect(result.success).toBe(false);
 
