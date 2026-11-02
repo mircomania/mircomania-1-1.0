@@ -58,7 +58,8 @@
 
 ## v1.2
 
-- [ ] estandarizacion de diseño (focus, colores, botones, iconos)
+- [ ] Ajuste de las polticas de privacidad
+- [ ] Estandarizacion de diseño (focus, colores, botones, iconos)
 - [ ] Página de servicios
 - [ ] Página de proyectos
 - [ ] Página del CV

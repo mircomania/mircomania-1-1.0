@@ -45,7 +45,7 @@ export default function ProjectCard({ project }: Readonly<Props>) {
                             <SmartLink
                                 href={project.interNav}
                                 className="button-link button-link--secondary"
-                                dataLink={`proyectos-estudio-link-${project.slug}`}
+                                dataLink={`home-proyectos-estudio-${project.slug}-link`}
                             >
                                 Ver estudio de caso
                                 <Arrow className={styles.studyArrow} />
@@ -53,13 +53,13 @@ export default function ProjectCard({ project }: Readonly<Props>) {
                         )}
 
                         {project.demoUrl && (
-                            <ButtonLink href={project.demoUrl} variant="secondary" dataLink={`proyectos-demo-link-${project.slug}`}>
+                            <ButtonLink href={project.demoUrl} variant="secondary" dataLink={`home-proyectos-demo-${project.slug}-link`}>
                                 Ver proyecto
                             </ButtonLink>
                         )}
 
                         {project.repositoryUrl && (
-                            <ButtonLink href={project.repositoryUrl} variant="secondary" dataLink={`proyectos-github-link-${project.slug}`}>
+                            <ButtonLink href={project.repositoryUrl} variant="secondary" dataLink={`home-proyectos-github-${project.slug}-link`}>
                                 Repositorio
                             </ButtonLink>
                         )}

@@ -22,7 +22,7 @@ export default function Privacy1() {
                     </p>
 
                     <p className={styles.updated}>
-                        Última actualización: <time dateTime="2026-09-09">9 de septiembre de 2026</time> · Versión 1.2
+                        Última actualización: <time dateTime="2026-11-02">2 de noviembre de 2026</time> · Versión 1.3
                     </p>
                 </header>
 
@@ -68,8 +68,10 @@ export default function Privacy1() {
                         </p>
 
                         <p>
-                            El sitio integra Google Tag Manager. Tras un envío confirmado, genera un evento de medición con el nombre del formulario
-                            y el tipo de contacto; ese evento no incluye el nombre, correo ni contenido del mensaje.
+                            El sitio utiliza Google Tag Manager para administrar etiquetas de medición y Google Analytics 4 para analizar visitas e
+                            interacciones, como las vistas de página, los clics en enlaces y los llamados a la acción. Tras un envío confirmado del
+                            formulario, se genera un evento de medición que permite identificar el tipo de consulta seleccionado. Estos eventos no
+                            incluyen intencionalmente el nombre, correo electrónico ni contenido del mensaje enviado por el usuario.
                         </p>
                     </section>
 
@@ -104,11 +106,13 @@ export default function Privacy1() {
                         {/* TODO: Revisar las etiquetas activas de GTM y documentar la base de licitud de la medición y del almacenamiento UTM,
                             incluidos los mecanismos de consentimiento que correspondan. La aceptación del formulario no cubre operaciones previas. */}
                         <p>
-                            La medición del formulario y la atribución buscan conocer el origen de las consultas y mejorar el funcionamiento del
-                            sitio. GTM se carga al visitar el sitio y los UTM pueden guardarse al abrir el formulario, antes de enviarlo. La aceptación
-                            del formulario autoriza la gestión de tu solicitud; no constituye por sí sola consentimiento para toda la analítica ni
-                            para operaciones anteriores. La medición que trate datos personales requiere una base legal válida y, cuando corresponda,
-                            tu consentimiento específico.
+                            La medición de visitas, interacciones y formularios permite comprender cómo se utiliza el sitio y evaluar el
+                            funcionamiento de sus servicios. Cuando una visita incluye parámetros UTM de campaña, estos pueden almacenarse localmente
+                            desde la página de entrada y conservarse durante la navegación para identificar el origen de una consulta posterior. Una
+                            nueva campaña puede reemplazar los parámetros anteriores. La aceptación del formulario autoriza la gestión de la solicitud
+                            enviada, pero no constituye por sí sola consentimiento para toda la analítica ni para operaciones anteriores a dicha
+                            aceptación. El tratamiento de datos personales mediante herramientas de medición requiere una base legal válida y, cuando
+                            corresponda, consentimiento específico.
                         </p>
                     </section>
 
@@ -148,7 +152,10 @@ export default function Privacy1() {
                                 Servicio de correo del hosting: envío de notificaciones y recepción o reenvío de comunicaciones de contacto, con los
                                 datos incluidos en esos mensajes.
                             </li>
-                            <li>Google Tag Manager, de Google: gestión de etiquetas y del evento de medición descrito en la sección 2.</li>
+                            <li>
+                                Google Tag Manager y Google Analytics 4, de Google: administración de etiquetas y medición de visitas, interacciones y
+                                eventos del formulario descritos en la sección 2.
+                            </li>
                         </ul>
 
                         <p>Estos proveedores pueden procesar información únicamente en la medida necesaria para prestar sus respectivos servicios.</p>
@@ -169,10 +176,6 @@ export default function Privacy1() {
                         </p>
                     </section>
 
-                    {/* TODO: Implementar la eliminación real de contactos conforme al máximo ordinario de 24 meses desde la última interacción,
-                        contemplando la eliminación anticipada y las excepciones con fundamento jurídico. */}
-                    {/* TODO: Definir e implementar una política específica de eliminación de identificadores seudonimizados, contadores de rate
-                        limit y registros técnicos de seguridad, con una retención breve y proporcional a su finalidad. */}
                     {/* TODO: Contemplar en la implementación las copias y notificaciones existentes en Supabase, Make y sistemas de correo,
                         cuando corresponda. Actualmente no existe eliminación automática sincronizada entre estos servicios. */}
                     <section className={styles.policySection}>
@@ -180,8 +183,8 @@ export default function Privacy1() {
 
                         <p>
                             Los datos personales vinculados a una consulta podrán conservarse por un máximo ordinario de 24 meses desde la última
-                            interacción relacionada con ella. Este plazo permite gestionar consultas, propuestas, oportunidades laborales, proyectos
-                            y colaboraciones que puedan desarrollarse durante un período prolongado, sin conservar los datos indefinidamente.
+                            interacción relacionada con ella. Este plazo permite gestionar consultas, propuestas, oportunidades laborales, proyectos y
+                            colaboraciones que puedan desarrollarse durante un período prolongado, sin conservar los datos indefinidamente.
                         </p>
 
                         <p>
@@ -203,16 +206,18 @@ export default function Privacy1() {
                         </p>
 
                         <p>
-                            Los identificadores seudonimizados, contadores de solicitudes y registros técnicos de seguridad tienen una finalidad
-                            distinta. Su conservación se regirá por un criterio independiente, breve y proporcional a la protección del sitio; el
-                            máximo ordinario de 24 meses de las consultas no se aplica a estos datos.
+                            Los identificadores seudonimizados y los registros de control de solicitudes se utilizan para prevenir abusos y proteger
+                            el funcionamiento del sitio. En Supabase, una tarea automática diaria elimina los registros de control cuya última
+                            actualización supera las 24 horas. Debido a la frecuencia de ejecución, los registros pueden permanecer hasta el siguiente
+                            ciclo exitoso de limpieza. Estos datos no están sujetos al plazo ordinario de 24 meses establecido para las consultas.
                         </p>
 
                         <p>
-                            Cuando los datos de una consulta se procesen en proveedores como Supabase, Make o sistemas de correo, se procurará aplicar
-                            el mismo criterio de conservación a sus copias y notificaciones, o períodos menores cuando resulte posible. Esta política
-                            define el criterio de retención; su aplicación técnica está pendiente y todavía no existe eliminación automática
-                            sincronizada entre estos servicios.
+                            En Supabase, una tarea automática diaria elimina los contactos que han superado el plazo ordinario de 24 meses desde su
+                            última interacción registrada. Las interacciones posteriores deben actualizarse manualmente en el sistema; las respuestas
+                            o comunicaciones por correo no modifican automáticamente esa fecha. La eliminación de registros en Supabase no elimina
+                            automáticamente las copias o notificaciones existentes en Make y los sistemas de correo. Estos datos deben gestionarse por
+                            separado, respetando los plazos de conservación y las solicitudes de eliminación que correspondan.
                         </p>
                     </section>
 
@@ -231,8 +236,8 @@ export default function Privacy1() {
                             Para realizar una solicitud relacionada con tus datos personales puedes utilizar la{' '}
                             <SmartLink href={ROUTES.contact} className={styles.link} dataCta="privacy-contacto-link">
                                 página de contacto
-                            </SmartLink>
-                            {' '}o escribir a{' '}
+                            </SmartLink>{' '}
+                            o escribir a{' '}
                             <a href={`mailto:${SOCIAL_LINKS.emailContact}`} className={styles.link}>
                                 {SOCIAL_LINKS.emailContact}
                             </a>

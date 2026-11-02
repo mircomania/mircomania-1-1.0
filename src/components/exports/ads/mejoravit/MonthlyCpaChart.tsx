@@ -17,12 +17,7 @@ export default function MonthlyCpaChart({ data }: Readonly<{ data: readonly Mont
             {hasData ? (
                 <>
                     <p className={styles.scrollHint}>Puedes desplazar el gráfico horizontalmente. Los valores completos están en la tabla.</p>
-                    <div
-                        className={styles.chartScroll}
-                        tabIndex={0}
-                        role="region"
-                        aria-label="Gráfico mensual de costo por conversión, desplazable horizontalmente"
-                    >
+                    <section className={styles.chartScroll} aria-label="Gráfico mensual de costo por conversión, desplazable horizontalmente">
                         <svg
                             viewBox={`0 0 ${CPA_CHART.width} ${CPA_CHART.height}`}
                             className={styles.chartSvg}
@@ -56,8 +51,8 @@ export default function MonthlyCpaChart({ data }: Readonly<{ data: readonly Mont
                                         />
                                     ),
                             )}
-                            {chart.segments.map((points, index) => (
-                                <polyline key={index} points={points} className={styles.chartLine} />
+                            {chart.segments.map((points) => (
+                                <polyline key={points} points={points} className={styles.chartLine} />
                             ))}
                             {chart.points.map(
                                 (point, index) =>
@@ -87,7 +82,7 @@ export default function MonthlyCpaChart({ data }: Readonly<{ data: readonly Mont
                                 </text>
                             ))}
                         </svg>
-                    </div>
+                    </section>
                 </>
             ) : (
                 <p className={styles.dataState}>No hay datos suficientes para representar el costo por conversión de este período.</p>
@@ -99,7 +94,7 @@ export default function MonthlyCpaChart({ data }: Readonly<{ data: readonly Mont
             {data.length > 0 && (
                 <details className={styles.dataDetails}>
                     <summary data-link="mejoravit-chart-data-link">Consultar los datos del gráfico</summary>
-                    <div className={styles.tableScroll} tabIndex={0} role="region" aria-label="Tabla de datos mensuales, desplazable horizontalmente">
+                    <section className={styles.tableScroll} aria-label="Tabla de datos mensuales, desplazable horizontalmente">
                         <table className={styles.dataTable}>
                             <caption>Valores mensuales de la columna Conversiones del informe y su costo agregado por conversión.</caption>
                             <thead>
@@ -123,7 +118,7 @@ export default function MonthlyCpaChart({ data }: Readonly<{ data: readonly Mont
                                 ))}
                             </tbody>
                         </table>
-                    </div>
+                    </section>
                 </details>
             )}
         </figure>
