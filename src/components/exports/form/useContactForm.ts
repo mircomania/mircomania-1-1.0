@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState, type ChangeEvent, type SubmitEvent } from 'react';
+import { useState, type ChangeEvent, type SubmitEvent } from 'react';
 
 import { submitContact } from '@/services/contacts/submitContact';
 
 import type { ContactFieldErrors, ContactFormValues, ContactType } from '@/types/contact';
 
 import { pushContactFormEvent } from '@/components/exports/form/pushContactFormEvent';
-import { EMPTY_UTM_PARAMS, getUtmParams } from '@/utils/getUtmParams';
+import { getUtmParams } from '@/utils/getUtmParams';
 import { validateContactPayload } from '@/components/exports/form/validateContact';
 
 const INITIAL_VALUES: ContactFormValues = {
@@ -71,18 +71,12 @@ export function useContactForm(initialContactType: ContactType | '' = ''): UseCo
         contactType: initialContactType,
     }));
 
-    const utmParamsRef = useRef(EMPTY_UTM_PARAMS);
-
     const [errors, setErrors] = useState<ContactFieldErrors>({});
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
     const [submitError, setSubmitError] = useState<string | null>(null);
-
-    useEffect(() => {
-        utmParamsRef.current = getUtmParams();
-    }, []);
 
     function clearFieldError(field: keyof ContactFieldErrors): void {
         setErrors((currentErrors) => {
@@ -141,10 +135,11 @@ export function useContactForm(initialContactType: ContactType | '' = ''): UseCo
         setSuccessMessage(null);
         setSubmitError(null);
 
-        const validation = validateContactPayload({
+        const payload = {
             ...values,
-            ...utmParamsRef.current,
-        });
+            ...getUtmParams(),
+        };
+        const validation = validateContactPayload(payload);
 
         if (!validation.success) {
             setErrors(validation.errors);
@@ -156,10 +151,7 @@ export function useContactForm(initialContactType: ContactType | '' = ''): UseCo
         setIsSubmitting(true);
 
         try {
-            const response = await submitContact({
-                ...values,
-                ...utmParamsRef.current,
-            });
+            const response = await submitContact(payload);
 
             if (!response.success) {
                 const responseErrors = response.errors ?? {};

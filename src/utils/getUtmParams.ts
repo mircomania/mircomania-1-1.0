@@ -50,6 +50,7 @@ function readStoredUtmParams(): UtmParams {
 
         if (
             typeof parsedValue.timestamp !== 'number' ||
+            !Number.isFinite(parsedValue.timestamp) ||
             typeof parsedValue.utmSource !== 'string' ||
             typeof parsedValue.utmMedium !== 'string' ||
             typeof parsedValue.utmCampaign !== 'string'

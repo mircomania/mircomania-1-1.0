@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { Inter, Montserrat, Space_Grotesk } from 'next/font/google';
 import { GoogleTagManager } from '@next/third-parties/google';
 
@@ -7,6 +8,7 @@ import { SITE_URL } from '@/constants/routes';
 import { Footer } from '@/components/common/footer/Footer';
 import { Navbar } from '@/components/common/navbar/Navbar';
 import RouteFocusManager from '@/utils/RouteFocusManager';
+import UtmAttributionTracker from '@/utils/UtmAttributionTracker';
 
 import './globals.css';
 
@@ -35,6 +37,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     return (
         <html lang="es" data-scroll-behavior="smooth">
             <body className={`${montserrat.variable} ${inter.variable} ${spaceGrotesk.variable}`}>
+                <Suspense fallback={null}>
+                    <UtmAttributionTracker />
+                </Suspense>
                 <RouteFocusManager />
 
                 <Navbar />
