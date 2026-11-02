@@ -189,3 +189,23 @@
 92.- La segunda migration crea private.touch_contact_interaction(uuid) para actualizar manualmente last_interaction_at. El trigger existente actualiza automáticamente updated_at. Si el volumen de leads aumenta, podría automatizarse en el futuro mediante Make.
 
 93.- La tercera migration programa private.delete_expired_contacts() una vez al día a las 03:30 UTC. Con esto queda implementada la retención automática de contactos en Supabase.
+
+94.- Creamos /ads como landing comercial de Publicidad Digital, enlazada desde la home; /#servicios sigue siendo un ancla, no una página general de servicios.
+
+95.- Creamos /ads/mejoravit como estudio independiente, con contexto de experiencia profesional en PRO Consultores y comparación limitada a Mi Cuenta — Mejoravit 4, sin presentar sus resultados como causalidad.
+
+96.- Utilizamos un snapshot histórico versionado generado mediante Python desde un XML de Google Ads. La página no consulta Google Ads en tiempo real; el JSON publica conversiones y CPA agregados, sin inversión.
+
+97.- Mantenemos ads_cases separado de projects: el primero gestiona las tarjetas del catálogo publicitario y el segundo el portafolio con sus portadas. Los enlaces a estudios se registran solo cuando existe su página.
+
+98.- Conservamos el proyecto web Mejoravit original y adoptamos mejoravit-ads como proyecto destacado independiente para la experiencia publicitaria. Las filas y portadas se gestionan como contenido remoto, separado del esquema versionado.
+
+99.- Incorporamos digital_ads para clasificar proyectos publicitarios e inter_nav para enlazar estudios internos sin reutilizar demo_url ni repository_url.
+
+100.- Ampliamos el formulario a siete motivos: project, automation, advertising, analytics, job, collaboration y general. servicio=marketing preselecciona advertising como decisión de interfaz, sin generar atribución.
+
+101.- Capturamos UTM globalmente al entrar y durante la navegación cliente, conservando la clave de almacenamiento y la vigencia de 15 días. Una nueva campaña reemplaza el conjunto anterior; el formulario consulta la atribución al enviar.
+
+102.- Mantenemos la instrumentación GTM sencilla: atributos data-link/data-cta para click_link/click_cta configurados externamente y un push explícito de send_form tras el envío confirmado. No agregamos UTM al evento ni a enlaces internos.
+
+103.- La política de privacidad 1.3 se actualizó editorialmente para describir la captura UTM desde la entrada, la sustitución por nuevas campañas y los límites del consentimiento del formulario. La revisión jurídica y técnica de consentimiento y analítica queda pendiente, al igual que la aprobación de staging y publicación de esta actualización.

@@ -17,7 +17,7 @@ import { SmartLink } from '@/utils/SmartLink';
 import StarryBackground from '@/utils/starryBackground/StarryBackground';
 
 const pageMetadata = createMetadata({
-    title: 'Mejoravit: evolución de una estrategia de Google Ads',
+    title: 'Mejoravit Ads',
     description:
         'Caso de experiencia profesional en PRO Consultores: 17 meses de captación con Google Ads, evolución mensual del CPA y comparación de Search y Performance Max con contexto.',
     path: ROUTES.adsMejoravit,
